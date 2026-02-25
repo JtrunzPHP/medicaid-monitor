@@ -4,181 +4,27 @@
     "url": "https://hcpf.colorado.gov/provider-rates-fee-schedule",
     "type": "html_links", "format": "xlsx",
     "keywords": ["fee schedule", "rate"],
-    "notes": "WORKING - verified Feb 2026"
-  },
-  {
-    "abbr": "DE", "state": "Delaware",
-    "url": "https://www.dmap.state.de.us/downloads/feeschedules/",
-    "type": "directory", "format": "xlsx",
-    "keywords": [],
-    "notes": "Open directory - intermittent timeouts, keep monitoring"
-  },
-  {
-    "abbr": "FL", "state": "Florida",
-    "url": "https://ahca.myflorida.com/medicaid/rules/rule-59g-4.002-provider-reimbursement-schedules-and-billing-codes",
-    "type": "html_links", "format": "xlsx",
-    "keywords": ["fee schedule"],
-    "notes": "Updated URL - Rule 59G-4.002 page"
-  },
-  {
-    "abbr": "GA", "state": "Georgia",
-    "url": "https://www.mmis.georgia.gov/portal/PubAccess.Provider%20Information/Fee%20Schedules/tabId/20/Default.aspx",
-    "type": "html_links", "format": "xlsx",
-    "keywords": ["fee schedule", "rate"],
-    "notes": "Updated URL - GAMMIS portal public access"
-  },
-  {
-    "abbr": "IL", "state": "Illinois",
-    "url": "https://hfs.illinois.gov/medicalproviders/medicaidreimbursement.html",
-    "type": "html_links", "format": "xlsx",
-    "keywords": ["fee schedule", "rate"],
-    "notes": "Updated URL - HFS reimbursement page"
-  },
-  {
-    "abbr": "IN", "state": "Indiana",
-    "url": "https://www.in.gov/medicaid/providers/business-transactions/billing-and-remittance/ihcp-fee-schedules/",
-    "type": "html_links", "format": "xlsx",
-    "keywords": ["fee schedule"],
-    "notes": "Updated URL - IHCP fee schedules page"
-  },
-  {
-    "abbr": "IA", "state": "Iowa",
-    "url": "https://hhs.iowa.gov/medicaid/provider-services/covered-services-rates-and-payments/fee-schedules",
-    "type": "html_links", "format": "xlsx",
-    "keywords": ["fee schedule", "rate"],
-    "notes": "Updated URL - moved from medicaid.iowa.gov to hhs.iowa.gov"
-  },
-  {
-    "abbr": "KY", "state": "Kentucky",
-    "url": "https://www.chfs.ky.gov/agencies/dms/dafm/Pages/feeschedules.aspx",
-    "type": "html_links", "format": "xlsx",
-    "keywords": ["fee schedule"],
-    "notes": "Added www prefix - old URL was missing it"
-  },
-  {
-    "abbr": "MD", "state": "Maryland",
-    "url": "https://health.maryland.gov/mmcp/Pages/FeeSchedules.aspx",
-    "type": "html_links", "format": "xlsx",
-    "keywords": ["fee schedule"],
-    "notes": "Updated URL - moved from mmcp.health.maryland.gov"
-  },
-  {
-    "abbr": "MA", "state": "Massachusetts",
-    "url": "https://www.mass.gov/lists/masshealth-reimbursement-and-rates",
-    "type": "html_links", "format": "xlsx",
-    "keywords": ["reimbursement", "rate", "fee"],
-    "notes": "Returns 403 - mass.gov blocks scrapers. May need Playwright."
-  },
-  {
-    "abbr": "MI", "state": "Michigan",
-    "url": "https://www.michigan.gov/mdhhs/0,5885,7-339-71547_4860---,00.html",
-    "type": "html_links", "format": "xlsx",
-    "keywords": ["fee schedule"],
-    "notes": "Updated URL - MDHHS fee schedule direct page"
-  },
-  {
-    "abbr": "MO", "state": "Missouri",
-    "url": "https://apps.dss.mo.gov/fmsfeeschedules/default.aspx",
-    "type": "html_links", "format": "xlsx",
-    "keywords": ["fee schedule"],
-    "notes": "Updated URL - MO HealthNet fee schedules app"
+    "notes": "51 files confirmed working"
   },
   {
     "abbr": "NE", "state": "Nebraska",
     "url": "https://dhhs.ne.gov/Pages/Medicaid-Provider-Rates-and-Fee-Schedules.aspx",
     "type": "html_links", "format": "xlsx",
     "keywords": ["fee schedule", "rate"],
-    "notes": "Updated URL - was missing Provider-Rates in path"
-  },
-  {
-    "abbr": "NV", "state": "Nevada",
-    "url": "https://dhcfp.nv.gov/Resources/Rates/RatesHome/",
-    "type": "html_links", "format": "xlsx",
-    "keywords": ["rate", "fee"],
-    "notes": "Updated URL - moved to Resources subdirectory"
-  },
-  {
-    "abbr": "NC", "state": "North Carolina",
-    "url": "https://medicaid.ncdhhs.gov/document-collection/fee-schedules",
-    "type": "html_links", "format": "xlsx",
-    "keywords": ["fee schedule"],
-    "notes": "Updated URL - document collection page"
+    "notes": "3 files confirmed working"
   },
   {
     "abbr": "OH", "state": "Ohio",
     "url": "https://medicaid.ohio.gov/resources-for-providers/billing/fee-schedule-and-rates/schedules-and-rates",
     "type": "html_links", "format": "xlsx",
     "keywords": ["fee schedule", "rate"],
-    "notes": "Updated URL - new Ohio Medicaid site structure"
-  },
-  {
-    "abbr": "OK", "state": "Oklahoma",
-    "url": "https://oklahoma.gov/ohca/providers/billing-and-claims/fee-schedules.html",
-    "type": "html_links", "format": "xlsx",
-    "keywords": ["fee schedule"],
-    "notes": "Updated URL - billing-and-claims path"
-  },
-  {
-    "abbr": "OR", "state": "Oregon",
-    "url": "https://www.oregon.gov/oha/HSD/OHP/Pages/Fee-Schedule.aspx",
-    "type": "html_links", "format": "xlsx",
-    "keywords": ["fee schedule"],
-    "notes": "Updated URL - singular Fee-Schedule not Fee-Schedules"
-  },
-  {
-    "abbr": "PA", "state": "Pennsylvania",
-    "url": "https://www.pa.gov/agencies/dhs/resources/for-providers/ma-for-providers/ma-fee-schedule.html",
-    "type": "html_links", "format": "xlsx",
-    "keywords": ["fee schedule"],
-    "notes": "Updated URL - moved to pa.gov"
-  },
-  {
-    "abbr": "SD", "state": "South Dakota",
-    "url": "https://dss.sd.gov/medicaid/providers/feeschedules/",
-    "type": "directory", "format": "xlsx",
-    "keywords": [],
-    "notes": "Open directory listing - URL unchanged but was returning no links"
-  },
-  {
-    "abbr": "TN", "state": "Tennessee",
-    "url": "https://www.tn.gov/tenncare/information-statistics/fee-schedules.html",
-    "type": "html_links", "format": "xlsx",
-    "keywords": ["fee schedule"],
-    "notes": "Updated URL - moved to information-statistics section"
-  },
-  {
-    "abbr": "TX", "state": "Texas",
-    "url": "https://public.tmhp.com/FeeSchedules/Default.aspx",
-    "type": "html_links", "format": "xlsx",
-    "keywords": ["fee schedule"],
-    "notes": "Updated URL - public.tmhp.com not www.tmhp.com"
-  },
-  {
-    "abbr": "UT", "state": "Utah",
-    "url": "https://medicaid.utah.gov/practitioner-fee-schedule/",
-    "type": "html_links", "format": "xlsx",
-    "keywords": ["fee schedule", "rate"],
-    "notes": "Updated URL"
-  },
-  {
-    "abbr": "VA", "state": "Virginia",
-    "url": "https://www.dmas.virginia.gov/for-providers/rates-and-rate-setting/procedure-fee-files-cpt-codes/",
-    "type": "html_links", "format": "xlsx",
-    "keywords": ["fee schedule", "rate", "procedure"],
-    "notes": "Updated URL - procedure fee files page"
+    "notes": "37 files confirmed working"
   },
   {
     "abbr": "WA", "state": "Washington",
     "url": "https://www.hca.wa.gov/billers-providers-partners/prior-authorization-claims-and-billing/provider-billing-guides-and-fee-schedules",
     "type": "html_links", "format": "xlsx",
     "keywords": ["fee schedule", "rate"],
-    "notes": "Updated URL - billing guides and fee schedules page"
-  },
-  {
-    "abbr": "WI", "state": "Wisconsin",
-    "url": "https://www.forwardhealth.wi.gov/WIPortal/Subsystem/Publications/ForwardHealthPortalWIRetrieve.aspx?docids=p00351",
-    "type": "html_links", "format": "xlsx",
-    "keywords": ["fee schedule"],
-    "notes": "URL unchanged - ForwardHealth portal may need JS rendering"
+    "notes": "133 files confirmed working - best dataset"
   }
 ]
