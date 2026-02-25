@@ -1,0 +1,184 @@
+[
+  {
+    "abbr": "CO", "state": "Colorado",
+    "url": "https://hcpf.colorado.gov/provider-rates-fee-schedule",
+    "type": "html_links", "format": "xlsx",
+    "keywords": ["fee schedule", "rate"],
+    "notes": "Multiple service-type files; all XLSX direct links on page"
+  },
+  {
+    "abbr": "DE", "state": "Delaware",
+    "url": "https://www.dmap.state.de.us/downloads/feeschedules/",
+    "type": "directory", "format": "xlsx",
+    "keywords": [],
+    "notes": "Open directory listing — grab all XLSX files"
+  },
+  {
+    "abbr": "FL", "state": "Florida",
+    "url": "https://ahca.myflorida.com/medicaid/review/fee_schedule.shtml",
+    "type": "html_links", "format": "xlsx",
+    "keywords": ["fee schedule"],
+    "notes": "Large state; multiple schedule types. High value."
+  },
+  {
+    "abbr": "GA", "state": "Georgia",
+    "url": "https://medicaid.georgia.gov/fees-reimbursement",
+    "type": "html_links", "format": "xlsx",
+    "keywords": ["fee", "rate", "schedule"],
+    "notes": "Direct XLSX links on page"
+  },
+  {
+    "abbr": "IL", "state": "Illinois",
+    "url": "https://www.illinois.gov/hfs/MedicalProviders/MedicalFeeSchedules/Pages/default.aspx",
+    "type": "html_links", "format": "xlsx",
+    "keywords": ["fee schedule"],
+    "notes": "Organized by service type; reliable"
+  },
+  {
+    "abbr": "IN", "state": "Indiana",
+    "url": "https://www.in.gov/medicaid/providers/reimbursement-policy/",
+    "type": "html_links", "format": "xlsx",
+    "keywords": ["fee", "rate"],
+    "notes": ""
+  },
+  {
+    "abbr": "IA", "state": "Iowa",
+    "url": "https://medicaid.iowa.gov/providers/fee-schedules-and-rate-tables",
+    "type": "html_links", "format": "xlsx",
+    "keywords": ["fee schedule", "rate table"],
+    "notes": ""
+  },
+  {
+    "abbr": "KY", "state": "Kentucky",
+    "url": "https://chfs.ky.gov/agencies/dms/dafm/Pages/feeschedules.aspx",
+    "type": "html_links", "format": "xlsx",
+    "keywords": ["fee schedule"],
+    "notes": ""
+  },
+  {
+    "abbr": "MD", "state": "Maryland",
+    "url": "https://mmcp.health.maryland.gov/pPages/FeeSchedules.aspx",
+    "type": "html_links", "format": "xlsx",
+    "keywords": ["fee schedule"],
+    "notes": ""
+  },
+  {
+    "abbr": "MA", "state": "Massachusetts",
+    "url": "https://www.mass.gov/lists/masshealth-reimbursement-and-rates",
+    "type": "html_links", "format": "xlsx",
+    "keywords": ["reimbursement", "rate", "fee"],
+    "notes": "High Medicaid population; well-maintained"
+  },
+  {
+    "abbr": "MI", "state": "Michigan",
+    "url": "https://www.michigan.gov/mdhhs/providers-partners/medicaid/fee-schedules",
+    "type": "html_links", "format": "xlsx",
+    "keywords": ["fee schedule"],
+    "notes": ""
+  },
+  {
+    "abbr": "MO", "state": "Missouri",
+    "url": "https://dss.mo.gov/mhd/providers/pages/feeschedule.htm",
+    "type": "html_links", "format": "xlsx",
+    "keywords": ["fee schedule"],
+    "notes": ""
+  },
+  {
+    "abbr": "NE", "state": "Nebraska",
+    "url": "https://dhhs.ne.gov/Pages/Medicaid-Fee-Schedules.aspx",
+    "type": "html_links", "format": "xlsx",
+    "keywords": ["fee schedule"],
+    "notes": ""
+  },
+  {
+    "abbr": "NV", "state": "Nevada",
+    "url": "https://dhcfp.nv.gov/Providers/Rates/",
+    "type": "html_links", "format": "xlsx",
+    "keywords": ["rate", "fee"],
+    "notes": ""
+  },
+  {
+    "abbr": "NC", "state": "North Carolina",
+    "url": "https://medicaid.ncdhhs.gov/providers/fee-schedules",
+    "type": "html_links", "format": "xlsx",
+    "keywords": ["fee schedule"],
+    "notes": ""
+  },
+  {
+    "abbr": "OH", "state": "Ohio",
+    "url": "https://medicaid.ohio.gov/providers/reimbursement-and-billing/fee-schedules",
+    "type": "html_links", "format": "xlsx",
+    "keywords": ["fee schedule"],
+    "notes": "Clean column naming; good for rate delta analysis"
+  },
+  {
+    "abbr": "OK", "state": "Oklahoma",
+    "url": "https://oklahoma.gov/ohca/providers/billing/fee-schedules.html",
+    "type": "html_links", "format": "xlsx",
+    "keywords": ["fee schedule"],
+    "notes": ""
+  },
+  {
+    "abbr": "OR", "state": "Oregon",
+    "url": "https://www.oregon.gov/oha/HSD/OHP/Pages/Fee-Schedules.aspx",
+    "type": "html_links", "format": "xlsx",
+    "keywords": ["fee schedule"],
+    "notes": ""
+  },
+  {
+    "abbr": "PA", "state": "Pennsylvania",
+    "url": "https://www.dhs.pa.gov/providers/Providers/Pages/Medical/Fee-Schedules.aspx",
+    "type": "html_links", "format": "xlsx",
+    "keywords": ["fee schedule"],
+    "notes": "Large state; high value"
+  },
+  {
+    "abbr": "SD", "state": "South Dakota",
+    "url": "https://dss.sd.gov/medicaid/providers/feeschedules/",
+    "type": "directory", "format": "xlsx",
+    "keywords": [],
+    "notes": "Open directory listing"
+  },
+  {
+    "abbr": "TN", "state": "Tennessee",
+    "url": "https://www.tn.gov/tenncare/providers/billing/fee-schedules.html",
+    "type": "html_links", "format": "xlsx",
+    "keywords": ["fee schedule"],
+    "notes": ""
+  },
+  {
+    "abbr": "TX", "state": "Texas",
+    "url": "https://www.tmhp.com/resources/fee-schedules",
+    "type": "html_links", "format": "xlsx",
+    "keywords": ["fee schedule"],
+    "notes": "Very rich; multiple service categories. Highest priority state."
+  },
+  {
+    "abbr": "UT", "state": "Utah",
+    "url": "https://medicaid.utah.gov/provider-reimbursement/",
+    "type": "html_links", "format": "xlsx",
+    "keywords": ["fee schedule", "rate"],
+    "notes": ""
+  },
+  {
+    "abbr": "VA", "state": "Virginia",
+    "url": "https://www.dmas.virginia.gov/for-providers/reimbursement-guidance/",
+    "type": "html_links", "format": "xlsx",
+    "keywords": ["fee schedule", "rate"],
+    "notes": ""
+  },
+  {
+    "abbr": "WA", "state": "Washington",
+    "url": "https://www.hca.wa.gov/billers-providers-partners/prior-authorization-claims-and-billing/apple-health-fee-schedules-and-rates",
+    "type": "html_links", "format": "xlsx",
+    "keywords": ["fee schedule", "rate"],
+    "notes": "Apple Health; well-maintained"
+  },
+  {
+    "abbr": "WI", "state": "Wisconsin",
+    "url": "https://www.forwardhealth.wi.gov/WIPortal/Subsystem/Publications/ForwardHealthPortalWIRetrieve.aspx?docids=p00351",
+    "type": "html_links", "format": "xlsx",
+    "keywords": ["fee schedule"],
+    "notes": "ForwardHealth portal; very organized"
+  }
+]
