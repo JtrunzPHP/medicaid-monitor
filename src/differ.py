@@ -12,7 +12,7 @@ log = logging.getLogger(__name__)
 RATE_KEYS = ["rate", "fee", "amount", "allow", "reimburse", "price", "payment"]
 CODE_KEYS = ["code", "cpt", "hcpcs", "procedure", "revenue"]
 DOWNLOAD_DIR = Path("data/downloads")
-MAX_SNAPSHOT_ROWS = 100  # cap first-run snapshot so email stays readable
+MAX_SNAPSHOT_ROWS = 100
 
 
 def _load_df(content: bytes, filename: str) -> pd.DataFrame | None:
@@ -35,8 +35,9 @@ def _load_df(content: bytes, filename: str) -> pd.DataFrame | None:
 
 
 def _find_cols(df: pd.DataFrame) -> tuple[str | None, list[str]]:
-    code_col  = next((c for c in df.columns if any(k in c.lower() for k in CODE_KEYS)), None)
-    rate_cols = [c for c in df.columns if any(k in c.lower() for k in RATE_KEYS)]
+    # isinstance check guards against float/NaN column headers from blank Excel columns
+    code_col  = next((c for c in df.columns if isinstance(c, str) and any(k in c.lower() for k in CODE_KEYS)), None)
+    rate_cols = [c for c in df.columns if isinstance(c, str) and any(k in c.lower() for k in RATE_KEYS)]
     return code_col, rate_cols
 
 
@@ -53,7 +54,7 @@ def _snapshot(df: pd.DataFrame, change: dict) -> list[dict]:
     if not code_col or not rate_cols:
         return []
 
-    desc_col = next((c for c in df.columns if "desc" in c.lower()), None)
+    desc_col = next((c for c in df.columns if isinstance(c, str) and "desc" in c.lower()), None)
     rate_col = rate_cols[0]
     rows = []
 
@@ -97,12 +98,12 @@ def diff_files(change: dict) -> list[dict]:
         log.warning(f"{abbr}: Could not parse new file {filename}")
         return []
 
-    # ── First run: no prior file — return snapshot ───────────────────────────
+    # First run — no prior file, return snapshot
     if not old_path.exists():
         log.info(f"{abbr}: No prior file — returning rate snapshot for {filename}")
         return _snapshot(new_df, change)
 
-    # ── Subsequent runs: diff old vs new ─────────────────────────────────────
+    # Subsequent runs — diff old vs new
     old_df = _load_df(old_path.read_bytes(), filename)
     if old_df is None:
         log.warning(f"{abbr}: Could not parse old file — falling back to snapshot")
@@ -117,7 +118,7 @@ def diff_files(change: dict) -> list[dict]:
         log.warning(f"{abbr}: Code column '{code_col}' missing from old file")
         return []
 
-    desc_col = next((c for c in new_df.columns if "desc" in c.lower()), None)
+    desc_col = next((c for c in new_df.columns if isinstance(c, str) and "desc" in c.lower()), None)
     diffs = []
 
     for rate_col in rate_cols:
