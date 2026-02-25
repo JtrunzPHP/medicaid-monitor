@@ -1,0 +1,92 @@
+[
+  {
+    "ticker": "ADUS", "name": "Addus HomeCare",
+    "segment": "home_health_personal_care",
+    "medicaid_pct": 0.72,
+    "state_exposure": {
+      "IL": 0.28, "TX": 0.12, "CA": 0.10, "NY": 0.08, "AZ": 0.06,
+      "NM": 0.05, "ID": 0.04, "NV": 0.03, "WA": 0.03, "OH": 0.03,
+      "OTHER": 0.18
+    }
+  },
+  {
+    "ticker": "AMED", "name": "Amedisys",
+    "segment": "home_health_hospice",
+    "medicaid_pct": 0.18,
+    "state_exposure": {
+      "LA": 0.12, "TN": 0.10, "MS": 0.09, "AL": 0.08, "KY": 0.07,
+      "TX": 0.07, "FL": 0.06, "GA": 0.05, "NC": 0.05, "OH": 0.04,
+      "OTHER": 0.27
+    }
+  },
+  {
+    "ticker": "ENSG", "name": "Ensign Group",
+    "segment": "skilled_nursing",
+    "medicaid_pct": 0.55,
+    "state_exposure": {
+      "CA": 0.32, "TX": 0.14, "AZ": 0.09, "UT": 0.07, "WA": 0.06,
+      "CO": 0.05, "ID": 0.04, "NV": 0.04, "MT": 0.03, "OR": 0.03,
+      "OTHER": 0.13
+    }
+  },
+  {
+    "ticker": "SEM", "name": "Select Medical",
+    "segment": "ltach_rehab",
+    "medicaid_pct": 0.12,
+    "state_exposure": {
+      "PA": 0.14, "TX": 0.10, "OH": 0.09, "FL": 0.08, "IN": 0.06,
+      "MI": 0.05, "NJ": 0.05, "VA": 0.05, "NC": 0.04, "GA": 0.04,
+      "OTHER": 0.30
+    }
+  },
+  {
+    "ticker": "ACHC", "name": "Acadia Healthcare",
+    "segment": "behavioral_health",
+    "medicaid_pct": 0.31,
+    "state_exposure": {
+      "TN": 0.11, "TX": 0.10, "PA": 0.08, "FL": 0.07, "MA": 0.06,
+      "OH": 0.05, "IN": 0.05, "MI": 0.05, "KY": 0.04, "GA": 0.04,
+      "OTHER": 0.35
+    }
+  },
+  {
+    "ticker": "UHS", "name": "Universal Health Services",
+    "segment": "behavioral_health_acute",
+    "medicaid_pct": 0.24,
+    "state_exposure": {
+      "TX": 0.15, "PA": 0.10, "CA": 0.09, "NV": 0.08, "FL": 0.07,
+      "VA": 0.06, "DC": 0.05, "LA": 0.04, "MD": 0.04, "GA": 0.04,
+      "OTHER": 0.28
+    }
+  },
+  {
+    "ticker": "BKD", "name": "Brookdale Senior Living",
+    "segment": "assisted_living_snf",
+    "medicaid_pct": 0.30,
+    "state_exposure": {
+      "TX": 0.12, "CA": 0.09, "FL": 0.08, "IL": 0.07, "NC": 0.06,
+      "OH": 0.05, "PA": 0.05, "WA": 0.04, "CO": 0.04, "TN": 0.04,
+      "OTHER": 0.36
+    }
+  },
+  {
+    "ticker": "LNTH", "name": "Lantheus Holdings",
+    "segment": "diagnostics_imaging",
+    "medicaid_pct": 0.08,
+    "state_exposure": {
+      "NY": 0.15, "CA": 0.12, "TX": 0.10, "FL": 0.08, "PA": 0.07,
+      "IL": 0.06, "OH": 0.05, "MA": 0.05, "NJ": 0.05, "GA": 0.04,
+      "OTHER": 0.23
+    }
+  },
+  {
+    "ticker": "OPCH", "name": "Option Care Health",
+    "segment": "infusion_home_health",
+    "medicaid_pct": 0.22,
+    "state_exposure": {
+      "TX": 0.13, "CA": 0.11, "FL": 0.09, "IL": 0.08, "OH": 0.07,
+      "PA": 0.06, "NY": 0.06, "GA": 0.05, "NC": 0.04, "TN": 0.04,
+      "OTHER": 0.27
+    }
+  }
+]
