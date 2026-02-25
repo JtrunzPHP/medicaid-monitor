@@ -30,6 +30,46 @@
     }
   },
   {
+    "ticker": "PNTG", "name": "Pennant Group",
+    "segment": "home_health_hospice_snf",
+    "medicaid_pct": 0.48,
+    "state_exposure": {
+      "ID": 0.18, "UT": 0.14, "AZ": 0.12, "CO": 0.10, "WA": 0.09,
+      "OR": 0.08, "NV": 0.07, "MT": 0.06, "WY": 0.05, "CA": 0.04,
+      "OTHER": 0.07
+    }
+  },
+  {
+    "ticker": "NHC", "name": "National HealthCare Corp",
+    "segment": "skilled_nursing_assisted_living",
+    "medicaid_pct": 0.58,
+    "state_exposure": {
+      "TN": 0.28, "SC": 0.14, "MO": 0.12, "FL": 0.09, "GA": 0.08,
+      "VA": 0.07, "MD": 0.06, "IN": 0.05, "KY": 0.05, "NC": 0.04,
+      "OTHER": 0.02
+    }
+  },
+  {
+    "ticker": "BKD", "name": "Brookdale Senior Living",
+    "segment": "assisted_living_snf",
+    "medicaid_pct": 0.30,
+    "state_exposure": {
+      "TX": 0.12, "CA": 0.09, "FL": 0.08, "IL": 0.07, "NC": 0.06,
+      "OH": 0.05, "PA": 0.05, "WA": 0.04, "CO": 0.04, "TN": 0.04,
+      "OTHER": 0.36
+    }
+  },
+  {
+    "ticker": "EHC", "name": "Encompass Health",
+    "segment": "inpatient_rehab",
+    "medicaid_pct": 0.14,
+    "state_exposure": {
+      "TX": 0.16, "FL": 0.12, "AL": 0.09, "PA": 0.07, "TN": 0.06,
+      "OH": 0.06, "NC": 0.05, "GA": 0.05, "VA": 0.05, "SC": 0.04,
+      "OTHER": 0.25
+    }
+  },
+  {
     "ticker": "SEM", "name": "Select Medical",
     "segment": "ltach_rehab",
     "medicaid_pct": 0.12,
@@ -60,13 +100,73 @@
     }
   },
   {
-    "ticker": "BKD", "name": "Brookdale Senior Living",
-    "segment": "assisted_living_snf",
-    "medicaid_pct": 0.30,
+    "ticker": "LFST", "name": "LifeStance Health",
+    "segment": "outpatient_mental_health",
+    "medicaid_pct": 0.22,
     "state_exposure": {
-      "TX": 0.12, "CA": 0.09, "FL": 0.08, "IL": 0.07, "NC": 0.06,
-      "OH": 0.05, "PA": 0.05, "WA": 0.04, "CO": 0.04, "TN": 0.04,
-      "OTHER": 0.36
+      "CA": 0.14, "TX": 0.11, "FL": 0.09, "OH": 0.08, "WA": 0.07,
+      "CO": 0.06, "MI": 0.05, "PA": 0.05, "NC": 0.05, "MA": 0.04,
+      "OTHER": 0.26
+    }
+  },
+  {
+    "ticker": "THC", "name": "Tenet Healthcare",
+    "segment": "acute_care_hospitals",
+    "medicaid_pct": 0.18,
+    "state_exposure": {
+      "TX": 0.28, "FL": 0.18, "CA": 0.12, "AZ": 0.08, "MI": 0.06,
+      "TN": 0.05, "GA": 0.04, "IL": 0.04, "SC": 0.04, "AL": 0.03,
+      "OTHER": 0.08
+    }
+  },
+  {
+    "ticker": "SGRY", "name": "Surgery Partners",
+    "segment": "ambulatory_surgery_centers",
+    "medicaid_pct": 0.10,
+    "state_exposure": {
+      "FL": 0.16, "TX": 0.13, "TN": 0.10, "IN": 0.08, "KY": 0.07,
+      "OR": 0.06, "CO": 0.05, "NC": 0.05, "ID": 0.04, "SC": 0.04,
+      "OTHER": 0.22
+    }
+  },
+  {
+    "ticker": "DVA", "name": "DaVita",
+    "segment": "dialysis",
+    "medicaid_pct": 0.12,
+    "state_exposure": {
+      "CA": 0.18, "TX": 0.12, "FL": 0.10, "NY": 0.07, "OH": 0.06,
+      "PA": 0.05, "IL": 0.05, "GA": 0.04, "NC": 0.04, "WA": 0.04,
+      "OTHER": 0.25
+    }
+  },
+  {
+    "ticker": "MODV", "name": "ModivCare",
+    "segment": "nemt_personal_care_monitoring",
+    "medicaid_pct": 0.88,
+    "state_exposure": {
+      "PA": 0.12, "OH": 0.10, "FL": 0.09, "NC": 0.08, "CO": 0.07,
+      "VA": 0.07, "IL": 0.06, "WA": 0.05, "OR": 0.05, "GA": 0.05,
+      "OTHER": 0.26
+    }
+  },
+  {
+    "ticker": "BTSG", "name": "BrightSpring Health",
+    "segment": "home_health_personal_care_pharmacy",
+    "medicaid_pct": 0.65,
+    "state_exposure": {
+      "KY": 0.14, "TX": 0.11, "IN": 0.09, "OH": 0.08, "FL": 0.07,
+      "GA": 0.06, "NC": 0.06, "TN": 0.06, "PA": 0.05, "VA": 0.05,
+      "OTHER": 0.23
+    }
+  },
+  {
+    "ticker": "MD", "name": "Pediatrix Medical Group",
+    "segment": "neonatal_pediatric_anesthesia",
+    "medicaid_pct": 0.35,
+    "state_exposure": {
+      "FL": 0.18, "TX": 0.14, "CA": 0.10, "NC": 0.07, "CO": 0.06,
+      "NV": 0.05, "SC": 0.05, "TN": 0.04, "WA": 0.04, "VA": 0.04,
+      "OTHER": 0.23
     }
   },
   {
