@@ -1,30 +1,524 @@
 [
   {
-    "abbr": "CO", "state": "Colorado",
+    "abbr": "AL",
+    "state": "Alabama",
+    "url": "https://medicaid.alabama.gov/content/Gated/7.3G_Fee_Schedules.aspx",
+    "type": "html_links",
+    "format": ["xlsx", "xls", "csv"],
+    "keywords": ["fee schedule"],
+    "notes": "Gated page — requires acceptance of terms, may need direct_urls fallback",
+    "difficulty": "hard"
+  },
+  {
+    "abbr": "AK",
+    "state": "Alaska",
+    "url": "https://manuals.medicaidalaska.com/medicaidalaska/providers/feeschedule.asp",
+    "type": "html_links",
+    "format": ["xlsx", "xls", "csv", "pdf"],
+    "keywords": ["fee schedule", "rate"],
+    "notes": "Conduent portal — may require session handling",
+    "difficulty": "hard"
+  },
+  {
+    "abbr": "AZ",
+    "state": "Arizona",
+    "url": "https://www.azahcccs.gov/PlansProviders/RatesAndBilling/FFS/",
+    "type": "html_links",
+    "format": ["xlsx", "xls"],
+    "keywords": ["fee schedule", "rate", "capped"],
+    "follow_subpages": true,
+    "subpage_keywords": ["physician", "outpatient", "dental", "behavioral", "dme", "anesthesia"],
+    "notes": "AHCCCS — main FFS page links to sub-category pages with xlsx files",
+    "difficulty": "medium"
+  },
+  {
+    "abbr": "AR",
+    "state": "Arkansas",
+    "url": "https://humanservices.arkansas.gov/divisions-shared-services/medical-services/helpful-information-for-providers/fee-schedules/",
+    "type": "html_links",
+    "format": ["xlsx", "xls", "csv", "pdf"],
+    "keywords": ["fee schedule", "rate"],
+    "notes": "DHS page with direct file links",
+    "difficulty": "easy"
+  },
+  {
+    "abbr": "CA",
+    "state": "California",
+    "url": "https://files.medi-cal.ca.gov/Rates/RatesHome.aspx",
+    "type": "html_links",
+    "format": ["xlsx", "xls", "csv"],
+    "keywords": ["fee schedule", "rate"],
+    "notes": "Medi-Cal rates portal — ASP.NET, may need JS or direct_urls",
+    "difficulty": "hard"
+  },
+  {
+    "abbr": "CO",
+    "state": "Colorado",
     "url": "https://hcpf.colorado.gov/provider-rates-fee-schedule",
-    "type": "html_links", "format": "xlsx",
+    "type": "html_links",
+    "format": ["xlsx"],
     "keywords": ["fee schedule", "rate"],
-    "notes": "51 files confirmed working"
+    "notes": "51 files confirmed working — best tested state"
   },
   {
-    "abbr": "NE", "state": "Nebraska",
+    "abbr": "CT",
+    "state": "Connecticut",
+    "url": "https://www.ctdssmap.com/ctportal/provider/provider-fee-schedule-download",
+    "type": "html_links",
+    "format": ["csv", "xlsx"],
+    "keywords": ["fee schedule"],
+    "notes": "CMAP portal — requires EULA acceptance click, may need direct_urls",
+    "difficulty": "hard"
+  },
+  {
+    "abbr": "DE",
+    "state": "Delaware",
+    "url": "https://medicaidpublications.dhss.delaware.gov/",
+    "type": "direct_files",
+    "format": ["xlsx"],
+    "direct_urls": [
+      "https://medicaidpublications.dhss.delaware.gov/docs/DesktopModules/Bring2mind/DMX/API/Entries/Download?Command=Core_Download&EntryId=1306&language=en-US&PortalId=0&TabId=94"
+    ],
+    "keywords": ["fee schedule"],
+    "notes": "Single comprehensive fee schedule file via DNN CMS direct download",
+    "difficulty": "easy"
+  },
+  {
+    "abbr": "FL",
+    "state": "Florida",
+    "url": "https://ahca.myflorida.com/medicaid/rules/rule-59g-4.002-provider-reimbursement-schedules-and-billing-codes",
+    "type": "html_links",
+    "format": ["xlsx", "xls"],
+    "keywords": ["fee schedule", "practitioner", "reimbursement"],
+    "notes": "AHCA Rule 59G-4.002 — xlsx and pdf downloads, updated semi-annually",
+    "difficulty": "easy"
+  },
+  {
+    "abbr": "GA",
+    "state": "Georgia",
+    "url": "https://www.mmis.georgia.gov/portal/PubAccess.Provider%20Information/Fee%20Schedules/tabId/20/Default.aspx",
+    "type": "html_links",
+    "format": ["xlsx", "xls", "csv"],
+    "keywords": ["fee schedule", "rate", "zipped"],
+    "notes": "GAMMIS portal — public access, has zipped quarterly fee schedules",
+    "difficulty": "medium"
+  },
+  {
+    "abbr": "HI",
+    "state": "Hawaii",
+    "url": "https://medquest.hawaii.gov/en/plans-providers/fee-for-service/fee-schedules.html",
+    "type": "html_links",
+    "format": ["xlsx", "xls", "csv", "pdf"],
+    "keywords": ["fee schedule", "rate"],
+    "notes": "MedQUEST portal",
+    "difficulty": "medium"
+  },
+  {
+    "abbr": "ID",
+    "state": "Idaho",
+    "url": "https://publicdocuments.dhw.idaho.gov/WebLink/Browse.aspx?id=3488&dbid=0&repo=PUBLIC-DOCUMENTS&cr=1",
+    "type": "html_links",
+    "format": ["xlsx", "xls", "csv", "pdf"],
+    "keywords": ["fee schedule", "rate"],
+    "notes": "Laserfiche document repository — may need JS rendering",
+    "difficulty": "hard"
+  },
+  {
+    "abbr": "IL",
+    "state": "Illinois",
+    "url": "https://hfs.illinois.gov/medicalproviders/medicaidreimbursement.html",
+    "type": "html_links",
+    "format": ["xlsx", "xls", "csv"],
+    "keywords": ["fee schedule", "rate", "reimbursement"],
+    "notes": "HFS reimbursement page with file links",
+    "difficulty": "easy"
+  },
+  {
+    "abbr": "IN",
+    "state": "Indiana",
+    "url": "https://provider.indianamedicaid.com/ihcp/Publications/MaxFee/fee_home.asp",
+    "type": "html_links",
+    "format": ["xlsx", "xls", "csv"],
+    "keywords": ["fee", "max fee", "rate"],
+    "notes": "IHCP MaxFee lookup — classic ASP, may have downloadable files",
+    "difficulty": "medium"
+  },
+  {
+    "abbr": "IA",
+    "state": "Iowa",
+    "url": "https://hhs.iowa.gov/ime/providers/csrp/fee-schedule",
+    "type": "html_links",
+    "format": ["xlsx", "xls", "csv"],
+    "keywords": ["fee schedule", "rate"],
+    "notes": "Iowa HHS fee schedule page",
+    "difficulty": "easy"
+  },
+  {
+    "abbr": "KS",
+    "state": "Kansas",
+    "url": "https://portal.kmap-state-ks.us/PublicPage/ProviderPricing/FeeSchedules",
+    "type": "html_links",
+    "format": ["xlsx", "xls", "csv"],
+    "keywords": ["fee schedule"],
+    "notes": "KMAP portal — may be JS-rendered",
+    "difficulty": "medium"
+  },
+  {
+    "abbr": "KY",
+    "state": "Kentucky",
+    "url": "https://www.chfs.ky.gov/agencies/dms/Pages/feesrates.aspx",
+    "type": "html_links",
+    "format": ["xlsx", "xls", "csv"],
+    "keywords": ["fee schedule", "rate"],
+    "notes": "CHFS DMS page — SharePoint, may need direct_urls",
+    "difficulty": "medium"
+  },
+  {
+    "abbr": "LA",
+    "state": "Louisiana",
+    "url": "https://www.lamedicaid.com/provweb1/fee_schedules/feeschedulesindex.htm",
+    "type": "html_links",
+    "format": ["xlsx", "xls", "csv", "pdf"],
+    "keywords": ["fee schedule", "rate"],
+    "notes": "Classic HTML page with direct file links — should work well",
+    "difficulty": "easy"
+  },
+  {
+    "abbr": "ME",
+    "state": "Maine",
+    "url": "https://mainecare.maine.gov/Provider%20Fee%20Schedules/Forms/Publication.aspx",
+    "type": "html_links",
+    "format": ["xlsx", "xls"],
+    "keywords": ["fee schedule"],
+    "notes": "SharePoint document library — may need JS or direct_urls",
+    "difficulty": "hard"
+  },
+  {
+    "abbr": "MD",
+    "state": "Maryland",
+    "url": "https://health.maryland.gov/mmcp/pages/provider-information.aspx",
+    "type": "html_links",
+    "format": ["xlsx", "xls", "csv", "pdf"],
+    "keywords": ["fee schedule", "rate"],
+    "notes": "MDH provider info page with links to fee schedules",
+    "difficulty": "medium"
+  },
+  {
+    "abbr": "MA",
+    "state": "Massachusetts",
+    "url": "https://www.mass.gov/lists/provider-payment-rates-community-health-care-providers-ambulatory-care",
+    "type": "html_links",
+    "format": ["xlsx", "xls", "csv", "pdf"],
+    "keywords": ["rate", "fee schedule", "payment"],
+    "notes": "Mass.gov list page — well-structured HTML with file downloads",
+    "difficulty": "easy"
+  },
+  {
+    "abbr": "MI",
+    "state": "Michigan",
+    "url": "https://www.michigan.gov/mdhhs/doing-business/providers/providers/billing-reimbursement/information-specific-to-different-providers",
+    "type": "html_links",
+    "format": ["xlsx", "xls", "csv"],
+    "keywords": ["fee schedule", "rate"],
+    "follow_subpages": true,
+    "subpage_keywords": ["fee schedule", "rate", "billing"],
+    "notes": "MDHHS — index page links to provider-type sub-pages",
+    "difficulty": "medium"
+  },
+  {
+    "abbr": "MN",
+    "state": "Minnesota",
+    "url": "https://mn.gov/dhs/partners-and-providers/policies-procedures/minnesota-health-care-programs/provider/rates-and-billing/",
+    "type": "html_links",
+    "format": ["xlsx", "xls", "csv", "pdf"],
+    "keywords": ["fee schedule", "rate"],
+    "direct_urls": [
+      "https://mn.gov/dhs/assets/mhcp-fee-schedule_tcm1053-294225.pdf"
+    ],
+    "notes": "DHS rates page — also has a direct PDF fee schedule link as fallback",
+    "difficulty": "easy"
+  },
+  {
+    "abbr": "MS",
+    "state": "Mississippi",
+    "url": "https://medicaid.ms.gov/providers/fee-schedules-and-rates/",
+    "type": "html_links",
+    "format": ["xlsx", "xls", "csv"],
+    "keywords": ["fee schedule", "comprehensive", "rate"],
+    "notes": "DOM page — has comprehensive fee schedule download plus category-specific files",
+    "difficulty": "easy"
+  },
+  {
+    "abbr": "MO",
+    "state": "Missouri",
+    "url": "https://apps.dss.mo.gov/fmsFeeSchedules/default.aspx",
+    "type": "html_links",
+    "format": ["xlsx", "xls", "csv"],
+    "keywords": ["fee schedule"],
+    "notes": "ASP.NET app — may require form postback, consider direct_urls",
+    "difficulty": "hard"
+  },
+  {
+    "abbr": "MT",
+    "state": "Montana",
+    "url": "https://medicaidprovider.mt.gov/21",
+    "type": "html_links",
+    "format": ["xlsx", "xls", "csv", "pdf"],
+    "keywords": ["fee schedule", "rate"],
+    "notes": "Montana Medicaid provider portal",
+    "difficulty": "medium"
+  },
+  {
+    "abbr": "NE",
+    "state": "Nebraska",
     "url": "https://dhhs.ne.gov/Pages/Medicaid-Provider-Rates-and-Fee-Schedules.aspx",
-    "type": "html_links", "format": "xlsx",
+    "type": "direct_files",
+    "format": ["xlsx"],
+    "direct_urls": [],
     "keywords": ["fee schedule", "rate"],
-    "notes": "3 files confirmed working"
+    "notes": "SharePoint JS-rendered — html_links won't work. Must find direct file URLs via browser DevTools Network tab. Placeholder: populate direct_urls manually.",
+    "difficulty": "hard"
   },
   {
-    "abbr": "OH", "state": "Ohio",
+    "abbr": "NV",
+    "state": "Nevada",
+    "url": "https://dhcfp.nv.gov/Resources/Rates/FeeSchedules/",
+    "type": "html_links",
+    "format": ["xlsx", "xls", "csv", "pdf"],
+    "keywords": ["fee schedule", "rate"],
+    "notes": "DHCFP rates page",
+    "difficulty": "easy"
+  },
+  {
+    "abbr": "NH",
+    "state": "New Hampshire",
+    "url": "https://nhmmis.nh.gov/portals/wps/portal/DocumentsandForms",
+    "type": "html_links",
+    "format": ["xlsx", "xls", "csv"],
+    "keywords": ["fee schedule", "rate"],
+    "notes": "Conduent WPS portal — may need session or JS",
+    "difficulty": "hard"
+  },
+  {
+    "abbr": "NJ",
+    "state": "New Jersey",
+    "url": "https://www.njmmis.com/downloadDocuments.aspx",
+    "type": "html_links",
+    "format": ["xlsx", "xls", "csv"],
+    "keywords": ["fee schedule", "rate"],
+    "notes": "NJMMIS document downloads page",
+    "difficulty": "medium"
+  },
+  {
+    "abbr": "NM",
+    "state": "New Mexico",
+    "url": "https://www.hsd.state.nm.us/providers/fee-for-service/",
+    "type": "html_links",
+    "format": ["xlsx", "xls", "csv", "pdf"],
+    "keywords": ["fee schedule", "rate"],
+    "notes": "HSD FFS page",
+    "difficulty": "easy"
+  },
+  {
+    "abbr": "NY",
+    "state": "New York",
+    "url": "https://www.emedny.org/ProviderManuals/AllProviders/index.aspx",
+    "type": "html_links",
+    "format": ["xlsx", "xls", "csv", "pdf"],
+    "keywords": ["fee schedule", "rate"],
+    "follow_subpages": true,
+    "subpage_keywords": ["fee schedule"],
+    "notes": "eMedNY — complex portal with multiple provider-type sub-pages",
+    "difficulty": "hard"
+  },
+  {
+    "abbr": "NC",
+    "state": "North Carolina",
+    "url": "https://ncdhhs.servicenowservices.com/fee_schedules",
+    "type": "html_links",
+    "format": ["xlsx", "xls", "csv"],
+    "keywords": ["fee schedule"],
+    "notes": "ServiceNow portal — JS-heavy, likely needs direct_urls",
+    "difficulty": "hard"
+  },
+  {
+    "abbr": "ND",
+    "state": "North Dakota",
+    "url": "https://www.hhs.nd.gov/healthcare/medicaid/provider/fee-schedules",
+    "type": "html_links",
+    "format": ["xlsx", "xls", "csv", "pdf"],
+    "keywords": ["fee schedule", "rate"],
+    "notes": "ND HHS page — typically straightforward HTML",
+    "difficulty": "easy"
+  },
+  {
+    "abbr": "OH",
+    "state": "Ohio",
     "url": "https://medicaid.ohio.gov/resources-for-providers/billing/fee-schedule-and-rates/schedules-and-rates",
-    "type": "html_links", "format": "xlsx",
-    "keywords": ["fee schedule", "rate"],
-    "notes": "37 files confirmed working"
+    "type": "html_links",
+    "format": ["xlsx"],
+    "keywords": ["fee schedule", "rate", "CPT", "HCPCS"],
+    "notes": "37 files confirmed — links on dam.assets.ohio.gov and /static/ paths",
+    "difficulty": "easy"
   },
   {
-    "abbr": "WA", "state": "Washington",
-    "url": "https://www.hca.wa.gov/billers-providers-partners/prior-authorization-claims-and-billing/provider-billing-guides-and-fee-schedules",
-    "type": "html_links", "format": "xlsx",
+    "abbr": "OK",
+    "state": "Oklahoma",
+    "url": "https://oklahoma.gov/ohca/providers/claim-tools/fee-schedule.html",
+    "type": "html_links",
+    "format": ["xlsx", "xls", "csv"],
     "keywords": ["fee schedule", "rate"],
-    "notes": "133 files confirmed working - best dataset"
+    "notes": "OHCA fee schedule page",
+    "difficulty": "easy"
+  },
+  {
+    "abbr": "OR",
+    "state": "Oregon",
+    "url": "https://www.oregon.gov/oha/hsd/ohp/pages/fee-schedule.aspx",
+    "type": "html_links",
+    "format": ["xlsx", "xls", "csv"],
+    "keywords": ["fee schedule", "rate"],
+    "notes": "OHA OHP fee schedule page — SharePoint, usually has direct xlsx links",
+    "difficulty": "medium"
+  },
+  {
+    "abbr": "PA",
+    "state": "Pennsylvania",
+    "url": "https://www.pa.gov/agencies/dhs/resources/for-providers/ma-for-providers/ma-fee-schedule/",
+    "type": "html_links",
+    "format": ["xlsx", "xls", "csv"],
+    "keywords": ["fee schedule", "rate", "outpatient"],
+    "notes": "PROMISe fee schedule — may require login for full download. Public page has limited info.",
+    "difficulty": "hard"
+  },
+  {
+    "abbr": "RI",
+    "state": "Rhode Island",
+    "url": "https://eohhs.ri.gov/providers-partners/fee-schedules",
+    "type": "html_links",
+    "format": ["xlsx", "xls", "csv"],
+    "keywords": ["fee schedule", "rate"],
+    "notes": "EOHHS page — interactive fee schedule plus downloadable files",
+    "difficulty": "medium"
+  },
+  {
+    "abbr": "SC",
+    "state": "South Carolina",
+    "url": "https://www.scdhhs.gov/resource/fee-schedules",
+    "type": "html_links",
+    "format": ["xlsx", "xls", "csv", "pdf"],
+    "keywords": ["fee schedule", "rate"],
+    "notes": "SCDHHS resource page",
+    "difficulty": "easy"
+  },
+  {
+    "abbr": "SD",
+    "state": "South Dakota",
+    "url": "https://dss.sd.gov/medicaid/providers/feeschedules/",
+    "type": "html_links",
+    "format": ["xlsx", "xls", "csv", "pdf"],
+    "keywords": ["fee schedule", "rate"],
+    "notes": "SD DSS page — straightforward file listing",
+    "difficulty": "easy"
+  },
+  {
+    "abbr": "TN",
+    "state": "Tennessee",
+    "url": "https://www.tn.gov/tenncare/providers/fee-schedule.html",
+    "type": "html_links",
+    "format": ["xlsx", "xls", "csv", "pdf"],
+    "keywords": ["fee schedule", "rate"],
+    "notes": "TennCare fee schedule page",
+    "difficulty": "easy"
+  },
+  {
+    "abbr": "TX",
+    "state": "Texas",
+    "url": "https://public.tmhp.com/FeeSchedules/StaticFeeSchedule/FeeSchedules.aspx",
+    "type": "html_links",
+    "format": ["xlsx", "xls", "csv"],
+    "keywords": ["fee schedule"],
+    "notes": "TMHP static fee schedule page — ASP.NET but has direct file links",
+    "difficulty": "medium"
+  },
+  {
+    "abbr": "UT",
+    "state": "Utah",
+    "url": "https://health.utah.gov/stplan/lookup/CoverageLookup.php",
+    "type": "html_links",
+    "format": ["xlsx", "xls", "csv"],
+    "keywords": ["fee schedule", "rate", "coverage"],
+    "notes": "Utah Health coverage lookup — interactive tool, may need direct_urls",
+    "difficulty": "hard"
+  },
+  {
+    "abbr": "VT",
+    "state": "Vermont",
+    "url": "https://dvha.vermont.gov/providers/codesfee-schedules",
+    "type": "html_links",
+    "format": ["xlsx", "xls", "csv", "pdf"],
+    "keywords": ["fee schedule", "rate", "code"],
+    "notes": "DVHA codes/fee schedules page",
+    "difficulty": "easy"
+  },
+  {
+    "abbr": "VA",
+    "state": "Virginia",
+    "url": "https://www.dmas.virginia.gov/for-providers/rates-and-rate-setting/",
+    "type": "html_links",
+    "format": ["xlsx", "xls", "csv", "pdf"],
+    "keywords": ["fee schedule", "rate"],
+    "notes": "DMAS rates page",
+    "difficulty": "easy"
+  },
+  {
+    "abbr": "WA",
+    "state": "Washington",
+    "url": "https://www.hca.wa.gov/billers-providers-partners/prior-authorization-claims-and-billing/provider-billing-guides-and-fee-schedules",
+    "type": "html_links",
+    "format": ["xlsx"],
+    "keywords": ["fee schedule", "rate"],
+    "notes": "133 files confirmed working — best dataset. Drupal site, renders server-side.",
+    "difficulty": "easy"
+  },
+  {
+    "abbr": "WV",
+    "state": "West Virginia",
+    "url": "https://dhhr.wv.gov/bms/FEES/pages/default.aspx",
+    "type": "html_links",
+    "format": ["xlsx", "xls", "csv", "pdf"],
+    "keywords": ["fee schedule", "rate"],
+    "notes": "BMS fees page — SharePoint, usually has direct file links",
+    "difficulty": "medium"
+  },
+  {
+    "abbr": "WI",
+    "state": "Wisconsin",
+    "url": "https://www.forwardhealth.wi.gov/WIPortal/Subsystem/Publications/MaxFeeDynamicSearch.aspx",
+    "type": "html_links",
+    "format": ["xlsx", "xls", "csv"],
+    "keywords": ["fee schedule", "max fee"],
+    "notes": "ForwardHealth MaxFee dynamic search — ASP.NET, may need postback handling",
+    "difficulty": "hard"
+  },
+  {
+    "abbr": "WY",
+    "state": "Wyoming",
+    "url": "https://www.wyomingmedicaid.com/portal/fee-schedules",
+    "type": "html_links",
+    "format": ["xlsx", "xls", "csv"],
+    "keywords": ["fee schedule"],
+    "notes": "Wyoming Medicaid portal",
+    "difficulty": "medium"
+  },
+  {
+    "abbr": "DC",
+    "state": "District of Columbia",
+    "url": "https://dhcf.dc.gov/page/fee-schedules",
+    "type": "html_links",
+    "format": ["xlsx", "xls", "csv", "pdf"],
+    "keywords": ["fee schedule", "rate"],
+    "notes": "DHCF fee schedules page",
+    "difficulty": "easy"
   }
 ]
