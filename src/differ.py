@@ -1,196 +1,224 @@
 """
-Compares old vs new fee schedule files at the procedure code level.
-On first run (no prior file), returns current rates as a snapshot.
-On subsequent runs, returns only changed codes with old/new/delta.
+Compares old vs new fee schedule files at the procedure-code level.
+
+Uses the structured rates already extracted by parser.py rather than
+re-parsing the raw file. Falls back to snapshot on first run.
+
+IMPORTANT: main.py must call diff_files() BEFORE writing the new file
+to disk, otherwise we'd be comparing the file against itself.
 """
-import io, logging
+
+import io
+import logging
 from pathlib import Path
+
 import pandas as pd
+
+from src.parser import _clean_code, _clean_rate, _read_file, _find_best_column, CODE_PATTERNS, RATE_PATTERNS
 
 log = logging.getLogger(__name__)
 
-RATE_KEYS = ["rate", "fee", "amount", "allow", "reimburse", "price", "payment"]
-CODE_KEYS = ["code", "cpt", "hcpcs", "procedure", "revenue"]
 DOWNLOAD_DIR = Path("data/downloads")
-MAX_SNAPSHOT_ROWS = 100
-
-
-def _load_df(content: bytes, filename: str) -> pd.DataFrame | None:
-    fname = filename.lower()
-    try:
-        if fname.endswith(".csv"):
-            return pd.read_csv(io.BytesIO(content), dtype=str)
-        elif fname.endswith((".xlsx", ".xls")):
-            xl = pd.ExcelFile(io.BytesIO(content))
-            frames = []
-            for sheet in xl.sheet_names[:4]:
-                try:
-                    frames.append(xl.parse(sheet, dtype=str))
-                except Exception:
-                    pass
-            return pd.concat(frames, ignore_index=True) if frames else None
-    except Exception as e:
-        log.warning(f"Failed to load {filename}: {e}")
-    return None
-
-
-def _find_cols(df: pd.DataFrame) -> tuple[str | None, list[str]]:
-    # isinstance check guards against float/NaN column headers from blank Excel columns
-    code_col  = next((c for c in df.columns if isinstance(c, str) and any(k in c.lower() for k in CODE_KEYS)), None)
-    rate_cols = [c for c in df.columns if isinstance(c, str) and any(k in c.lower() for k in RATE_KEYS)]
-    return code_col, rate_cols
-
-
-def _to_float(val) -> float | None:
-    try:
-        return float(str(val).replace("$", "").replace(",", "").strip())
-    except Exception:
-        return None
-
-
-def _snapshot(df: pd.DataFrame, change: dict) -> list[dict]:
-    """Return current rates as a snapshot when no prior file exists."""
-    code_col, rate_cols = _find_cols(df)
-    if not code_col or not rate_cols:
-        return []
-
-    desc_col = next((c for c in df.columns if isinstance(c, str) and "desc" in c.lower()), None)
-    rate_col = rate_cols[0]
-    rows = []
-
-    for _, row in df.iterrows():
-        code = str(row.get(code_col, "")).strip()
-        if not code or code.lower() in ("nan", ""):
-            continue
-        val = _to_float(row.get(rate_col))
-        if val is None or val == 0:
-            continue
-        desc = str(row.get(desc_col, "")).strip() if desc_col else ""
-        rows.append({
-            "code":      code.upper(),
-            "desc":      desc if desc.lower() != "nan" else "",
-            "old_rate":  None,
-            "new_rate":  val,
-            "delta_pct": None,
-            "direction": "📋 SNAPSHOT",
-            "rate_col":  rate_col,
-            "state":     change["state"],
-            "abbr":      change["abbr"],
-            "filename":  change["filename"],
-        })
-        if len(rows) >= MAX_SNAPSHOT_ROWS:
-            break
-
-    return rows
+PRIOR_DIR = Path("data/prior")  # separate dir for last-known-good copies
 
 
 def diff_files(change: dict) -> list[dict]:
     """
-    Compare old vs new file at procedure code level.
-    Falls back to snapshot if no prior file exists.
+    Compare old vs new file at procedure-code level.
+
+    Uses change["rates"] from parser if available, otherwise parses raw content.
+    Returns list of diff dicts sorted by absolute delta.
     """
-    abbr     = change["abbr"]
-    filename = change["filename"]
-    old_path = DOWNLOAD_DIR / abbr / filename
+    abbr = change["abbr"]
+    fname = change["filename"]
+    prior_path = PRIOR_DIR / abbr / fname
 
-    new_df = _load_df(change["content"], filename)
-    if new_df is None:
-        log.warning(f"{abbr}: Could not parse new file {filename}")
+    # ── Get new rates ─────────────────────────────────────────
+    new_rates = change.get("rates", [])
+    if not new_rates:
+        log.info("  %s: No parsed rates for %s — skipping diff", abbr, fname)
         return []
 
-    # First run — no prior file, return snapshot
-    if not old_path.exists():
-        log.info(f"{abbr}: No prior file — returning rate snapshot for {filename}")
-        return _snapshot(new_df, change)
+    new_map = _build_rate_map(new_rates)
 
-    # Subsequent runs — diff old vs new
-    old_df = _load_df(old_path.read_bytes(), filename)
-    if old_df is None:
-        log.warning(f"{abbr}: Could not parse old file — falling back to snapshot")
-        return _snapshot(new_df, change)
+    # ── First run — no prior file → snapshot ──────────────────
+    if not prior_path.exists():
+        log.info("  %s: No prior file — returning snapshot (%d codes)", abbr, len(new_map))
+        _save_prior(change, prior_path)
+        return _snapshot(new_map, change)
 
-    code_col, rate_cols = _find_cols(new_df)
-    if not code_col or not rate_cols:
-        log.warning(f"{abbr}: Could not find code/rate columns in {filename}")
-        return []
+    # ── Load prior file and extract rates ─────────────────────
+    old_map = _load_prior_rates(prior_path, fname)
+    if not old_map:
+        log.warning("  %s: Could not parse prior file — returning snapshot", abbr)
+        _save_prior(change, prior_path)
+        return _snapshot(new_map, change)
 
-    if code_col not in old_df.columns:
-        log.warning(f"{abbr}: Code column '{code_col}' missing from old file")
-        return []
+    # ── Compute diffs ─────────────────────────────────────────
+    diffs = _compute_diffs(old_map, new_map, change)
 
-    desc_col = next((c for c in new_df.columns if isinstance(c, str) and "desc" in c.lower()), None)
+    # Save new file as the prior for next run
+    _save_prior(change, prior_path)
+
+    if diffs:
+        increases = sum(1 for d in diffs if d["direction"] == "▲ INCREASE")
+        decreases = sum(1 for d in diffs if d["direction"] == "▼ DECREASE")
+        new_codes = sum(1 for d in diffs if d["direction"] == "🆕 NEW CODE")
+        removed = sum(1 for d in diffs if d["direction"] == "🗑 REMOVED")
+        log.info(
+            "  %s: %d changes — %d↑ %d↓ %d new %d removed",
+            abbr, len(diffs), increases, decreases, new_codes, removed,
+        )
+
+    return diffs
+
+
+def _build_rate_map(rates: list[dict]) -> dict[str, float]:
+    """
+    Build {code: rate} map from parsed rates list.
+    For duplicate codes, keep the first non-zero value.
+    """
+    rate_map = {}
+    for r in rates:
+        code = r.get("code")
+        rate = r.get("rate")
+        if code and rate is not None and code not in rate_map:
+            rate_map[code] = rate
+    return rate_map
+
+
+def _load_prior_rates(path: Path, fname: str) -> dict[str, float] | None:
+    """Parse the prior saved file and extract a code→rate map."""
+    try:
+        content = path.read_bytes()
+        df = _read_file(fname.lower(), content)
+        if df is None or df.empty:
+            return None
+
+        df.columns = [str(c).strip() for c in df.columns]
+        code_col = _find_best_column(df.columns.tolist(), CODE_PATTERNS)
+        rate_col = _find_best_column(df.columns.tolist(), RATE_PATTERNS)
+
+        if not code_col or not rate_col:
+            return None
+
+        rate_map = {}
+        for _, row in df.iterrows():
+            code = _clean_code(row.get(code_col))
+            rate = _clean_rate(row.get(rate_col))
+            if code and rate is not None and code not in rate_map:
+                rate_map[code] = rate
+
+        return rate_map if rate_map else None
+
+    except Exception as e:
+        log.warning("  Failed to load prior %s: %s", path, e)
+        return None
+
+
+def _save_prior(change: dict, prior_path: Path) -> None:
+    """Save current file as the prior version for next comparison."""
+    try:
+        prior_path.parent.mkdir(parents=True, exist_ok=True)
+        prior_path.write_bytes(change["content"])
+    except Exception as e:
+        log.warning("  Failed to save prior file: %s", e)
+
+
+def _compute_diffs(
+    old_map: dict[str, float],
+    new_map: dict[str, float],
+    change: dict,
+) -> list[dict]:
+    """Compute code-level rate changes between old and new maps."""
     diffs = []
+    base = {
+        "state": change["state"],
+        "abbr": change["abbr"],
+        "filename": change["filename"],
+    }
 
-    for rate_col in rate_cols:
-        if rate_col not in old_df.columns:
+    all_codes = set(old_map) | set(new_map)
+
+    for code in all_codes:
+        old_val = old_map.get(code)
+        new_val = new_map.get(code)
+
+        # Unchanged
+        if old_val is not None and new_val is not None and old_val == new_val:
             continue
 
-        new_idx = new_df.set_index(code_col)[rate_col]
-        old_idx = old_df.set_index(code_col)[rate_col]
+        # Changed rate
+        if old_val is not None and new_val is not None:
+            if old_val == 0:
+                # Can't compute % change from zero
+                delta_pct = None
+                direction = "▲ INCREASE" if new_val > 0 else "—"
+            else:
+                delta_pct = round(((new_val - old_val) / old_val) * 100, 2)
+                if abs(delta_pct) < 0.01:
+                    continue
+                direction = "▲ INCREASE" if delta_pct > 0 else "▼ DECREASE"
 
-        # Changed codes
-        for code in new_idx.index.intersection(old_idx.index):
-            old_val = _to_float(old_idx[code])
-            new_val = _to_float(new_idx[code])
-            if old_val is None or new_val is None or old_val == new_val or old_val == 0:
-                continue
-            delta_pct = round(((new_val - old_val) / old_val) * 100, 2)
-            if abs(delta_pct) < 0.01:
-                continue
-            desc = ""
-            if desc_col and desc_col in new_df.columns:
-                try:
-                    desc = str(new_df.set_index(code_col)[desc_col].get(code, ""))
-                except Exception:
-                    pass
             diffs.append({
-                "code":      str(code).strip().upper(),
-                "desc":      desc if desc.lower() not in ("nan", "") else "",
-                "old_rate":  old_val,
-                "new_rate":  new_val,
+                **base,
+                "code": code,
+                "old_rate": old_val,
+                "new_rate": new_val,
                 "delta_pct": delta_pct,
-                "direction": "▲ INCREASE" if delta_pct > 0 else "▼ DECREASE",
-                "rate_col":  rate_col,
-                "state":     change["state"],
-                "abbr":      change["abbr"],
-                "filename":  change["filename"],
+                "delta_abs": round(new_val - old_val, 4),
+                "direction": direction,
             })
 
-        # New codes
-        for code in set(new_idx.index) - set(old_idx.index):
-            new_val = _to_float(new_idx[code])
-            if new_val is None:
-                continue
+        # New code
+        elif old_val is None and new_val is not None:
             diffs.append({
-                "code":      str(code).strip().upper(),
-                "desc":      "",
-                "old_rate":  None,
-                "new_rate":  new_val,
+                **base,
+                "code": code,
+                "old_rate": None,
+                "new_rate": new_val,
                 "delta_pct": None,
+                "delta_abs": None,
                 "direction": "🆕 NEW CODE",
-                "rate_col":  rate_col,
-                "state":     change["state"],
-                "abbr":      change["abbr"],
-                "filename":  change["filename"],
             })
 
-        # Removed codes
-        for code in set(old_idx.index) - set(new_idx.index):
-            old_val = _to_float(old_idx[code])
-            if old_val is None:
-                continue
+        # Removed code
+        elif old_val is not None and new_val is None:
             diffs.append({
-                "code":      str(code).strip().upper(),
-                "desc":      "",
-                "old_rate":  old_val,
-                "new_rate":  None,
+                **base,
+                "code": code,
+                "old_rate": old_val,
+                "new_rate": None,
                 "delta_pct": None,
+                "delta_abs": None,
                 "direction": "🗑 REMOVED",
-                "rate_col":  rate_col,
-                "state":     change["state"],
-                "abbr":      change["abbr"],
-                "filename":  change["filename"],
             })
 
-    diffs.sort(key=lambda x: abs(x["delta_pct"] or 0), reverse=True)
+    # Sort: largest absolute % changes first, then new/removed at end
+    diffs.sort(key=lambda x: (
+        0 if x["delta_pct"] is not None else 1,
+        -(abs(x["delta_pct"]) if x["delta_pct"] is not None else 0),
+    ))
+
     return diffs
+
+
+def _snapshot(rate_map: dict[str, float], change: dict) -> list[dict]:
+    """Return all current rates as snapshot entries (first run)."""
+    base = {
+        "state": change["state"],
+        "abbr": change["abbr"],
+        "filename": change["filename"],
+    }
+    return [
+        {
+            **base,
+            "code": code,
+            "old_rate": None,
+            "new_rate": rate,
+            "delta_pct": None,
+            "delta_abs": None,
+            "direction": "📋 SNAPSHOT",
+        }
+        for code, rate in sorted(rate_map.items())
+    ]
