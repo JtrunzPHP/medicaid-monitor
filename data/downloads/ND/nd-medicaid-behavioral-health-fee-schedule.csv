@@ -1,0 +1,35 @@
+"North Dakota Department of Health and Human Services",,,,,,,,,,,,
+"ND Medicaid Behavioral Health Services Fee Schedule",,,,,,,,,,,,
+"Inclusion or exclusion of a procedure code, supply, product, or service does not imply Medicaid coverage, reimbursement, or lack thereof.",,,,,,,,,,,,
+"Data Updated as of 02/08/2026",,,,,,,,,,,,
+"Code","Short Description","Category","Covered","Coverage Notes","Telehealth Allowed","Modifier Required","General Rate","ORP Provider NPI Required","Service Authorization Required","LCD/NCD","EVV","General Notes"
+"H0038","Self-help/peer svc per 15min","1915i","Yes",,"Yes","UK modifier required for Family Peer Supports","$11.61","No","No",,,"Modifier -93 is required if service is rendered as audio-only."
+"H0039","Asser com tx face-face/15min","1915i","Yes",,"Yes","UK modifier required","$9.66","No","No",,,
+"H2015","Comp comm supp svc, 15 min","1915i","Yes",,"Yes",,"$22.57","No","No",,,"Modifier -93 is required if service is rendered as audio-only."
+"T2025","Waiver service, nos","1915i","Yes",,"No",,"$340.15","No","No",,,
+"T2027","Spec childcare waiver 15 min","1915i","Yes",,"No",,"$8.09","No","No",,,
+"H2021","Com wrap-around sv, 15 min","1915i","Yes",,"Yes","U3 modifier required for Benefits Planning. U4 modifier required for Housing Support Services.","$11.61","No","No",,,"Modifier -93 is required if service is rendered as audio-only."
+"H2023","Supported employ, per 15 min","1915i","Yes",,"Yes",,"$11.61","No","No",,,"Modifier -93 is required if service is rendered as audio-only."
+"H2025","Supp maint employ, 15 min","1915i","Yes",,"Yes","U3 modifier required for Supported Education. U4 modifier required for Supported Employment.","$11.61","No","No",,,"Modifier -93 is required if service is rendered as audio-only."
+"T2001","N-et; patient attend/escort","1915i, HCBS","Yes",,"No",,"$0.00","No","No",,"Yes","Rate is $9.48 per 15 minutes for 1915i services"
+"T5999","Supply, nos","1915i, HCBS","Yes",,"No",,"$0.00","No","No",,,
+"H2010","Comprehensive med svc 15 min","MOUD","Yes",,"No",,"$3.57","No","No",,,
+"H0016","Alcohol and/or drug services","MOUD","Yes",,"Yes","U7 modifier required for intake","$99.90","No","No",,,
+"H0020","Alcohol and/or drug services","MOUD","Yes",,"No",,"$3.57","No","No",,,
+"H0040","Assert comm tx pgm per diem","PHP","Yes",,"No",,"$369.07","No","No",,,"Must be submitted with revenue code 0912 for non-IHS or Tribal Health Programs."
+"H0035","MH partial hosp tx under 24h","PHP","Yes",,"No",,"$461.36","No","No",,,"Must be submitted with revenue code 0905 for non-IHS or Tribal Health Programs."
+"T1001","Nursing assessment/evaluatn","Professional, Rehab","Yes",,"No",,"$18.15","Yes","No",,,"Refer to Behavioral Health Rehabilitative Services policy for specific code requirements. Refer to Local Public Health Units policy for specific code requirements."
+"S9482","Family stabilization 15 min","Rehab","Yes",,"No",,"$41.84","Yes","No",,,"Refer to Behavioral Health Rehabilitative Services policy for specific code requirements."
+"H0031","MH health assess by non-md","Rehab","Yes",,"Yes",,"$153.89","Yes","No",,,"Refer to Behavioral Health Rehabilitative Services policy for specific code requirements."
+"H2011","Crisis interven svc, 15 min","Rehab","Yes",,"Yes",,"$21.54","Yes","No",,,"Refer to Behavioral Health Rehabilitative Services policy for specific code requirements. Modifier -93 is required if service is rendered as audio-only."
+"H2014","Skills train and dev, 15 min","Rehab","Yes",,"No",,"$12.58","Yes","No",,,"Refer to Behavioral Health Rehabilitative Services policy for specific code requirements."
+"H2019","Ther behav svc, per 15 min","Rehab","Yes",,"No",,"$21.54","Yes","No",,,"Refer to Behavioral Health Rehabilitative Services policy for specific code requirements."
+"99499","Unlisted e&m service","Rehab","Yes",,"No","Must append modifier 32","$0.00","Yes","No",,,"Refer to Behavioral Health Rehabilitative Services policy for specific code requirements."
+"H0002","Alcohol and/or drug screenin","Rehab","Yes",,"Yes",,"$25.10","Yes","No",,,"Refer to Behavioral Health Rehabilitative Services policy for specific code requirements."
+"H0011","Alcohol and/or drug services","SUD","Yes",,"No",,"$780.88","No","No",,,"Must be submitted with revenue code 1002 for non-IHS or Tribal Health Programs."
+"H0012","Alcohol and/or drug services","SUD","Yes",,"No",,"$195.98","No","No",,,"Must be submitted with revenue code 1003 for non-IHS or Tribal Health Programs."
+"H0015","Alcohol and/or drug services","SUD","Yes",,"Yes",,"$208.23","No","No",,,"Must be submitted with revenue code 0906 for non-IHS or Tribal Health Programs."
+"H2034","A/D halfway house, per diem","SUD","Yes",,"No",,"$37.04","No","No",,,"Must be submitted with revenue code 1003 for non-IHS or Tribal Health Programs."
+"H2035","A/D tx program, per hour","SUD","Yes",,"Yes",,"$67.08","No","No",,,"Modifier -93 is required if service is rendered as audio-only."
+"H2036","A/D tx program, per diem","SUD","Yes",,"No",,"$624.71","No","No",,,"Must be submitted with revenue code 1002 for non-IHS or Tribal Health Programs."
+"S9475","Ambulatory setting substance","SUD","Yes",,"Yes",,"$404.91","No","No",,,"Must be submitted with revenue code 0913 for non-IHS or Tribal Health Programs. Modifier -93 is required if service is rendered as audio-only."
