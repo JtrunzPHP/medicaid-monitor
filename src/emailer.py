@@ -51,6 +51,12 @@ def _ticker_badges(tickers: list[str]) -> str:
     return out
 
 
+def _safe(d: dict, key: str, default=""):
+    """Safely retrieve a key from a diff dict, returning default if missing or None."""
+    val = d.get(key)
+    return val if val is not None else default
+
+
 def build_html(changes: list[dict], cos: list[dict], all_diffs: list[dict]) -> str:
     today    = date.today().strftime("%B %d, %Y")
     code_map = _load_code_map()
@@ -58,33 +64,41 @@ def build_html(changes: list[dict], cos: list[dict], all_diffs: list[dict]) -> s
     td       = "style='padding:7px 9px;border-bottom:1px solid #eee;vertical-align:middle'"
 
     # ── Summary banner ───────────────────────────────────────────────────────
-    n_states  = len({d["abbr"] for d in all_diffs})
-    n_codes   = len([d for d in all_diffs if d["delta_pct"] is not None])
-    n_inc     = len([d for d in all_diffs if (d["delta_pct"] or 0) > 0])
-    n_dec     = len([d for d in all_diffs if (d["delta_pct"] or 0) < 0])
+    n_states  = len({d.get("abbr", "??") for d in all_diffs})
+    n_codes   = len([d for d in all_diffs if d.get("delta_pct") is not None])
+    n_inc     = len([d for d in all_diffs if (d.get("delta_pct") or 0) > 0])
+    n_dec     = len([d for d in all_diffs if (d.get("delta_pct") or 0) < 0])
 
     # ── Per-state diff tables ─────────────────────────────────────────────────
     state_sections = ""
     states_seen = {}
     for d in all_diffs:
-        states_seen.setdefault(d["abbr"], {"state": d["state"], "diffs": []})
-        states_seen[d["abbr"]]["diffs"].append(d)
+        abbr = d.get("abbr", "??")
+        states_seen.setdefault(abbr, {"state": d.get("state", abbr), "diffs": []})
+        states_seen[abbr]["diffs"].append(d)
 
     for abbr, info in states_seen.items():
         rows = ""
         for d in info["diffs"][:100]:  # cap at 100 rows per state per email
-            code    = d["code"].upper()
+            code    = d.get("code", "").upper()
             matched = code_map.get(code, None)
             company_html = _ticker_badges(matched["tickers"]) if matched else "<span style='color:#bbb;font-size:11px'>—</span>"
             seg_label    = matched["label"] if matched else ""
 
+            desc_raw  = _safe(d, "desc", "")
+            desc_text = desc_raw[:60] if desc_raw else seg_label
+            direction = _safe(d, "direction", "—")
+            old_rate  = d.get("old_rate")
+            new_rate  = d.get("new_rate")
+            delta_pct = d.get("delta_pct")
+
             rows += f"""<tr>
               <td {td} style='padding:7px 9px;border-bottom:1px solid #eee;font-family:monospace;font-weight:bold'>{code}</td>
-              <td {td}><span style='font-size:11px;color:#666'>{d['desc'][:60] if d['desc'] else seg_label}</span></td>
-              <td {td}>{d['direction']}</td>
-              <td {td}>{_fmt_rate(d['old_rate'])}</td>
-              <td {td}>{_fmt_rate(d['new_rate'])}</td>
-              <td {td}>{_delta_cell(d['delta_pct'])}</td>
+              <td {td}><span style='font-size:11px;color:#666'>{desc_text}</span></td>
+              <td {td}>{direction}</td>
+              <td {td}>{_fmt_rate(old_rate)}</td>
+              <td {td}>{_fmt_rate(new_rate)}</td>
+              <td {td}>{_delta_cell(delta_pct)}</td>
               <td {td}>{company_html}</td>
             </tr>"""
 
@@ -111,26 +125,28 @@ def build_html(changes: list[dict], cos: list[dict], all_diffs: list[dict]) -> s
     # ── Company impact summary ────────────────────────────────────────────────
     co_rows = ""
     for co in cos:
-        # Find which codes changed for this company
-        co_tickers = {co["ticker"]}
         matched_codes = [
             d for d in all_diffs
-            if d["abbr"] in co["exposed_states"]
-            and co["ticker"] in (code_map.get(d["code"].upper(), {}).get("tickers") or [])
-            and d["delta_pct"] is not None
+            if d.get("abbr") in co.get("exposed_states", {})
+            and co.get("ticker") in (code_map.get(d.get("code", "").upper(), {}).get("tickers") or [])
+            and d.get("delta_pct") is not None
         ]
-        inc = [d for d in matched_codes if d["delta_pct"] > 0]
-        dec = [d for d in matched_codes if d["delta_pct"] < 0]
-        states_str = ", ".join(f"{a}({p*100:.0f}%)" for a, p in co["exposed_states"].items())
-        color = "#c0392b" if co["impact_weight"] > 3 else "#e67e22" if co["impact_weight"] > 1 else "#555"
+        inc = [d for d in matched_codes if d.get("delta_pct", 0) > 0]
+        dec = [d for d in matched_codes if d.get("delta_pct", 0) < 0]
+        states_str = ", ".join(
+            f"{a}({p*100:.0f}%)"
+            for a, p in co.get("exposed_states", {}).items()
+        )
+        impact = co.get("impact_weight", 0)
+        color = "#c0392b" if impact > 3 else "#e67e22" if impact > 1 else "#555"
 
         co_rows += f"""<tr>
-          <td {td} style='padding:7px 9px;border-bottom:1px solid #eee;font-weight:bold'>${co['ticker']}</td>
-          <td {td}>{co['name']}</td>
-          <td {td} style='padding:7px 9px;border-bottom:1px solid #eee;font-size:12px'>{co['segment'].replace('_',' ').title()}</td>
-          <td {td}>{co['medicaid_pct']*100:.0f}%</td>
+          <td {td} style='padding:7px 9px;border-bottom:1px solid #eee;font-weight:bold'>${co.get('ticker','?')}</td>
+          <td {td}>{co.get('name','')}</td>
+          <td {td} style='padding:7px 9px;border-bottom:1px solid #eee;font-size:12px'>{co.get('segment','').replace('_',' ').title()}</td>
+          <td {td}>{co.get('medicaid_pct',0)*100:.0f}%</td>
           <td {td} style='padding:7px 9px;border-bottom:1px solid #eee;font-size:12px'>{states_str}</td>
-          <td {td} style='padding:7px 9px;border-bottom:1px solid #eee;color:{color};font-weight:bold'>~{co['impact_weight']:.1f}% rev</td>
+          <td {td} style='padding:7px 9px;border-bottom:1px solid #eee;color:{color};font-weight:bold'>~{impact:.1f}% rev</td>
           <td {td}><span style='color:#27ae60'>▲ {len(inc)}</span> / <span style='color:#c0392b'>▼ {len(dec)}</span> codes</td>
         </tr>"""
 
