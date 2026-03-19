@@ -1,155 +1,152 @@
-"""
-Medicaid Fee-Schedule Monitor — main pipeline.
-
-Usage:
-    python main.py                  # all states
-    python main.py --states CO OH   # specific states only
-    python main.py --dry-run        # skip email, just log
-"""
-
-import argparse
-import json
-import logging
-import time
+import json, logging
 from pathlib import Path
 
-from src.scraper import scrape_state
-from src.parser import parse
-from src.differ import diff_files
-from src.exposure import compute
-from src.emailer import build_html, send
+from src.scraper  import scrape_state
+from src.parser   import parse
+from src.differ   import diff_files
+from src.exposure import compute, summarize_base_rates, build_rate_comparison_table
+from src.emailer  import build_html, send
 
-# ── Config paths ──────────────────────────────────────────────
-CONFIG_DIR = Path("config")
-DATA_DIR = Path("data")
-STATES_PATH = CONFIG_DIR / "states.json"
-COMPANIES_PATH = CONFIG_DIR / "companies.json"
-CHECKSUMS_PATH = DATA_DIR / "checksums.json"
-
-# ── Logging ───────────────────────────────────────────────────
-logging.basicConfig(
-    level=logging.INFO,
-    format="%(asctime)s  %(levelname)-7s  %(message)s",
-    datefmt="%Y-%m-%d %H:%M:%S",
-)
+logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
 log = logging.getLogger(__name__)
 
-
-def load_json(path: Path) -> dict | list:
-    return json.loads(path.read_text()) if path.exists() else {}
-
-
-def save_json(path: Path, data: dict | list) -> None:
-    path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(json.dumps(data, indent=2))
+STATES    = json.loads(Path("config/states.json").read_text())
+COMPANIES = json.loads(Path("config/companies.json").read_text())
+CHECKSUMS = Path("data/checksums.json")
+BASE_RATES_OUT = Path("data/base_rates.json")
+RATE_TABLE_OUT = Path("data/rate_comparison.json")
 
 
-def parse_args() -> argparse.Namespace:
-    p = argparse.ArgumentParser(description="Medicaid fee-schedule monitor")
-    p.add_argument(
-        "--states", nargs="*", default=None,
-        help="State abbreviations to process (default: all)",
-    )
-    p.add_argument(
-        "--dry-run", action="store_true",
-        help="Run pipeline but skip sending email",
-    )
-    p.add_argument(
-        "--verbose", "-v", action="store_true",
-        help="Enable debug logging",
-    )
-    return p.parse_args()
+def load_cs() -> dict:
+    return json.loads(CHECKSUMS.read_text()) if CHECKSUMS.exists() else {}
 
 
-def main() -> None:
-    args = parse_args()
-    if args.verbose:
-        logging.getLogger().setLevel(logging.DEBUG)
+def save_cs(cs: dict):
+    CHECKSUMS.write_text(json.dumps(cs, indent=2))
 
-    t0 = time.monotonic()
 
-    states = load_json(STATES_PATH)
-    companies = load_json(COMPANIES_PATH)
-    checksums = load_json(CHECKSUMS_PATH)
+def main():
+    cs = load_cs()
+    changes  = []
+    all_diffs = []
 
-    if not states:
-        log.error("No states configured in %s", STATES_PATH)
-        return
-
-    # Filter to requested states if specified
-    if args.states:
-        filter_set = {s.upper() for s in args.states}
-        states = [s for s in states if s["abbr"] in filter_set]
-        if not states:
-            log.error("No matching states found for: %s", args.states)
-            return
-
-    changes: list[dict] = []
-    all_diffs: list[dict] = []
-    errors: list[str] = []
-
-    for state in states:
-        abbr = state["abbr"]
-        log.info("── %s (%s) ──", state["state"], abbr)
-
-        try:
-            for item in scrape_state(state, checksums):
-                item = parse(item)
-                diffs = diff_files(item)
-                if diffs:
-                    log.info("  %d code-level change(s) in %s", len(diffs), item.get("filename", "?"))
-                    all_diffs.extend(diffs)
-                changes.append(item)
-
-        except Exception:
-            log.exception("  ✗ Failed processing %s", abbr)
-            errors.append(abbr)
-            continue
-
-    # ── Summary ───────────────────────────────────────────────
-    elapsed = time.monotonic() - t0
-    changed_states = {c["abbr"] for c in changes}
-    rate_moves = [d for d in all_diffs if d.get("delta_pct") is not None]
-
-    log.info(
-        "── Summary: %d state(s) changed, %d file(s), %d rate move(s), "
-        "%d error(s), %.1fs elapsed ──",
-        len(changed_states), len(changes), len(rate_moves),
-        len(errors), elapsed,
-    )
+    for state in STATES:
+        log.info(f"── {state['state']} ({state['abbr']}) ──")
+        for c in scrape_state(state, cs):
+            c = parse(c)
+            # Diff against previously stored file before overwriting
+            diffs = diff_files(c)
+            if diffs:
+                log.info(f"  {len(diffs)} code-level changes found")
+                all_diffs.extend(diffs)
+            changes.append(c)
 
     if not changes:
         log.info("No changes detected — no email sent.")
-        save_json(CHECKSUMS_PATH, checksums)
+        save_cs(cs)
         return
 
-    # ── Persist checksums ─────────────────────────────────────
+    # Persist new checksums
     for c in changes:
-        checksums[c["url"]] = c["new_hash"]
-    save_json(CHECKSUMS_PATH, checksums)
+        cs[c["url"]] = c["new_hash"]
+    save_cs(cs)
 
-    # ── Notify ────────────────────────────────────────────────
-    exposures = compute(changes, companies)
-
-    subject = f"🏥 Medicaid Monitor: {len(changed_states)} state(s) changed"
-    if rate_moves:
-        subject += f", {len(rate_moves)} rate moves"
-    if errors:
-        subject += f" ⚠ {len(errors)} error(s)"
-
-    html = build_html(changes, exposures, all_diffs)
-
-    if args.dry_run:
-        log.info("Dry run — email not sent. Subject: %s", subject)
-        # Optionally write HTML to file for inspection
-        (DATA_DIR / "last_email.html").write_text(html)
-        log.info("Email preview saved to data/last_email.html")
+    # ── Base Rate Analysis (NEW) ──
+    # Generate base rate report: current $ per CPT per state per company
+    log.info("\n=== BASE RATE ANALYSIS ===")
+    base_rate_records = summarize_base_rates(changes, COMPANIES)
+    if base_rate_records:
+        BASE_RATES_OUT.parent.mkdir(parents=True, exist_ok=True)
+        BASE_RATES_OUT.write_text(json.dumps(base_rate_records, indent=2))
+        log.info(f"  Base rate report: {len(base_rate_records)} records → {BASE_RATES_OUT}")
+        
+        # Log summary
+        tickers_with_rates = set(r["ticker"] for r in base_rate_records)
+        states_with_rates = set(r["state"] for r in base_rate_records)
+        codes_with_rates = set(r["code"] for r in base_rate_records)
+        log.info(f"  Coverage: {len(tickers_with_rates)} companies × {len(states_with_rates)} states × {len(codes_with_rates)} CPT codes")
+        
+        # Show top rate flags (significantly above/below national median)
+        flags = [r for r in base_rate_records if r.get("vs_median_pct") and abs(r["vs_median_pct"]) > 15]
+        if flags:
+            log.info(f"\n  === TOP RATE FLAGS ({len(flags)} codes >15% from national median) ===")
+            flags.sort(key=lambda x: abs(x.get("vs_median_pct", 0)), reverse=True)
+            for f in flags[:20]:
+                direction = "ABOVE" if f["vs_median_pct"] > 0 else "BELOW"
+                risk = "cut risk" if direction == "ABOVE" else "upside"
+                log.info(
+                    f"    {f['ticker']:5s} | {f['code']:5s} | {f['state']:2s} | "
+                    f"${f['base_rate']:>8.2f} vs median ${f['national_median']:>8.2f} | "
+                    f"{f['vs_median_pct']:+.1f}% ({risk})"
+                )
     else:
-        try:
-            send(subject, html)
-            log.info("Email sent successfully.")
-        except Exception:
-            log.exception("Failed to send email — checksums already saved!")
+        log.info("  No base rate data extracted")
+
+    # ── Rate Comparison Table (NEW) ──
+    # Cross-state comparison for high-volume codes
+    high_volume_codes = [
+        "99213", "99214", "99215",          # Office visits
+        "99281", "99283", "99284", "99285",  # ED visits
+        "90834", "90837",                    # Psychotherapy
+        "97110", "97140", "97530",           # Rehab therapy
+        "T1019", "S5125",                    # Personal care
+        "G0299",                             # Home health nursing
+        "90960",                             # Dialysis
+        "99307", "99308", "99309",           # SNF visits
+        "97153",                             # ABA therapy
+    ]
+    rate_table = build_rate_comparison_table(changes, high_volume_codes)
+    if rate_table:
+        RATE_TABLE_OUT.write_text(json.dumps(rate_table, indent=2))
+        log.info(f"\n  Rate comparison table: {len(rate_table)} codes → {RATE_TABLE_OUT}")
+        
+        # Print cross-state comparison for key codes
+        log.info("\n  === CROSS-STATE RATE COMPARISON ===")
+        for code in ["99213", "99214", "90837", "T1019", "97110", "90960"]:
+            if code in rate_table and rate_table[code]:
+                rates = rate_table[code]
+                sorted_states = sorted(rates.items(), key=lambda x: x[1], reverse=True)
+                top3 = sorted_states[:3]
+                bot3 = sorted_states[-3:] if len(sorted_states) > 3 else []
+                log.info(
+                    f"    {code}: "
+                    f"highest={', '.join(f'{s}=${r:.2f}' for s,r in top3)} | "
+                    f"lowest={', '.join(f'{s}=${r:.2f}' for s,r in bot3)}"
+                )
+
+    # ── Company Exposure (enhanced with CPT matching) ──
+    log.info("\n=== COMPANY EXPOSURE (CPT-WEIGHTED) ===")
+    cos = compute(changes, COMPANIES)
+    
+    for co in cos[:10]:
+        log.info(f"\n  {co['ticker']} ({co['name']})")
+        log.info(f"    States hit: {list(co['exposed_states'].keys())}")
+        log.info(f"    CPT codes matched: {co['n_codes_matched']}")
+        log.info(f"    Matched revenue: ${co['total_matched_revenue_mm']}M")
+        if co.get("n_flags"):
+            log.info(f"    Rate flags: {co['n_flags']} codes significantly above/below median")
+        for ci in co.get("cpt_impacts_top10", [])[:5]:
+            log.info(
+                f"      {ci['code']:5s} in {ci['state']:2s}: "
+                f"${ci['base_rate']:>7.2f} "
+                f"(vs med {'$'+str(ci['national_median']) if ci['national_median'] else 'N/A'}) "
+                f"| est {ci['state_volume_est']:>8,} units → ${ci['state_revenue_est']:>12,}/yr"
+            )
+
+    # ── Build & Send Email ──
+    n_states = len({c["abbr"] for c in changes})
+    n_codes  = len([d for d in all_diffs if d.get("delta_pct") is not None])
+    n_base   = len(base_rate_records) if base_rate_records else 0
+
+    subject = (
+        f"🏥 Medicaid Monitor: {n_states} state(s) updated"
+        + (f", {n_codes} rate moves" if n_codes else "")
+        + (f", {n_base} base rates captured" if n_base else "")
+    )
+
+    html = build_html(changes, cos, all_diffs)
+    send(subject, html)
+    log.info("Done.")
 
 
 if __name__ == "__main__":
