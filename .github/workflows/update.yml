@@ -1,0 +1,60 @@
+name: Update Medicaid Fee Schedules
+
+on:
+  schedule:
+    - cron: '0 8 * * 1'  # Every Monday 8am UTC
+  push:
+    paths:
+      - '.github/workflows/update.yml'
+      - 'scripts/export_web.py'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  scrape-and-export:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Pull latest
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git pull --rebase
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          pip install requests beautifulsoup4 pandas lxml openpyxl
+
+      - name: Run scraper pipeline
+        run: python main.py
+        continue-on-error: true
+
+      - name: Export web data
+        run: python scripts/export_web.py
+
+      - name: Copy web data to docs
+        run: |
+          mkdir -p docs/data
+          cp data/web/*.json docs/data/
+
+      - name: Commit and push
+        run: |
+          git add data/ docs/
+          if git diff --cached --quiet; then
+            echo "No changes"
+          else
+            git commit -m "data: update fee schedules $(date +%Y-%m-%d)"
+            git push
+          fi
