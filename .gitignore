@@ -1,0 +1,15 @@
+# Downloaded fee schedule files (large xlsx/csv/pdf — don't commit these)
+data/downloads/
+data/diagnostics/
+
+# Python
+__pycache__/
+*.pyc
+.env
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Report output (regenerated each run)
+data/report.html
