@@ -3,190 +3,373 @@
     "ticker": "ADUS", "name": "Addus HomeCare",
     "segment": "home_health_personal_care",
     "medicaid_pct": 0.72,
+    "annual_medicaid_rev_mm": 720,
     "state_exposure": {
       "IL": 0.28, "TX": 0.12, "CA": 0.10, "NY": 0.08, "AZ": 0.06,
       "NM": 0.05, "ID": 0.04, "NV": 0.03, "WA": 0.03, "OH": 0.03,
       "OTHER": 0.18
-    }
-  },
-  {
-    "ticker": "AMED", "name": "Amedisys",
-    "segment": "home_health_hospice",
-    "medicaid_pct": 0.18,
-    "state_exposure": {
-      "LA": 0.12, "TN": 0.10, "MS": 0.09, "AL": 0.08, "KY": 0.07,
-      "TX": 0.07, "FL": 0.06, "GA": 0.05, "NC": 0.05, "OH": 0.04,
-      "OTHER": 0.27
+    },
+    "key_cpt_codes": {
+      "T1019": {"desc": "Personal care services per 15 min", "rev_pct": 0.45, "annual_volume_est": 18000000},
+      "T1020": {"desc": "Personal care services per diem", "rev_pct": 0.15, "annual_volume_est": 500000},
+      "S5125": {"desc": "Attendant care services per 15 min", "rev_pct": 0.12, "annual_volume_est": 6000000},
+      "S5130": {"desc": "Homemaker services per 15 min", "rev_pct": 0.08, "annual_volume_est": 3000000},
+      "99211": {"desc": "Office visit - minimal", "rev_pct": 0.03, "annual_volume_est": 200000},
+      "G0299": {"desc": "Home health skilled nursing", "rev_pct": 0.05, "annual_volume_est": 400000}
     }
   },
   {
     "ticker": "ENSG", "name": "Ensign Group",
     "segment": "skilled_nursing",
     "medicaid_pct": 0.55,
+    "annual_medicaid_rev_mm": 1650,
     "state_exposure": {
       "CA": 0.32, "TX": 0.14, "AZ": 0.09, "UT": 0.07, "WA": 0.06,
       "CO": 0.05, "ID": 0.04, "NV": 0.04, "MT": 0.03, "OR": 0.03,
       "OTHER": 0.13
+    },
+    "key_cpt_codes": {
+      "99304": {"desc": "SNF initial visit - low", "rev_pct": 0.05, "annual_volume_est": 120000},
+      "99305": {"desc": "SNF initial visit - moderate", "rev_pct": 0.08, "annual_volume_est": 180000},
+      "99306": {"desc": "SNF initial visit - high", "rev_pct": 0.04, "annual_volume_est": 80000},
+      "99307": {"desc": "SNF subsequent - straightforward", "rev_pct": 0.12, "annual_volume_est": 600000},
+      "99308": {"desc": "SNF subsequent - low complexity", "rev_pct": 0.15, "annual_volume_est": 700000},
+      "99309": {"desc": "SNF subsequent - moderate", "rev_pct": 0.10, "annual_volume_est": 400000},
+      "97110": {"desc": "Therapeutic exercises 15 min", "rev_pct": 0.06, "annual_volume_est": 500000},
+      "97140": {"desc": "Manual therapy 15 min", "rev_pct": 0.04, "annual_volume_est": 300000},
+      "97530": {"desc": "Therapeutic activities 15 min", "rev_pct": 0.04, "annual_volume_est": 250000}
     }
   },
   {
     "ticker": "PNTG", "name": "Pennant Group",
     "segment": "home_health_hospice_snf",
     "medicaid_pct": 0.48,
+    "annual_medicaid_rev_mm": 580,
     "state_exposure": {
       "ID": 0.18, "UT": 0.14, "AZ": 0.12, "CO": 0.10, "WA": 0.09,
       "OR": 0.08, "NV": 0.07, "MT": 0.06, "WY": 0.05, "CA": 0.04,
       "OTHER": 0.07
-    }
-  },
-  {
-    "ticker": "NHC", "name": "National HealthCare Corp",
-    "segment": "skilled_nursing_assisted_living",
-    "medicaid_pct": 0.58,
-    "state_exposure": {
-      "TN": 0.28, "SC": 0.14, "MO": 0.12, "FL": 0.09, "GA": 0.08,
-      "VA": 0.07, "MD": 0.06, "IN": 0.05, "KY": 0.05, "NC": 0.04,
-      "OTHER": 0.02
-    }
-  },
-  {
-    "ticker": "BKD", "name": "Brookdale Senior Living",
-    "segment": "assisted_living_snf",
-    "medicaid_pct": 0.30,
-    "state_exposure": {
-      "TX": 0.12, "CA": 0.09, "FL": 0.08, "IL": 0.07, "NC": 0.06,
-      "OH": 0.05, "PA": 0.05, "WA": 0.04, "CO": 0.04, "TN": 0.04,
-      "OTHER": 0.36
-    }
-  },
-  {
-    "ticker": "EHC", "name": "Encompass Health",
-    "segment": "inpatient_rehab",
-    "medicaid_pct": 0.14,
-    "state_exposure": {
-      "TX": 0.16, "FL": 0.12, "AL": 0.09, "PA": 0.07, "TN": 0.06,
-      "OH": 0.06, "NC": 0.05, "GA": 0.05, "VA": 0.05, "SC": 0.04,
-      "OTHER": 0.25
-    }
-  },
-  {
-    "ticker": "SEM", "name": "Select Medical",
-    "segment": "ltach_rehab",
-    "medicaid_pct": 0.12,
-    "state_exposure": {
-      "PA": 0.14, "TX": 0.10, "OH": 0.09, "FL": 0.08, "IN": 0.06,
-      "MI": 0.05, "NJ": 0.05, "VA": 0.05, "NC": 0.04, "GA": 0.04,
-      "OTHER": 0.30
+    },
+    "key_cpt_codes": {
+      "99341": {"desc": "Home visit - low complexity", "rev_pct": 0.08, "annual_volume_est": 80000},
+      "99342": {"desc": "Home visit - moderate", "rev_pct": 0.12, "annual_volume_est": 100000},
+      "99347": {"desc": "Home visit follow-up - straightforward", "rev_pct": 0.10, "annual_volume_est": 120000},
+      "99348": {"desc": "Home visit follow-up - low", "rev_pct": 0.08, "annual_volume_est": 90000},
+      "G0299": {"desc": "Home health skilled nursing", "rev_pct": 0.15, "annual_volume_est": 200000},
+      "G0151": {"desc": "Home health PT services", "rev_pct": 0.06, "annual_volume_est": 80000},
+      "T2042": {"desc": "Hospice routine home care per diem", "rev_pct": 0.10, "annual_volume_est": 150000}
     }
   },
   {
     "ticker": "ACHC", "name": "Acadia Healthcare",
     "segment": "behavioral_health",
     "medicaid_pct": 0.31,
+    "annual_medicaid_rev_mm": 830,
     "state_exposure": {
       "TN": 0.11, "TX": 0.10, "PA": 0.08, "FL": 0.07, "MA": 0.06,
       "OH": 0.05, "IN": 0.05, "MI": 0.05, "KY": 0.04, "GA": 0.04,
       "OTHER": 0.35
-    }
-  },
-  {
-    "ticker": "UHS", "name": "Universal Health Services",
-    "segment": "behavioral_health_acute",
-    "medicaid_pct": 0.24,
-    "state_exposure": {
-      "TX": 0.15, "PA": 0.10, "CA": 0.09, "NV": 0.08, "FL": 0.07,
-      "VA": 0.06, "DC": 0.05, "LA": 0.04, "MD": 0.04, "GA": 0.04,
-      "OTHER": 0.28
+    },
+    "key_cpt_codes": {
+      "90837": {"desc": "Psychotherapy 60 min", "rev_pct": 0.18, "annual_volume_est": 400000},
+      "90834": {"desc": "Psychotherapy 45 min", "rev_pct": 0.12, "annual_volume_est": 350000},
+      "90832": {"desc": "Psychotherapy 30 min", "rev_pct": 0.06, "annual_volume_est": 200000},
+      "90847": {"desc": "Family psychotherapy w/ patient", "rev_pct": 0.05, "annual_volume_est": 100000},
+      "90853": {"desc": "Group psychotherapy", "rev_pct": 0.08, "annual_volume_est": 250000},
+      "H0015": {"desc": "Alcohol/drug service intensive outpatient", "rev_pct": 0.10, "annual_volume_est": 150000},
+      "H0020": {"desc": "Alcohol/drug methadone admin", "rev_pct": 0.04, "annual_volume_est": 300000},
+      "97153": {"desc": "ABA adaptive behavior treatment", "rev_pct": 0.08, "annual_volume_est": 180000},
+      "90791": {"desc": "Psychiatric diagnostic evaluation", "rev_pct": 0.05, "annual_volume_est": 80000}
     }
   },
   {
     "ticker": "LFST", "name": "LifeStance Health",
     "segment": "outpatient_mental_health",
     "medicaid_pct": 0.22,
+    "annual_medicaid_rev_mm": 280,
     "state_exposure": {
       "CA": 0.14, "TX": 0.11, "FL": 0.09, "OH": 0.08, "WA": 0.07,
       "CO": 0.06, "MI": 0.05, "PA": 0.05, "NC": 0.05, "MA": 0.04,
       "OTHER": 0.26
+    },
+    "key_cpt_codes": {
+      "90837": {"desc": "Psychotherapy 60 min", "rev_pct": 0.30, "annual_volume_est": 600000},
+      "90834": {"desc": "Psychotherapy 45 min", "rev_pct": 0.25, "annual_volume_est": 500000},
+      "90832": {"desc": "Psychotherapy 30 min", "rev_pct": 0.08, "annual_volume_est": 200000},
+      "90791": {"desc": "Psychiatric diagnostic eval", "rev_pct": 0.10, "annual_volume_est": 120000},
+      "90792": {"desc": "Psychiatric eval w/ medical services", "rev_pct": 0.06, "annual_volume_est": 60000},
+      "99213": {"desc": "Office visit - low complexity", "rev_pct": 0.05, "annual_volume_est": 150000},
+      "99214": {"desc": "Office visit - moderate", "rev_pct": 0.04, "annual_volume_est": 80000}
+    }
+  },
+  {
+    "ticker": "UHS", "name": "Universal Health Services",
+    "segment": "behavioral_health_acute",
+    "medicaid_pct": 0.24,
+    "annual_medicaid_rev_mm": 2400,
+    "state_exposure": {
+      "TX": 0.15, "PA": 0.10, "CA": 0.09, "NV": 0.08, "FL": 0.07,
+      "VA": 0.06, "DC": 0.05, "LA": 0.04, "MD": 0.04, "GA": 0.04,
+      "OTHER": 0.28
+    },
+    "key_cpt_codes": {
+      "99221": {"desc": "Initial hospital care - low", "rev_pct": 0.04, "annual_volume_est": 100000},
+      "99222": {"desc": "Initial hospital care - moderate", "rev_pct": 0.06, "annual_volume_est": 150000},
+      "99223": {"desc": "Initial hospital care - high", "rev_pct": 0.08, "annual_volume_est": 120000},
+      "99231": {"desc": "Subsequent hospital care - low", "rev_pct": 0.10, "annual_volume_est": 400000},
+      "99232": {"desc": "Subsequent hospital care - moderate", "rev_pct": 0.12, "annual_volume_est": 500000},
+      "90837": {"desc": "Psychotherapy 60 min", "rev_pct": 0.06, "annual_volume_est": 200000},
+      "90853": {"desc": "Group psychotherapy", "rev_pct": 0.05, "annual_volume_est": 180000},
+      "97153": {"desc": "ABA therapy", "rev_pct": 0.04, "annual_volume_est": 100000}
     }
   },
   {
     "ticker": "THC", "name": "Tenet Healthcare",
     "segment": "acute_care_hospitals",
     "medicaid_pct": 0.18,
+    "annual_medicaid_rev_mm": 3400,
     "state_exposure": {
       "TX": 0.28, "FL": 0.18, "CA": 0.12, "AZ": 0.08, "MI": 0.06,
       "TN": 0.05, "GA": 0.04, "IL": 0.04, "SC": 0.04, "AL": 0.03,
       "OTHER": 0.08
-    }
-  },
-  {
-    "ticker": "SGRY", "name": "Surgery Partners",
-    "segment": "ambulatory_surgery_centers",
-    "medicaid_pct": 0.10,
-    "state_exposure": {
-      "FL": 0.16, "TX": 0.13, "TN": 0.10, "IN": 0.08, "KY": 0.07,
-      "OR": 0.06, "CO": 0.05, "NC": 0.05, "ID": 0.04, "SC": 0.04,
-      "OTHER": 0.22
+    },
+    "key_cpt_codes": {
+      "99221": {"desc": "Initial hospital care - low", "rev_pct": 0.03, "annual_volume_est": 80000},
+      "99222": {"desc": "Initial hospital care - moderate", "rev_pct": 0.05, "annual_volume_est": 120000},
+      "99223": {"desc": "Initial hospital care - high", "rev_pct": 0.07, "annual_volume_est": 100000},
+      "99281": {"desc": "ED visit - minimal", "rev_pct": 0.02, "annual_volume_est": 200000},
+      "99283": {"desc": "ED visit - moderate", "rev_pct": 0.06, "annual_volume_est": 300000},
+      "99284": {"desc": "ED visit - high", "rev_pct": 0.08, "annual_volume_est": 250000},
+      "99285": {"desc": "ED visit - critical", "rev_pct": 0.10, "annual_volume_est": 180000},
+      "99232": {"desc": "Subsequent hospital - moderate", "rev_pct": 0.08, "annual_volume_est": 400000},
+      "99233": {"desc": "Subsequent hospital - high", "rev_pct": 0.06, "annual_volume_est": 200000}
     }
   },
   {
     "ticker": "DVA", "name": "DaVita",
     "segment": "dialysis",
     "medicaid_pct": 0.12,
+    "annual_medicaid_rev_mm": 1400,
     "state_exposure": {
       "CA": 0.18, "TX": 0.12, "FL": 0.10, "NY": 0.07, "OH": 0.06,
       "PA": 0.05, "IL": 0.05, "GA": 0.04, "NC": 0.04, "WA": 0.04,
       "OTHER": 0.25
+    },
+    "key_cpt_codes": {
+      "90935": {"desc": "Hemodialysis one evaluation", "rev_pct": 0.05, "annual_volume_est": 200000},
+      "90937": {"desc": "Hemodialysis repeated evaluation", "rev_pct": 0.03, "annual_volume_est": 100000},
+      "90945": {"desc": "Dialysis other than hemodialysis", "rev_pct": 0.02, "annual_volume_est": 50000},
+      "90960": {"desc": "ESRD monthly outpatient 4+ visits", "rev_pct": 0.30, "annual_volume_est": 800000},
+      "90961": {"desc": "ESRD monthly outpatient 2-3 visits", "rev_pct": 0.15, "annual_volume_est": 300000},
+      "90966": {"desc": "ESRD home dialysis monthly", "rev_pct": 0.08, "annual_volume_est": 100000},
+      "36821": {"desc": "AV fistula creation", "rev_pct": 0.02, "annual_volume_est": 20000}
     }
   },
   {
     "ticker": "MODV", "name": "ModivCare",
     "segment": "nemt_personal_care_monitoring",
     "medicaid_pct": 0.88,
+    "annual_medicaid_rev_mm": 2100,
     "state_exposure": {
       "PA": 0.12, "OH": 0.10, "FL": 0.09, "NC": 0.08, "CO": 0.07,
       "VA": 0.07, "IL": 0.06, "WA": 0.05, "OR": 0.05, "GA": 0.05,
       "OTHER": 0.26
+    },
+    "key_cpt_codes": {
+      "A0080": {"desc": "NEMT non-emergency transport", "rev_pct": 0.35, "annual_volume_est": 8000000},
+      "A0090": {"desc": "NEMT per mile", "rev_pct": 0.15, "annual_volume_est": 20000000},
+      "T2003": {"desc": "NEMT encounter/trip", "rev_pct": 0.12, "annual_volume_est": 5000000},
+      "T1019": {"desc": "Personal care services 15 min", "rev_pct": 0.10, "annual_volume_est": 4000000},
+      "S5160": {"desc": "Emergency response 24hr monitoring", "rev_pct": 0.08, "annual_volume_est": 600000},
+      "S5161": {"desc": "Emergency response installation", "rev_pct": 0.02, "annual_volume_est": 50000}
     }
   },
   {
     "ticker": "BTSG", "name": "BrightSpring Health",
     "segment": "home_health_personal_care_pharmacy",
     "medicaid_pct": 0.65,
+    "annual_medicaid_rev_mm": 5200,
     "state_exposure": {
       "KY": 0.14, "TX": 0.11, "IN": 0.09, "OH": 0.08, "FL": 0.07,
       "GA": 0.06, "NC": 0.06, "TN": 0.06, "PA": 0.05, "VA": 0.05,
       "OTHER": 0.23
+    },
+    "key_cpt_codes": {
+      "T1019": {"desc": "Personal care services 15 min", "rev_pct": 0.20, "annual_volume_est": 15000000},
+      "T1020": {"desc": "Personal care per diem", "rev_pct": 0.08, "annual_volume_est": 800000},
+      "S5125": {"desc": "Attendant care 15 min", "rev_pct": 0.10, "annual_volume_est": 5000000},
+      "T2025": {"desc": "Waiver services NOS 15 min", "rev_pct": 0.06, "annual_volume_est": 2000000},
+      "T1017": {"desc": "Targeted case management 15 min", "rev_pct": 0.04, "annual_volume_est": 800000},
+      "99213": {"desc": "Office visit - low", "rev_pct": 0.03, "annual_volume_est": 300000},
+      "G0299": {"desc": "Skilled nursing home health", "rev_pct": 0.04, "annual_volume_est": 200000}
     }
   },
   {
     "ticker": "MD", "name": "Pediatrix Medical Group",
     "segment": "neonatal_pediatric_anesthesia",
     "medicaid_pct": 0.35,
+    "annual_medicaid_rev_mm": 680,
     "state_exposure": {
       "FL": 0.18, "TX": 0.14, "CA": 0.10, "NC": 0.07, "CO": 0.06,
       "NV": 0.05, "SC": 0.05, "TN": 0.04, "WA": 0.04, "VA": 0.04,
       "OTHER": 0.23
-    }
-  },
-  {
-    "ticker": "LNTH", "name": "Lantheus Holdings",
-    "segment": "diagnostics_imaging",
-    "medicaid_pct": 0.08,
-    "state_exposure": {
-      "NY": 0.15, "CA": 0.12, "TX": 0.10, "FL": 0.08, "PA": 0.07,
-      "IL": 0.06, "OH": 0.05, "MA": 0.05, "NJ": 0.05, "GA": 0.04,
-      "OTHER": 0.23
+    },
+    "key_cpt_codes": {
+      "99468": {"desc": "Neonatal critical care initial", "rev_pct": 0.15, "annual_volume_est": 30000},
+      "99469": {"desc": "Neonatal critical care subsequent", "rev_pct": 0.20, "annual_volume_est": 150000},
+      "99471": {"desc": "Pediatric critical care initial", "rev_pct": 0.08, "annual_volume_est": 15000},
+      "99472": {"desc": "Pediatric critical care subsequent", "rev_pct": 0.10, "annual_volume_est": 60000},
+      "99477": {"desc": "Newborn intensive care initial", "rev_pct": 0.06, "annual_volume_est": 20000},
+      "99478": {"desc": "Low birthweight intensive subsequent", "rev_pct": 0.08, "annual_volume_est": 40000},
+      "00834": {"desc": "Anesthesia hernia <1yr", "rev_pct": 0.02, "annual_volume_est": 8000}
     }
   },
   {
     "ticker": "OPCH", "name": "Option Care Health",
     "segment": "infusion_home_health",
     "medicaid_pct": 0.22,
+    "annual_medicaid_rev_mm": 900,
     "state_exposure": {
       "TX": 0.13, "CA": 0.11, "FL": 0.09, "IL": 0.08, "OH": 0.07,
       "PA": 0.06, "NY": 0.06, "GA": 0.05, "NC": 0.04, "TN": 0.04,
       "OTHER": 0.27
+    },
+    "key_cpt_codes": {
+      "96365": {"desc": "IV infusion therapy 1st hr", "rev_pct": 0.15, "annual_volume_est": 200000},
+      "96366": {"desc": "IV infusion therapy add'l hr", "rev_pct": 0.08, "annual_volume_est": 150000},
+      "96413": {"desc": "Chemo IV infusion 1st hr", "rev_pct": 0.10, "annual_volume_est": 80000},
+      "96415": {"desc": "Chemo IV infusion add'l hr", "rev_pct": 0.05, "annual_volume_est": 60000},
+      "J0881": {"desc": "Darbepoetin alfa injection", "rev_pct": 0.06, "annual_volume_est": 40000},
+      "S9325": {"desc": "Home infusion therapy per diem", "rev_pct": 0.12, "annual_volume_est": 100000}
+    }
+  },
+  {
+    "ticker": "EHC", "name": "Encompass Health",
+    "segment": "inpatient_rehab",
+    "medicaid_pct": 0.14,
+    "annual_medicaid_rev_mm": 700,
+    "state_exposure": {
+      "TX": 0.16, "FL": 0.12, "AL": 0.09, "PA": 0.07, "TN": 0.06,
+      "OH": 0.06, "NC": 0.05, "GA": 0.05, "VA": 0.05, "SC": 0.04,
+      "OTHER": 0.25
+    },
+    "key_cpt_codes": {
+      "97110": {"desc": "Therapeutic exercises 15 min", "rev_pct": 0.15, "annual_volume_est": 500000},
+      "97140": {"desc": "Manual therapy 15 min", "rev_pct": 0.10, "annual_volume_est": 300000},
+      "97530": {"desc": "Therapeutic activities 15 min", "rev_pct": 0.08, "annual_volume_est": 250000},
+      "97542": {"desc": "Wheelchair management training", "rev_pct": 0.03, "annual_volume_est": 40000},
+      "97535": {"desc": "Self-care management training", "rev_pct": 0.06, "annual_volume_est": 150000},
+      "97116": {"desc": "Gait training 15 min", "rev_pct": 0.08, "annual_volume_est": 200000},
+      "99221": {"desc": "Initial hospital care", "rev_pct": 0.05, "annual_volume_est": 60000}
+    }
+  },
+  {
+    "ticker": "SGRY", "name": "Surgery Partners",
+    "segment": "ambulatory_surgery_centers",
+    "medicaid_pct": 0.10,
+    "annual_medicaid_rev_mm": 280,
+    "state_exposure": {
+      "FL": 0.16, "TX": 0.13, "TN": 0.10, "IN": 0.08, "KY": 0.07,
+      "OR": 0.06, "CO": 0.05, "NC": 0.05, "ID": 0.04, "SC": 0.04,
+      "OTHER": 0.22
+    },
+    "key_cpt_codes": {
+      "29881": {"desc": "Knee arthroscopy/meniscectomy", "rev_pct": 0.08, "annual_volume_est": 15000},
+      "43239": {"desc": "Upper GI endoscopy w/ biopsy", "rev_pct": 0.06, "annual_volume_est": 20000},
+      "45380": {"desc": "Colonoscopy w/ biopsy", "rev_pct": 0.07, "annual_volume_est": 25000},
+      "66984": {"desc": "Cataract surgery", "rev_pct": 0.10, "annual_volume_est": 18000},
+      "27447": {"desc": "Total knee replacement", "rev_pct": 0.08, "annual_volume_est": 8000},
+      "62323": {"desc": "Lumbar epidural injection", "rev_pct": 0.05, "annual_volume_est": 12000}
+    }
+  },
+  {
+    "ticker": "NHC", "name": "National HealthCare Corp",
+    "segment": "skilled_nursing_assisted_living",
+    "medicaid_pct": 0.58,
+    "annual_medicaid_rev_mm": 620,
+    "state_exposure": {
+      "TN": 0.28, "SC": 0.14, "MO": 0.12, "FL": 0.09, "GA": 0.08,
+      "VA": 0.07, "MD": 0.06, "IN": 0.05, "KY": 0.05, "NC": 0.04,
+      "OTHER": 0.02
+    },
+    "key_cpt_codes": {
+      "99307": {"desc": "SNF subsequent - straightforward", "rev_pct": 0.15, "annual_volume_est": 200000},
+      "99308": {"desc": "SNF subsequent - low", "rev_pct": 0.18, "annual_volume_est": 250000},
+      "99309": {"desc": "SNF subsequent - moderate", "rev_pct": 0.10, "annual_volume_est": 120000},
+      "97110": {"desc": "Therapeutic exercises", "rev_pct": 0.06, "annual_volume_est": 150000},
+      "97530": {"desc": "Therapeutic activities", "rev_pct": 0.04, "annual_volume_est": 80000}
+    }
+  },
+  {
+    "ticker": "AMED", "name": "Amedisys",
+    "segment": "home_health_hospice",
+    "medicaid_pct": 0.18,
+    "annual_medicaid_rev_mm": 400,
+    "state_exposure": {
+      "LA": 0.12, "TN": 0.10, "MS": 0.09, "AL": 0.08, "KY": 0.07,
+      "TX": 0.07, "FL": 0.06, "GA": 0.05, "NC": 0.05, "OH": 0.04,
+      "OTHER": 0.27
+    },
+    "key_cpt_codes": {
+      "G0299": {"desc": "Home health skilled nursing", "rev_pct": 0.20, "annual_volume_est": 150000},
+      "G0151": {"desc": "Home health PT services", "rev_pct": 0.12, "annual_volume_est": 100000},
+      "G0152": {"desc": "Home health OT services", "rev_pct": 0.08, "annual_volume_est": 60000},
+      "G0153": {"desc": "Home health SLP services", "rev_pct": 0.04, "annual_volume_est": 25000},
+      "G0156": {"desc": "Home health aide services", "rev_pct": 0.10, "annual_volume_est": 200000},
+      "T2042": {"desc": "Hospice routine home care per diem", "rev_pct": 0.08, "annual_volume_est": 80000}
+    }
+  },
+  {
+    "ticker": "SEM", "name": "Select Medical",
+    "segment": "ltach_rehab",
+    "medicaid_pct": 0.12,
+    "annual_medicaid_rev_mm": 480,
+    "state_exposure": {
+      "PA": 0.14, "TX": 0.10, "OH": 0.09, "FL": 0.08, "IN": 0.06,
+      "MI": 0.05, "NJ": 0.05, "VA": 0.05, "NC": 0.04, "GA": 0.04,
+      "OTHER": 0.30
+    },
+    "key_cpt_codes": {
+      "97110": {"desc": "Therapeutic exercises", "rev_pct": 0.12, "annual_volume_est": 300000},
+      "97140": {"desc": "Manual therapy", "rev_pct": 0.08, "annual_volume_est": 200000},
+      "97530": {"desc": "Therapeutic activities", "rev_pct": 0.06, "annual_volume_est": 150000},
+      "97116": {"desc": "Gait training", "rev_pct": 0.06, "annual_volume_est": 120000},
+      "99232": {"desc": "Subsequent hospital care - moderate", "rev_pct": 0.08, "annual_volume_est": 200000},
+      "99233": {"desc": "Subsequent hospital care - high", "rev_pct": 0.05, "annual_volume_est": 100000}
+    }
+  },
+  {
+    "ticker": "BKD", "name": "Brookdale Senior Living",
+    "segment": "assisted_living_snf",
+    "medicaid_pct": 0.30,
+    "annual_medicaid_rev_mm": 900,
+    "state_exposure": {
+      "TX": 0.12, "CA": 0.09, "FL": 0.08, "IL": 0.07, "NC": 0.06,
+      "OH": 0.05, "PA": 0.05, "WA": 0.04, "CO": 0.04, "TN": 0.04,
+      "OTHER": 0.36
+    },
+    "key_cpt_codes": {
+      "99307": {"desc": "SNF subsequent - straightforward", "rev_pct": 0.10, "annual_volume_est": 150000},
+      "99308": {"desc": "SNF subsequent - low", "rev_pct": 0.12, "annual_volume_est": 200000},
+      "T1019": {"desc": "Personal care services", "rev_pct": 0.08, "annual_volume_est": 500000},
+      "97110": {"desc": "Therapeutic exercises", "rev_pct": 0.05, "annual_volume_est": 100000}
+    }
+  },
+  {
+    "ticker": "LNTH", "name": "Lantheus Holdings",
+    "segment": "diagnostics_imaging",
+    "medicaid_pct": 0.08,
+    "annual_medicaid_rev_mm": 120,
+    "state_exposure": {
+      "NY": 0.15, "CA": 0.12, "TX": 0.10, "FL": 0.08, "PA": 0.07,
+      "IL": 0.06, "OH": 0.05, "MA": 0.05, "NJ": 0.05, "GA": 0.04,
+      "OTHER": 0.23
+    },
+    "key_cpt_codes": {
+      "78452": {"desc": "Myocardial perfusion imaging SPECT", "rev_pct": 0.25, "annual_volume_est": 30000},
+      "78816": {"desc": "PET imaging whole body", "rev_pct": 0.15, "annual_volume_est": 15000},
+      "A9500": {"desc": "Technetium Tc-99m sestamibi", "rev_pct": 0.20, "annual_volume_est": 25000},
+      "A9526": {"desc": "Nitrogen N-13 ammonia", "rev_pct": 0.05, "annual_volume_est": 5000}
     }
   }
 ]
