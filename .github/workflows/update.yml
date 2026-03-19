@@ -47,12 +47,17 @@ jobs:
         run: |
           mkdir -p docs/data
           cp data/web/*.json docs/data/ 2>/dev/null || echo "No web data files to copy"
-          ls -la docs/data/ || echo "docs/data is empty"
+          echo "docs/data contents:"
+          ls -la docs/data/ || echo "empty"
 
       - name: Commit and push
         run: |
-          git add docs/data/ data/checksums.json data/prev_rates/ data/web/
-          git reset -- data/downloads/
+          git add -A docs/data/
+          git add -A data/web/
+          git add data/checksums.json 2>/dev/null || true
+          git add data/prev_rates/ 2>/dev/null || true
+          git add data/base_rates.json 2>/dev/null || true
+          git add data/rate_comparison.json 2>/dev/null || true
           if git diff --cached --quiet; then
             echo "No changes"
           else
