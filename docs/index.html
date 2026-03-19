@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Medicaid Fee Schedule Intelligence</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}body{background:#0f0f1a;color:#e2e8f0;font-family:system-ui,sans-serif;font-size:13px}
+.hd{background:linear-gradient(135deg,#1e1b4b,#312e81);padding:16px 24px;border-bottom:1px solid #3730a3}.hd h1{font-size:18px;font-weight:700}.hd p{font-size:10px;color:#a5b4fc;margin-top:3px}
+.tabs{display:flex;background:#1e1e2e;border-bottom:1px solid #2d2d44;overflow-x:auto}.tb{padding:10px 14px;font-size:11px;background:none;border:none;cursor:pointer;color:#94a3b8;border-bottom:2px solid transparent;white-space:nowrap;font-family:inherit}.tb.a{color:#a5b4fc;font-weight:600;border-bottom-color:#6366f1}
+.W{padding:14px 18px;max-width:1400px;display:none}.W.a{display:block}
+.R{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}.K{background:#1e1e2e;border-radius:7px;padding:9px 12px;min-width:100px;flex:1}.Kl{font-size:8px;color:#94a3b8;text-transform:uppercase;letter-spacing:.5px}.Kv{font-size:16px;font-weight:700;margin-top:2px}
+.C{background:#1e1e2e;border-radius:7px;padding:10px;margin-bottom:10px}.S{font-size:11px;font-weight:600;margin:12px 0 5px}
+.N{background:#1e1e2e;border-radius:7px;padding:10px;margin-bottom:10px;font-size:10px;color:#94a3b8;border-left:3px solid #6366f1;line-height:1.4}.N b{color:#e2e8f0}
+select,input{background:#1e1e2e;color:#e2e8f0;border:1px solid #3730a3;border-radius:4px;padding:5px 10px;font-size:11px;font-family:inherit}
+input[type=text]{width:200px}
+table{width:100%;border-collapse:collapse;font-size:10px}th{text-align:left;padding:5px 4px;border-bottom:1px solid #3730a3;color:#94a3b8;font-weight:600;font-size:8px;text-transform:uppercase}td{padding:4px;border-bottom:1px solid #1a1a2e}tr:hover td{background:#1a1a2e}
+.pos{color:#10b981}.neg{color:#ef4444}.warn{color:#f59e0b}.dim{color:#64748b}
+.tag{display:inline-block;padding:1px 5px;border-radius:3px;font-size:8px;font-weight:600}.tag-up{background:#064e3b;color:#10b981}.tag-dn{background:#450a0a;color:#ef4444}.tag-fl{background:#451a03;color:#f59e0b}
+canvas{max-height:300px}
+.ld{min-height:80vh;display:flex;align-items:center;justify-content:center;flex-direction:column}.sp{width:30px;height:30px;border:3px solid #6366f1;border-top-color:transparent;border-radius:50%;animation:sp 1s linear infinite;margin:10px 0}@keyframes sp{to{transform:rotate(360deg)}}
+.F{margin-top:20px;padding:10px 0;border-top:1px solid #2d2d44;font-size:8px;color:#64748b;line-height:1.4}
+.rs{display:flex;align-items:center;gap:8px;margin-bottom:10px;flex-wrap:wrap}.rs label{font-size:11px;color:#94a3b8}
+.heat-hi{background:#450a0a;color:#ef4444}.heat-lo{background:#064e3b;color:#10b981}.heat-mid{background:transparent}
+.bar{height:5px;border-radius:2px;display:inline-block;vertical-align:middle}
+</style>
+</head>
+<body>
+<div class="hd"><h1>Medicaid Fee Schedule Intelligence Platform</h1><p id="hsub">Loading...</p></div>
+<div class="tabs" id="tbar"></div>
+<div id="loader" class="ld"><div style="font-size:15px;font-weight:600">Loading Fee Schedule Data...</div><div class="sp"></div></div>
+
+<!-- T0: Overview -->
+<div class="W" id="t0">
+<div class="N"><b>What this does:</b> Aggregates Medicaid fee schedules across states, maps reimbursement rates to public company CPT code exposure, flags codes above/below national median as alpha signals (rate cut risk vs upside). Updated weekly.</div>
+<div class="R" id="kpis"></div>
+<div class="S">Alpha Signals — Rate Flags</div>
+<div class="N" style="border-left-color:#f59e0b"><b>ABOVE median = rate cut risk</b> (state overpaying vs peers). <b>BELOW median = upside potential</b> (state may raise rates). Flags trigger at >15% deviation.</div>
+<div class="C" id="flags_tbl"></div>
+<div class="S">Most Impacted Companies (by matched revenue in scraped states)</div>
+<div class="C" id="co_rank"></div>
+</div>
+
+<!-- T1: CPT Code Explorer -->
+<div class="W" id="t1">
+<div class="rs">
+<label>Search CPT/HCPCS:</label><input type="text" id="cptQ" placeholder="e.g. 99213" oninput="rCPT()">
+<label>Or browse key codes:</label><select id="cptSel" onchange="document.getElementById('cptQ').value=this.value;rCPT()"><option value="">-- select --</option></select>
+</div>
+<div class="R" id="cpt_kpis"></div>
+<div class="S" id="cpt_title">Rate by State</div>
+<div class="C"><canvas id="cptChart"></canvas></div>
+<div class="C" id="cpt_tbl"></div>
+<div class="S">Companies Exposed to This Code</div>
+<div class="C" id="cpt_cos"></div>
+</div>
+
+<!-- T2: Company Scorecard -->
+<div class="W" id="t2">
+<div class="rs"><label>Company:</label><select id="coSel" onchange="rCom()"></select></div>
+<div class="R" id="com_kpis"></div>
+<div class="S">Matched CPT Rates by State</div>
+<div class="C" id="com_rates"></div>
+<div class="S">Rate Flags</div>
+<div class="C" id="com_flags"></div>
+<div class="S">State Exposure Map</div>
+<div class="C"><canvas id="comChart"></canvas></div>
+<div class="S">Key CPT Codes — Estimated Revenue</div>
+<div class="C"><canvas id="comRevChart"></canvas></div>
+</div>
+
+<!-- T3: Cross-State Matrix -->
+<div class="W" id="t3">
+<div class="N"><b>Cross-State Comparison:</b> Current base Medicaid reimbursement by state for high-volume CPT codes. Green=lowest (upside), Red=highest (cut risk). Spread = how much max exceeds min. High spread = convergence opportunity.</div>
+<div class="rs"><label>Category:</label><select id="catSel" onchange="rXS()">
+<option value="all">All Key Codes</option>
+<option value="office">Office Visits (9921x)</option>
+<option value="ed">ED Visits (9928x)</option>
+<option value="therapy">Therapy (9711x/9715x)</option>
+<option value="behavioral">Behavioral Health (908xx)</option>
+<option value="snf">SNF (9930x)</option>
+<option value="home">Home Health (G0xxx/T10xx)</option>
+</select></div>
+<div class="C" style="overflow-x:auto" id="xs_tbl"></div>
+</div>
+
+<!-- T4: State View -->
+<div class="W" id="t4">
+<div class="rs"><label>State:</label><select id="stSel" onchange="rSt()"></select>
+<label>Search code:</label><input type="text" id="stQ" placeholder="filter..." oninput="rSt()"></div>
+<div class="R" id="st_kpis"></div>
+<div class="S" id="st_title">All Rates</div>
+<div class="C" id="st_tbl"></div>
+</div>
+
+<div style="padding:0 18px;max-width:1400px"><div class="F">
+<b>Data:</b> State Medicaid agency fee schedule publications, scraped weekly via GitHub Actions.<br>
+<b>Coverage:</b> States with machine-readable fee schedules (xlsx/csv). Not all 50 states have scrapable formats.<br>
+<b>Flags:</b> Codes >15% above/below national median across scraped states. ABOVE=cut risk, BELOW=upside.<br>
+<b>Revenue estimates:</b> Approximate — base_rate × est_volume × state_exposure. Verify against company filings.<br>
+<b>CPT®</b> is a registered trademark of the American Medical Association.
+</div></div>
+
+<script>
+var R=null,X=null,CO=null,MD=null,ME=null,CH={};
+var CL=["#6366f1","#f59e0b","#10b981","#ef4444","#8b5cf6","#ec4899","#14b8a6","#f97316","#06b6d4","#84cc16","#a855f7","#e11d48"];
+Chart.defaults.color="#94a3b8";Chart.defaults.borderColor="#2d2d44";Chart.defaults.font.size=9;
+function fK(n){if(n>=1e6)return(n/1e6).toFixed(1)+"M";if(n>=1e3)return Math.round(n/1e3)+"K";return""+n}
+function fF(n){return n?n.toLocaleString():"0"}
+function dC(id){if(CH[id]){CH[id].destroy();delete CH[id]}}
+function kp(l,v,c){return'<div class="K" style="border-left:2px solid '+(c||"#6366f1")+'"><div class="Kl">'+l+'</div><div class="Kv">'+v+'</div></div>'}
+
+var TABS=["Overview","CPT Code Explorer","Company Scorecard","Cross-State Matrix","State View"];
+function initT(){var h="";for(var i=0;i<TABS.length;i++)h+='<button class="tb'+(i===0?" a":"")+'" onclick="sT('+i+')">'+TABS[i]+'</button>';document.getElementById("tbar").innerHTML=h}
+function sT(n){var b=document.querySelectorAll(".tb");for(var i=0;i<b.length;i++)b[i].className=i===n?"tb a":"tb";for(var i=0;i<5;i++){var e=document.getElementById("t"+i);if(e)e.className=i===n?"W a":"W"}if(n===3)rXS();if(n===4)rSt()}
+
+function load(){
+  initT();
+  Promise.all([
+    fetch("data/rates.json").then(function(r){return r.ok?r.json():null}).catch(function(){return null}),
+    fetch("data/cross_state.json").then(function(r){return r.ok?r.json():null}).catch(function(){return null}),
+    fetch("data/companies.json").then(function(r){return r.ok?r.json():null}).catch(function(){return null}),
+    fetch("data/medians.json").then(function(r){return r.ok?r.json():null}).catch(function(){return null}),
+    fetch("data/meta.json").then(function(r){return r.ok?r.json():null}).catch(function(){return null})
+  ]).then(function(res){
+    R=res[0];X=res[1];CO=res[2];MD=res[3];ME=res[4];
+    document.getElementById("loader").style.display="none";
+    if(!R||!Object.keys(R).length){document.getElementById("loader").style.display="flex";document.getElementById("loader").innerHTML='<div style="color:#ef4444;font-weight:600">No data yet</div><div style="color:#94a3b8;margin-top:8px;font-size:12px">Run the GitHub Action: Actions → Update Medicaid Fee Schedules → Run workflow</div>';return}
+    document.getElementById("hsub").textContent=(ME?ME.n_states+" states | "+fF(ME.n_codes)+" codes | "+ME.n_companies+" companies | Updated "+ME.updated:"Data loaded");
+    buildSelectors();rOverview();sT(0);
+  });
+}
+
+function buildSelectors(){
+  // CPT selector
+  if(X){var s=document.getElementById("cptSel");X.forEach(function(r){var o=document.createElement("option");o.value=r.code;o.text=r.code+" — "+r.desc;s.add(o)})}
+  // Company selector
+  if(CO){var s2=document.getElementById("coSel");CO.forEach(function(c){var o=document.createElement("option");o.value=c.ticker;o.text=c.ticker+" — "+c.name;s2.add(o)})}
+  // State selector
+  if(R){var s3=document.getElementById("stSel");Object.keys(R).sort().forEach(function(st){var o=document.createElement("option");o.value=st;o.text=st;s3.add(o)})}
+}
+
+/* === T0: OVERVIEW === */
+function rOverview(){
+  var nSt=R?Object.keys(R).length:0;
+  var nCo=CO?CO.length:0;
+  var nCodes=0;if(R)Object.values(R).forEach(function(v){nCodes+=Object.keys(v).length});
+  var nFlags=0;if(CO)CO.forEach(function(c){nFlags+=c.n_flags||0});
+  document.getElementById("kpis").innerHTML=kp("States",nSt,"#6366f1")+kp("Total Codes",fF(nCodes),"#10b981")+kp("Companies",nCo,"#8b5cf6")+kp("Rate Flags",nFlags,"#f59e0b");
+
+  // Flags table
+  var allF=[];
+  if(CO)CO.forEach(function(c){(c.flags||[]).forEach(function(f){allF.push(Object.assign({},f,{ticker:c.ticker,company:c.name}))})});
+  allF.sort(function(a,b){return Math.abs(b.vs_median||0)-Math.abs(a.vs_median||0)});
+  var fh='<table><tr><th>Ticker</th><th>CPT</th><th>State</th><th>Base Rate</th><th>Median</th><th>Deviation</th><th>Signal</th></tr>';
+  allF.slice(0,25).forEach(function(f){
+    var sig=f.direction==="ABOVE"?'<span class="tag tag-dn">CUT RISK</span>':'<span class="tag tag-up">UPSIDE</span>';
+    fh+='<tr><td><b>'+f.ticker+'</b></td><td><b>'+f.code+'</b></td><td>'+f.state+'</td><td><b>$'+(f.rate||0).toFixed(2)+'</b></td><td>$'+(f.median||0).toFixed(2)+'</td><td class="'+(f.vs_median>0?"neg":"pos")+'">'+(f.vs_median>0?"+":"")+(f.vs_median||0).toFixed(1)+'%</td><td>'+sig+'</td></tr>'});
+  fh+='</table>';document.getElementById("flags_tbl").innerHTML=fh;
+
+  // Company ranking
+  var ch='<table><tr><th>Ticker</th><th>Company</th><th>Segment</th><th>Medicaid %</th><th>Medicaid Rev</th><th>Codes Matched</th><th>Matched Rev</th><th>Flags</th></tr>';
+  if(CO)CO.slice(0,15).forEach(function(c){
+    ch+='<tr><td><b>'+c.ticker+'</b></td><td>'+c.name+'</td><td class="dim">'+c.segment+'</td><td>'+(c.medicaid_pct*100).toFixed(0)+'%</td><td>$'+c.annual_medicaid_rev_mm+'M</td><td>'+c.n_matches+'</td><td><b>$'+fF(c.total_matched_rev)+'</b></td><td class="warn">'+(c.n_flags||0)+'</td></tr>'});
+  ch+='</table>';document.getElementById("co_rank").innerHTML=ch;
+}
+
+/* === T1: CPT EXPLORER === */
+function rCPT(){
+  var code=(document.getElementById("cptQ").value||"").trim().toUpperCase();
+  if(code.length<4||!R)return;
+
+  // Find this code across all states
+  var stRates=[];
+  Object.keys(R).sort().forEach(function(st){
+    var entry=R[st][code];
+    if(entry&&entry.r>0)stRates.push({st:st,rate:entry.r,desc:entry.d||""})
+  });
+
+  var med=MD?MD[code]:null;
+  var desc=stRates.length?stRates[0].desc:"";
+
+  document.getElementById("cpt_title").textContent=code+(desc?" — "+desc:"")+" — Rate by State";
+  document.getElementById("cpt_kpis").innerHTML=
+    kp("Code",code,"#6366f1")
+    +kp("States Found",stRates.length,"#10b981")
+    +kp("Median",med?"$"+med.toFixed(2):"—","#f59e0b")
+    +(stRates.length?kp("Range","$"+Math.min.apply(null,stRates.map(function(r){return r.rate})).toFixed(2)+" – $"+Math.max.apply(null,stRates.map(function(r){return r.rate})).toFixed(2),"#8b5cf6"):"");
+
+  // Chart
+  stRates.sort(function(a,b){return b.rate-a.rate});
+  var colors=stRates.map(function(r){if(!med)return"#6366f1";var pct=(r.rate-med)/med;return pct>0.15?"#ef4444":pct<-0.15?"#10b981":"#6366f1"});
+  dC("cptChart");CH.cptChart=new Chart(document.getElementById("cptChart"),{type:"bar",data:{labels:stRates.map(function(r){return r.st}),datasets:[{label:"Rate ($)",data:stRates.map(function(r){return r.rate}),backgroundColor:colors,borderRadius:3}]},options:{responsive:true,plugins:{legend:{display:false}},scales:{y:{ticks:{callback:function(v){return"$"+v}}}}}});
+
+  // Table
+  var th='<table><tr><th>State</th><th>Rate</th><th>vs Median</th><th>Signal</th><th>Description</th></tr>';
+  stRates.forEach(function(r){
+    var vm=med?((r.rate/med-1)*100):null;
+    var cls=vm===null?"":vm>15?"neg":vm<-15?"pos":"";
+    var sig=vm===null?"—":vm>15?'<span class="tag tag-dn">HIGH</span>':vm<-15?'<span class="tag tag-up">LOW</span>':'In range';
+    th+='<tr><td><b>'+r.st+'</b></td><td><b>$'+r.rate.toFixed(2)+'</b></td><td class="'+cls+'">'+(vm!==null?(vm>0?"+":"")+vm.toFixed(1)+"%":"—")+'</td><td>'+sig+'</td><td class="dim">'+r.desc+'</td></tr>'});
+  th+='</table>';document.getElementById("cpt_tbl").innerHTML=th;
+
+  // Companies exposed
+  var coH='<table><tr><th>Ticker</th><th>Company</th><th>Rev % from Code</th><th>Segment</th></tr>';
+  if(CO)CO.forEach(function(c){
+    var kc=c.key_cpt_codes||{};
+    if(kc[code]){
+      coH+='<tr><td><b>'+c.ticker+'</b></td><td>'+c.name+'</td><td>'+(kc[code].rev_pct*100).toFixed(1)+'%</td><td class="dim">'+c.segment+'</td></tr>'
+    }
+  });
+  coH+='</table>';document.getElementById("cpt_cos").innerHTML=coH;
+}
+
+/* === T2: COMPANY SCORECARD === */
+function rCom(){
+  var tk=document.getElementById("coSel").value;
+  if(!tk||!CO)return;
+  var co=CO.find(function(c){return c.ticker===tk});
+  if(!co)return;
+
+  document.getElementById("com_kpis").innerHTML=
+    kp(co.ticker+" — "+co.name,"","#6366f1")
+    +kp("Medicaid Rev","$"+co.annual_medicaid_rev_mm+"M","#10b981")
+    +kp("Medicaid Mix",(co.medicaid_pct*100).toFixed(0)+"%","#f59e0b")
+    +kp("Codes Matched",co.n_matches,"#8b5cf6")
+    +kp("Matched Rev","$"+fF(co.total_matched_rev),"#6366f1")
+    +kp("Rate Flags",co.n_flags||0,"#ef4444");
+
+  // Matched rates table
+  var m=co.matches||[];
+  var rh='<table><tr><th>CPT</th><th>Description</th><th>State</th><th>Base Rate</th><th>Median</th><th>vs Median</th><th>Est Volume</th><th>Est Revenue</th></tr>';
+  m.slice(0,30).forEach(function(r){
+    var cls=r.vs_median===null?"":r.vs_median>15?"neg":r.vs_median<-15?"pos":"";
+    rh+='<tr><td><b>'+r.code+'</b></td><td class="dim">'+(r.desc||"").substring(0,35)+'</td><td><b>'+r.state+'</b></td><td><b>$'+r.rate.toFixed(2)+'</b></td><td>'+(r.median?"$"+r.median.toFixed(2):"—")+'</td><td class="'+cls+'">'+(r.vs_median!==null?(r.vs_median>0?"+":"")+r.vs_median.toFixed(1)+"%":"—")+'</td><td>'+fF(Math.round(r.volume*r.state_pct))+'</td><td>$'+fF(r.est_state_rev)+'</td></tr>'});
+  rh+='</table>';document.getElementById("com_rates").innerHTML=rh;
+
+  // Flags
+  var fl=co.flags||[];
+  var fh='';
+  if(fl.length){
+    fh='<table><tr><th>CPT</th><th>State</th><th>Rate</th><th>Median</th><th>Deviation</th><th>Signal</th></tr>';
+    fl.forEach(function(f){
+      var sig=f.direction==="ABOVE"?'<span class="tag tag-dn">CUT RISK</span>':'<span class="tag tag-up">UPSIDE</span>';
+      fh+='<tr><td><b>'+f.code+'</b></td><td>'+f.state+'</td><td><b>$'+f.rate.toFixed(2)+'</b></td><td>$'+f.median.toFixed(2)+'</td><td class="'+(f.vs_median>0?"neg":"pos")+'">'+(f.vs_median>0?"+":"")+f.vs_median.toFixed(1)+'%</td><td>'+sig+'</td></tr>'});
+    fh+='</table>';
+  }else{fh='<div class="dim" style="padding:8px">No rate flags for this company</div>'}
+  document.getElementById("com_flags").innerHTML=fh;
+
+  // State exposure chart
+  var se=co.state_exposure||{};
+  var seArr=Object.keys(se).filter(function(s){return s!=="OTHER"}).map(function(s){return{s:s,p:se[s]}}).sort(function(a,b){return b.p-a.p}).slice(0,12);
+  dC("comChart");CH.comChart=new Chart(document.getElementById("comChart"),{type:"bar",data:{labels:seArr.map(function(r){return r.s}),datasets:[{label:"Exposure %",data:seArr.map(function(r){return(r.p*100)}),backgroundColor:"#6366f1",borderRadius:3}]},options:{indexAxis:"y",responsive:true,plugins:{legend:{display:false}},scales:{x:{ticks:{callback:function(v){return v+"%"}}}}}});
+
+  // Revenue by CPT code
+  var kc=co.key_cpt_codes||{};
+  var kcArr=Object.keys(kc).map(function(code){return{code:code,desc:kc[code].desc||"",rev:kc[code].rev_pct||0}}).sort(function(a,b){return b.rev-a.rev});
+  dC("comRevChart");CH.comRevChart=new Chart(document.getElementById("comRevChart"),{type:"bar",data:{labels:kcArr.map(function(r){return r.code}),datasets:[{label:"% of Medicaid Rev",data:kcArr.map(function(r){return(r.rev*100)}),backgroundColor:CL.slice(0,kcArr.length),borderRadius:3}]},options:{indexAxis:"y",responsive:true,plugins:{legend:{display:false}},scales:{x:{ticks:{callback:function(v){return v+"%"}}}}}});
+}
+
+/* === T3: CROSS-STATE MATRIX === */
+function rXS(){
+  if(!X||!X.length)return;
+  var cat=document.getElementById("catSel").value;
+  var filtered=X;
+  if(cat==="office")filtered=X.filter(function(r){return r.code.match(/^9921[1-5]$/)});
+  else if(cat==="ed")filtered=X.filter(function(r){return r.code.match(/^9928[1-5]$/)});
+  else if(cat==="therapy")filtered=X.filter(function(r){return r.code.match(/^971[0-6]/)});
+  else if(cat==="behavioral")filtered=X.filter(function(r){return r.code.match(/^908/)});
+  else if(cat==="snf")filtered=X.filter(function(r){return r.code.match(/^9930[4-9]$/)});
+  else if(cat==="home")filtered=X.filter(function(r){return r.code.match(/^[GTS]/i)});
+
+  if(!filtered.length){document.getElementById("xs_tbl").innerHTML='<div class="dim">No data for this category</div>';return}
+
+  // Get all states
+  var allSt=new Set();filtered.forEach(function(r){Object.keys(r.states).forEach(function(s){allSt.add(s)})});
+  var states=Array.from(allSt).sort();
+
+  var h='<table><tr><th>Code</th><th>Description</th>';
+  states.forEach(function(s){h+='<th>'+s+'</th>'});
+  h+='<th>Min</th><th>Max</th><th>Spread</th></tr>';
+
+  filtered.forEach(function(r){
+    var vals=Object.values(r.states);var mn=Math.min.apply(null,vals),mx=Math.max.apply(null,vals);
+    h+='<tr><td><b>'+r.code+'</b></td><td class="dim">'+r.desc+'</td>';
+    states.forEach(function(s){
+      var v=r.states[s];
+      if(v){
+        var pct=mx>mn?(v-mn)/(mx-mn):0.5;
+        var cls=pct>0.8?"heat-hi":pct<0.2?"heat-lo":"heat-mid";
+        h+='<td class="'+cls+'">$'+v.toFixed(2)+'</td>';
+      }else{h+='<td class="dim">—</td>'}
+    });
+    h+='<td class="pos">$'+mn.toFixed(2)+'</td><td class="neg">$'+mx.toFixed(2)+'</td>';
+    var spCls=r.spread>50?"neg":r.spread>25?"warn":"";
+    h+='<td class="'+spCls+'">'+r.spread.toFixed(0)+'%</td></tr>';
+  });
+  h+='</table>';document.getElementById("xs_tbl").innerHTML=h;
+}
+
+/* === T4: STATE VIEW === */
+function rSt(){
+  var st=document.getElementById("stSel").value;
+  var q=(document.getElementById("stQ").value||"").trim().toUpperCase();
+  if(!st||!R||!R[st])return;
+
+  var codes=R[st];
+  var arr=Object.keys(codes).map(function(c){return{code:c,rate:codes[c].r,desc:codes[c].d||""}}).filter(function(r){return r.rate>0});
+  if(q)arr=arr.filter(function(r){return r.code.indexOf(q)!==-1||r.desc.toUpperCase().indexOf(q)!==-1});
+  arr.sort(function(a,b){return a.code<b.code?-1:1});
+
+  document.getElementById("st_kpis").innerHTML=kp(st,"","#6366f1")+kp("Codes",arr.length,"#10b981")+kp("Avg Rate","$"+(arr.reduce(function(s,r){return s+r.rate},0)/Math.max(1,arr.length)).toFixed(2),"#f59e0b");
+  document.getElementById("st_title").textContent=st+" — "+(q?"Filtered":"All")+" Rates ("+arr.length+" codes)";
+
+  var h='<table><tr><th>Code</th><th>Description</th><th>Rate</th><th>vs Median</th><th>Signal</th></tr>';
+  arr.slice(0,200).forEach(function(r){
+    var med=MD?MD[r.code]:null;
+    var vm=med&&med>0?((r.rate/med-1)*100):null;
+    var cls=vm===null?"":vm>15?"neg":vm<-15?"pos":"";
+    var sig=vm===null?"—":vm>15?'<span class="tag tag-dn">HIGH</span>':vm<-15?'<span class="tag tag-up">LOW</span>':"OK";
+    h+='<tr><td><b>'+r.code+'</b></td><td class="dim">'+r.desc+'</td><td><b>$'+r.rate.toFixed(2)+'</b></td><td class="'+cls+'">'+(vm!==null?(vm>0?"+":"")+vm.toFixed(1)+"%":"—")+'</td><td>'+sig+'</td></tr>'});
+  if(arr.length>200)h+='<tr><td colspan="5" class="dim">+'+(arr.length-200)+' more...</td></tr>';
+  h+='</table>';document.getElementById("st_tbl").innerHTML=h;
+}
+
+load();
+</script>
+</body>
+</html>
