@@ -1,0 +1,900 @@
+   
+ 
+
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US" lang="es" xml:lang="es">
+	
+<head>
+
+<script type="text/javascript">
+<!-- session popup //-->
+
+var refreshUrl = '/wps/myportal/RenewSession';
+var logoutUrl  = "/wps/portal/!ut/p/z1/04_Sj9CPykssy0xPLMnMz0vMAfIjo8ziXX2dw1zcfQwNLAz8LA2MjC0cvYNcDQzMTM30w_EpCHQ3148iRr8BDuBoQJx-PAqi8Bsfrh-F1wpPU_wKwF4kZElBbmhohEGmJwAqW30t/dz/d5/L3dDb1ZJQSEhL3dPb0JKTnNBLzRFS2lqaFVNV0hFIS8wLzUwOTQ2NS9sbw!!/"; 
+var logOutFlag_on = false;
+var timeOut = null;
+var sesspopUpCount = 0;
+
+</script> 
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+	<meta name="google-site-verification" content="7XcUsHv1D2AJOl5cwc8PDPAPkTlOuuVZb3WMb1i_T5E" />
+        <meta name="google-site-verification" content="8OCkSCarS70DJlfZPvNrDZhDVYtU0GcNsqGGfawz-54" />
+	<title>New Hampshire MMIS Health Enterprise Portal</title>
+	<!-- <link rel="shortcut icon" href="/wps/themes/html/ACSDefault/images/favicon.ico" type="image/x-icon" /> -->
+	<link rel="shortcut icon" href="/portals/wps/themes/html/ACSDefault/images/favicon-16.ico" type="image/x-icon" />
+	<link rel="shortcut icon" href="/portals/wps/themes/html/ACSDefault/images/favicon-32.ico" type="image/x-icon" />
+	<link rel="shortcut icon" href="/portals/wps/themes/html/ACSDefault/images/favicon-256.ico" type="image/x-icon" />
+
+	<link rel="stylesheet" type="text/css" href="/portals/wps/themes/html/ACSDefault/style/portal.css"></link>
+	
+    <link rel="stylesheet" type="text/css" href="/portals/wps/themes/html/ACSDefault/style/theme.css"></link>
+	
+	
+	<script type="text/javascript" src="/portals/wps/themes/html/ACSDefault/scripts/general.js"></script>
+	
+	<script type="text/javascript" src="/portals/wps/themes/html/ACSDefault/scripts/popcalendar_init.js"></script>
+	<script type="text/javascript" src="/portals/wps/themes/html/ACSDefault/scripts/popcalendar.js"></script>	
+		
+
+		
+  	
+</head>
+	<style>
+		.layoutRow {width: 100%; }
+		.layoutColumn {width: 100%; }
+	</style>
+	
+	<body marginwidth="0" marginheight="0">   
+<NOSCRIPT>
+		<H4>JavaScript is Disabled. Site will not work properly unless JavaScript is Enable. </H4>
+</NOSCRIPT> 
+		   
+		<div id="wrapper">
+			   
+			<div id="head">
+				
+				<div id="headImg">
+					
+						<img height="49" width="450" src="/portals/wps/themes/html/ACSDefault/images/logo_nh.gif" border="0" 
+						alt='New Hampshire MMIS Health Enterprise Portal'/>					 
+					
+				</div>
+				<div id="headTxt">		<div id="headLine1">		Mar 19, 2026		</div>	<div id="headLine2">					   <a href="#skipNavigation">Skip Navigation</a>&nbsp;&#124;		   	            <a href="https://www.dhhs.nh.gov/medicaid-contact-directory" target="_Blank">Contact Us</a>&nbsp;&#124;		   <a href="/portals/wps/portal/GeneralHelp" target="MCWebHelp" onClick="javascript:viewHelp(this.href);">			Help           </a>&#124;                				<a style="background-color: #fff;color: #00f;text-decoration: none;">Search</a>					</div></div><script type="text/javascript">var logoutUrl = '/wps/portal/!ut/p/z1/04_Sj9CPykssy0xPLMnMz0vMAfIjo8ziXX2dw1zcfQwNLAz8LA2MjC0cvYNcDQzMTM30w_EpCHQ3148iRr8BDuBoQJx-PAqi8Bsfrh-F1wpPU_wKwF4kZElBbmhohEGmJwAqW30t/dz/d5/L3dDb1ZJQSEhL3dPb0JKTnNBLzRFS2lqaFVNV0hFIS8wLzUwOTQ2Ni9sbw!!/';</script>
+				</div>
+	
+	<div id="nav">
+		<ul id="udm" class="udm">
+		
+			
+							<li><a id="menuBarTitle" href='/portals/wps/portal/!ut/p/z1/04_Sj9CPykssy0xPLMnMz0vMAfIjo8ziXX2dw1zcfQwNLAz8LA2MjC0cvYNcDQzMTM30w_EpCHQ3148iRr8BDuBoQJx-PAqi8Bsfrh-F1wpPU_wKwF4kZElBbmhohEGmJwAqW30t/dz/d5/L2dJQSEvUUt3QS80TmxFL1o2X0VNQ1ZER0wxMDgwTjkwMjM4QUtSRTAwUTgy/' >Home</a>
+							
+						</li>
+						
+																
+						<li><a href='/portals/wps/portal/!ut/p/z1/04_Sj9CPykssy0xPLMnMz0vMAfIjo8ziXX2dw1zcfQwNLAz8LA2MjC0cvYNcDQzMTM30w_EpCHQ3148iRr8BDuBoQJx-PAqi8Bsfrh-F1wpPU_wKwF4kZElBbmhohEGmJwAqW30t/dz/d5/L2dJQSEvUUt3QS80TmxFL1o2X0VNQ1ZER0wxMDgwTjkwMjM4QUtSRTAwUUEx/' >Program</a>
+							
+							<ul>
+							
+								<li>
+									<a href="https://www.dhhs.nh.gov/programs-services/medicaid"target="_blank" >
+										Medicaid Information
+									</a>
+								
+								</li>
+								
+								<li>
+									<a href="https://www.dhhs.nh.gov/programs-services/medicaid/nh-medicaid-medical-assistance-eligibility/nh-medicaid-medical"target="_blank" >
+										Children's Health Plan
+									</a>
+								
+								</li>
+								
+								<li>
+									<a href="https://www.dhhs.nh.gov/programs-services/medicaid/medicaid-pharmacy-benefit-management"target="_blank" >
+										Pharmacy Services
+									</a>
+								
+								</li>
+								
+							 </ul>
+						
+						</li>
+						
+																
+						<li><a href='/portals/wps/portal/!ut/p/z1/04_Sj9CPykssy0xPLMnMz0vMAfIjo8ziXX2dw1zcfQwNLAz8LA2MjC0cvYNcDQzMTM30w_EpCHQ3148iRr8BDuBoQJx-PAqi8Bsfrh-F1wpPU_wKwF4kZElBbmhohEGmJwAqW30t/dz/d5/L2dJQSEvUUt3QS80TmxFL1o2X1FTTDhPNTI2MU8zOEMwSTlKTFQ3TjQyMDAz/' >Member</a>
+							
+							<ul>
+							
+								<li>
+									<a href="https://www.dhhs.nh.gov/programs-services/medicaid/nh-medicaid-medical-assistance-eligibility"target="_blank" >
+										How to Apply
+									</a>
+								
+								</li>
+								
+								<li>
+									<a href="https://www.dhhs.nh.gov/programs-services/medicaid"target="_blank" >
+										Benefits Overview
+									</a>
+								
+								</li>
+								
+								<li>
+									<a href="https://www.dhhs.nh.gov/programs-services/medicaid/nh-medicaid-medical-assistance-eligibility"target="_blank" >
+										General Eligibility Rules
+									</a>
+								
+								</li>
+								
+							 </ul>
+						
+						</li>
+						
+																
+						<li><a href='/portals/wps/portal/!ut/p/z1/04_Sj9CPykssy0xPLMnMz0vMAfIjo8ziXX2dw1zcfQwNLAz8LA2MjC0cvYNcDQzMTM30w_EpCHQ3148iRr8BDuBoQJx-PAqi8Bsfrh-F1wpPU_wKwF4kZElBbmhohEGmJwAqW30t/dz/d5/L2dJQSEvUUt3QS80TmxFL1o2X1FTTDhPNTI2MU8zOEMwSTlKTFQ3TjQyMDg0/' >Provider</a>
+							
+							<ul>
+							
+								<li>
+									<a href="/portals/wps/portal/!ut/p/z1/04_Sj9CPykssy0xPLMnMz0vMAfIjo8ziXX2dw1zcfQwNLAz8LA2MjC0cvYNcDQzMTM30w_EpCHQ3148iRr8BDuBoQJx-PAqi8Bsfrh-F1wpPU_wKwF4kZElBbmhohEGmJwAqW30t/dz/d5/L2dJQSEvUUt3QS80TmxFL1o2X0VNQ1ZER0wxMDgwTjkwMjM4QUtSRTAwNks0/" >
+										Provider Manuals
+									</a>
+								
+								</li>
+								
+								<li>
+									<a href="/portals/wps/portal/!ut/p/z1/04_Sj9CPykssy0xPLMnMz0vMAfIjo8ziXX2dw1zcfQwNLAz8LA2MjC0cvYNcDQzMTM30w_EpCHQ3148iRr8BDuBoQJx-PAqi8Bsfrh-F1wpPU_wKwF4kZElBbmhohEGmJwAqW30t/dz/d5/L2dJQSEvUUt3QS80TmxFL1o2X0VNQ1ZER0wxMDgwTjkwMjM4QUtSRTAwNlMw/" >
+										Enrollment
+									</a>
+								
+								</li>
+								
+								<li>
+									<a href="/portals/wps/portal/!ut/p/z1/04_Sj9CPykssy0xPLMnMz0vMAfIjo8ziXX2dw1zcfQwNLAz8LA2MjC0cvYNcDQzMTM30w_EpCHQ3148iRr8BDuBoQJx-PAqi8Bsfrh-F1wpPU_wKwF4kZElBbmhohEGmJwAqW30t/dz/d5/L2dJQSEvUUt3QS80TmxFL1o2X1FTTDhPNTI2MU8zOEMwSTlKTFQ3TjQyMFUz/" >
+										Messages & Announcements
+									</a>
+								
+								</li>
+								
+								<li>
+									<a href="/portals/wps/portal/!ut/p/z1/04_Sj9CPykssy0xPLMnMz0vMAfIjo8ziXX2dw1zcfQwNLAz8LA2MjC0cvYNcDQzMTM30w_EpCHQ3148iRr8BDuBoQJx-PAqi8Bsfrh-F1wpPU_wKwF4kZElBbmhohEGmJwAqW30t/dz/d5/L2dJQSEvUUt3QS80TmxFL1o2X1FTTDhPNTI2MThPUTMwSVA1M0I1NVQwMDAw/" >
+										Provider FAQ
+									</a>
+								
+								</li>
+								
+								<li>
+									<a href="/portals/wps/portal/!ut/p/z1/04_Sj9CPykssy0xPLMnMz0vMAfIjo8ziXX2dw1zcfQwNLAz8LA2MjC0cvYNcDQzMTM30w_EpCHQ3148iRr8BDuBoQJx-PAqi8Bsfrh-F1wpPU_wKwF4kZElBbmhohEGmJwAqW30t/dz/d5/L2dJQSEvUUt3QS80TmxFL1o2X1FTTDhPNTI2MTg0TUEwSTU2VTlSNjMzMDAw/" >
+										EDI Companion Guides
+									</a>
+								
+								</li>
+								
+							 </ul>
+						
+						</li>
+						
+																
+						<li><a href='/portals/wps/portal/!ut/p/z1/04_Sj9CPykssy0xPLMnMz0vMAfIjo8ziXX2dw1zcfQwNLAz8LA2MjC0cvYNcDQzMTM30w_EpCHQ3148iRr8BDuBoQJx-PAqi8Bsfrh-F1wpPU_wKwF4kZElBbmhohEGmJwAqW30t/dz/d5/L2dJQSEvUUt3QS80TmxFL1o2X0VNQ1ZER0wxMDgwTjkwMjM4QUtSRTAwNkk1/' >Documentation</a>
+							
+							<ul>
+							
+								<li>
+									<a href="/portals/wps/portal/!ut/p/z1/04_Sj9CPykssy0xPLMnMz0vMAfIjo8ziXX2dw1zcfQwNLAz8LA2MjC0cvYNcDQzMTM30w_EpCHQ3148iRr8BDuBoQJx-PAqi8Bsfrh-F1wpPU_wKwF4kZElBbmhohEGmJwAqW30t/dz/d5/L2dJQSEvUUt3QS80TmxFL1o2X0VNQ1ZER0wxMDgwTjkwMjM4QUtSRTAwRUI2/" >
+										Messages & Announcements
+									</a>
+								
+								</li>
+								
+								<li>
+									<a href="/portals/wps/portal/!ut/p/z1/04_Sj9CPykssy0xPLMnMz0vMAfIjo8ziXX2dw1zcfQwNLAz8LA2MjC0cvYNcDQzMTM30w_EpCHQ3148iRr8BDuBoQJx-PAqi8Bsfrh-F1wpPU_wKwF4kZElBbmhohEGmJwAqW30t/dz/d5/L2dJQSEvUUt3QS80TmxFL1o2X0VNQ1ZER0wxMDgwTjkwMjM4QUtSRTAwNjU2/" >
+										Documents & Forms
+									</a>
+								
+								</li>
+								
+								<li>
+									<a href="/portals/wps/portal/!ut/p/z1/04_Sj9CPykssy0xPLMnMz0vMAfIjo8ziXX2dw1zcfQwNLAz8LA2MjC0cvYNcDQzMTM30w_EpCHQ3148iRr8BDuBoQJx-PAqi8Bsfrh-F1wpPU_wKwF4kZElBbmhohEGmJwAqW30t/dz/d5/L2dJQSEvUUt3QS80TmxFL1o2X0VNQ1ZER0wxMDgwTjkwMjM4QUtSRTAwNzAx/" >
+										Archived Documents
+									</a>
+									
+									<ul>
+														
+										<li>
+											<a href="/portals/wps/portal/!ut/p/z1/04_Sj9CPykssy0xPLMnMz0vMAfIjo8ziXX2dw1zcfQwNLAz8LA2MjC0cvYNcDQzMTM30w_EpCHQ3148iRr8BDuBoQJx-PAqi8Bsfrh-F1wpPU_wKwF4kZElBbmhohEGmJwAqW30t/dz/d5/L2dJQSEvUUt3QS80TmxFL1o2X0VNQ1ZER0wxMDgwTjkwMjM4QUtSRTAwMU82/"  >
+												Archived Provider Manuals
+											</a>
+										</li>										
+														
+										<li>
+											<a href="/portals/wps/portal/!ut/p/z1/04_Sj9CPykssy0xPLMnMz0vMAfIjo8ziXX2dw1zcfQwNLAz8LA2MjC0cvYNcDQzMTM30w_EpCHQ3148iRr8BDuBoQJx-PAqi8Bsfrh-F1wpPU_wKwF4kZElBbmhohEGmJwAqW30t/dz/d5/L2dJQSEvUUt3QS80TmxFL1o2X0VNQ1ZER0wxMDgwTjkwMjM4QUtSRTAwMU83/"  >
+												Archived Fee Schedules
+											</a>
+										</li>										
+														
+										<li>
+											<a href="/portals/wps/portal/!ut/p/z1/04_Sj9CPykssy0xPLMnMz0vMAfIjo8ziXX2dw1zcfQwNLAz8LA2MjC0cvYNcDQzMTM30w_EpCHQ3148iRr8BDuBoQJx-PAqi8Bsfrh-F1wpPU_wKwF4kZElBbmhohEGmJwAqW30t/dz/d5/L2dJQSEvUUt3QS80TmxFL1o2X09PREcwOEcwMkhQVUQwNjcxSEhGUUQyNUkw/"  >
+												Archived Messages And Announcements
+											</a>
+										</li>										
+														
+										<li>
+											<a href="/portals/wps/portal/!ut/p/z1/04_Sj9CPykssy0xPLMnMz0vMAfIjo8ziXX2dw1zcfQwNLAz8LA2MjC0cvYNcDQzMTM30w_EpCHQ3148iRr8BDuBoQJx-PAqi8Bsfrh-F1wpPU_wKwF4kZElBbmhohEGmJwAqW30t/dz/d5/L2dJQSEvUUt3QS80TmxFL1o2X09PREcwOEcwMkhQVUQwNjcxSEhGUUQyNUE1/"  >
+												Archived EDI Companion Guides
+											</a>
+										</li>										
+														
+										<li>
+											<a href="/portals/wps/portal/!ut/p/z1/04_Sj9CPykssy0xPLMnMz0vMAfIjo8ziXX2dw1zcfQwNLAz8LA2MjC0cvYNcDQzMTM30w_EpCHQ3148iRr8BDuBoQJx-PAqi8Bsfrh-F1wpPU_wKwF4kZElBbmhohEGmJwAqW30t/dz/d5/L2dJQSEvUUt3QS80TmxFL1o2X0VNQ1ZER0wxMDgwTjkwMjM4QUtSRTAwMTEx/"  >
+												Archived Documents And Forms
+											</a>
+										</li>										
+																			
+									</ul>
+									
+								</li>
+								
+							 </ul>
+						
+						</li>
+						
+																
+						<li><a href='/portals/wps/portal/!ut/p/z1/04_Sj9CPykssy0xPLMnMz0vMAfIjo8ziXX2dw1zcfQwNLAz8LA2MjC0cvYNcDQzMTM30w_EpCHQ3148iRr8BDuBoQJx-PAqi8Bsfrh-F1wpPU_wKwF4kZElBbmhohEGmJwAqW30t/dz/d5/L2dJQSEvUUt3QS80TmxFL1o2X0VNQ1ZER0wxMDgwTjkwMjM4QUtSRTAwNkMy/' >Directories</a>
+							
+							<ul>
+							
+								<li>
+									<a href="/portals/wps/portal/!ut/p/z1/04_Sj9CPykssy0xPLMnMz0vMAfIjo8ziXX2dw1zcfQwNLAz8LA2MjC0cvYNcDQzMTM30w_EpCHQ3148iRr8BDuBoQJx-PAqi8Bsfrh-F1wpPU_wKwF4kZElBbmhohEGmJwAqW30t/dz/d5/L2dJQSEvUUt3QS80TmxFL1o2X0VNQ1ZER0wxMDgwTjkwMjM4QUtSRTAwRU4x/" >
+										Find a Health Care Provider
+									</a>
+								
+								</li>
+								
+								<li>
+									<a href="https://www.dhhs.nh.gov/about-dhhs/locations-facilities"target="_blank" >
+										Find a State Office
+									</a>
+								
+								</li>
+								
+							 </ul>
+						
+						</li>
+						
+					
+		</ul>
+	</div>	
+
+      <div class="clear"></div>
+       <div styleClass="clear vSpacer8" style="height:10px"></div>
+	    <a name="skipNavigation" tabIndex=1></a>
+      
+      <div id="content">
+      	<div class="floatContainer">
+      		 
+<table class="layoutRow" cellpadding="0" cellspacing="0"><tr> 
+<td valign="top" width="235"> 
+<table class="layoutColumn" cellpadding="0" cellspacing="0"><tr><td style="width:100%;" valign="top">
+<div id="Z7_3MSI5H4RQG8S602V1D42A02MH6">
+
+<table width="100%" height="auto" border="0" cellpadding="0" cellspacing="0" align="center">
+	<tr height="100%">
+		
+		<td dir="ltr" width="100%" valign="top">
+			<div class="portlet">
+				
+				<div class="portletTitleBar"> 
+					<div class="portletTitle">
+					<span id="title.Z7_3MSI5H4RQG8S602V1D42A02MH6" class="portlet-msg-error" >
+						Web Content Viewer
+					</span>						&nbsp; 			
+            
+            	<a href="#skipportletZ7_3MSI5H4RQG8S602V1D42A02MH6">
+            		<img height="2" width="2" border="0" src='/portals/wps/images/dot.gif' alt='Skip portlet' 
+            			title='Skip portlet'>
+            	</a>
+          									
+					</div>
+					
+					<div class="portletIcons">
+						
+							<a href='/portals/wps/portal/!ut/p/z1/04_Sj9CPykssy0xPLMnMz0vMAfIjo8ziXX2dw1zcfQwNLAz8LA2MjC0cvYNcDQzMTM30w_EpCHQ3148iRr8BDuBoQJx-PAqi8Bsfrh-F1wpPU_wKwF4kZElBbmhohEGmJwAqW30t/dz/d5/L0lDU0NsQSEhL3dHa0FKTk1BLzRKQ2lpRVlnL1o3XzNNU0k1SDRSUUc4UzYwMlYxRDQyQTAyTUg2L21pbmltaXplZA!!/#Z7_3MSI5H4RQG8S602V1D42A02MH6'>
+								<img width="16" height="18" border="0" align="absmiddle" src='/portals/wps/skins/html/ACSBasic/images/title_minimize.gif' alt='Minimize'	title='Minimize'>
+							</a>
+						<!--  -->
+						
+							<a href='/portals/wps/portal/!ut/p/z1/04_Sj9CPykssy0xPLMnMz0vMAfIjo8ziXX2dw1zcfQwNLAz8LA2MjC0cvYNcDQzMTM30w_EpCHQ3148iRr8BDuBoQJx-PAqi8Bsfrh-F1wpPU_wKwF4kZElBbmhohEGmJwAqW30t/dz/d5/L0lDU0tLVUEhL3dPa0FKRk5FRENBIS80SkNpaUVZZy9aN18zTVNJNUg0UlFHOFM2MDJWMUQ0MkEwMk1INi9tYXhpbWl6ZWQ!/#Z7_3MSI5H4RQG8S602V1D42A02MH6'>
+								<img width="16" height="18" border="0" align="absmiddle" src='/portals/wps/skins/html/ACSBasic/images/title_maximize.gif' alt='Maximize'	title='Maximize'>
+							</a>
+						
+					</div>
+					<div class="clear"></div>
+				</div>
+				
+					<div class="portletContent" id="Z7_3MSI5H4RQG8S602V1D42A02MH6">
+					  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+
+    
+    
+
+    
+    
+    
+
+
+
+
+
+    
+    
+        
+            
+            <table align="center" border="0" cellpadding="0" cellspacing="0" dir="ltr" height="100%" width="100%">
+	<tbody>
+		<tr height="100%">
+			<td dir="ltr" valign="top" width="100%">
+			<ul class="podlist otherbg">
+				<li><a href="/portals/wps/portal/ProviderEnrollment" >Enrollment</a></li>
+				<li><a href="/portals/wps/wcm/connect/3872e98c-281f-464e-851e-6ce4cd7c4271/NH+MEDICAID+PROVIDER+ENROLLMENT+OVERVIEW+GUIDE.pdf?MOD=AJPERES&CVID=oFHR9JN" target="_blank" >Provider Enrollment Overview</a></li>
+				<li><a href="/portals/wps/portal/DocumentsandForms" >Documents and Forms</a></li>
+				<li><a href="/portals/wps/portal/FindaHealthCareProvider" >Find a Health Care Provider</a></li>
+				<li><a href="https://www.dhhs.nh.gov/" target="_blank" >Department of Health and Human Services</a></li>
+				<li><a href="https://www.dhhs.nh.gov/reporting-suspected-wrong-doing-nh-medicaid-provider" target="_blank" >Report Fraud &amp; Abuse</a></li>
+				<li><a href="/portals/wps/wcm/connect/2e3e8094-0f46-423f-9f17-aaefb6669826/ICD10+Resource+page-9215.pdf?MOD=AJPERES&CVID=k-ZJ5kZ" target="_blank" >ICD10 Resources</a></li>
+				<li><a href="/portals/wps/wcm/connect/a255b92f-7bb1-49e5-ae62-5d3105a94a0b/Provider+Revalidation+FAQ+20250227.pdf?MOD=AJPERES&CVID=plDjw9p" target="_blank" >Provider Revalidation</a></li>
+				<li><a href="https://iox.nhmmis.nh.gov" target="_blank" >Interoperability Exchange</a></li>
+			</ul>
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+
+        
+        
+    
+
+    
+        
+
+
+
+
+
+        
+
+
+
+
+
+
+
+    
+
+                  </div>
+             
+			</div>
+
+		</td>
+	</tr>
+</table>
+
+<a name="skipportletZ7_3MSI5H4RQG8S602V1D42A02MH6"></a>
+<script>var printID; </script>
+<script type="text/javascript">
+var dynamicTitle =
+    "null";
+	
+var titleElement = 
+    document.getElementById("title.Z7_3MSI5H4RQG8S602V1D42A02MH6");
+if (titleElement != null) {
+    if (dynamicTitle != "" && dynamicTitle != "null")
+        titleElement.innerHTML = dynamicTitle;
+    }
+</script>
+</td></tr><tr><td style="width:100%;" valign="top">
+<div id="Z7_QKCVDGL10GDEF02TDOG7IG3491">
+
+<table width="100%" height="auto" border="0" cellpadding="0" cellspacing="0" align="center">
+	<tr height="100%">
+		
+		<td dir="ltr" width="100%" valign="top">
+			<div class="portlet">
+				
+				<div class="portletTitleBar"> 
+					<div class="portletTitle">
+					<span id="title.Z7_QKCVDGL10GDEF02TDOG7IG3491" class="portlet-msg-error" >
+						Provider Registration
+					</span>						&nbsp; 			
+            
+            	<a href="#skipportletZ7_QKCVDGL10GDEF02TDOG7IG3491">
+            		<img height="2" width="2" border="0" src='/portals/wps/images/dot.gif' alt='Skip portlet' 
+            			title='Skip portlet'>
+            	</a>
+          									
+					</div>
+					
+					<div class="portletIcons">
+						
+							<a href='/portals/wps/portal/!ut/p/z1/04_Sj9CPykssy0xPLMnMz0vMAfIjo8ziXX2dw1zcfQwNLAz8LA2MjC0cvYNcDQzMTM30w_EpCHQ3148iRr8BDuBoQJx-PAqi8Bsfrh-F1wpPU_wKwF4kZElBbmhohEGmJwAqW30t/dz/d5/L0lDU0NsQSEhL3dHa0FKTk1BLzRKQ2lpRVlnL1o3X1FLQ1ZER0wxMEdERUYwMlRET0c3SUczNDkxL21pbmltaXplZA!!/#Z7_QKCVDGL10GDEF02TDOG7IG3491'>
+								<img width="16" height="18" border="0" align="absmiddle" src='/portals/wps/skins/html/ACSBasic/images/title_minimize.gif' alt='Minimize'	title='Minimize'>
+							</a>
+						<!--  -->
+						
+							<a href='/portals/wps/portal/!ut/p/z1/04_Sj9CPykssy0xPLMnMz0vMAfIjo8ziXX2dw1zcfQwNLAz8LA2MjC0cvYNcDQzMTM30w_EpCHQ3148iRr8BDuBoQJx-PAqi8Bsfrh-F1wpPU_wKwF4kZElBbmhohEGmJwAqW30t/dz/d5/L0lDU0tLVUEhL3dPa0FKRk5FRENBIS80SkNpaUVZZy9aN19RS0NWREdMMTBHREVGMDJURE9HN0lHMzQ5MS9tYXhpbWl6ZWQ!/#Z7_QKCVDGL10GDEF02TDOG7IG3491'>
+								<img width="16" height="18" border="0" align="absmiddle" src='/portals/wps/skins/html/ACSBasic/images/title_maximize.gif' alt='Maximize'	title='Maximize'>
+							</a>
+						
+					</div>
+					<div class="clear"></div>
+				</div>
+				
+					<div class="portletContent" id="Z7_QKCVDGL10GDEF02TDOG7IG3491">
+					  
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+	var thisForm = 'viewns_Z7_QKCVDGL10GDEF02TDOG7IG3491_:ENTCOMF3';
+	if (window.addEventListener) {
+		window.addEventListener("load", focusOnLoad, false);
+		window.onload = focusOnLoad();
+	} else if (window.attachEvent) {
+		window.attachEvent("onload", focusOnLoad);
+	}
+
+	function focusOnLoad() {
+		var provWebreg = document.getElementById(thisForm + ':provWebregIPC').value;
+		if (provWebreg != null && provWebreg != "") {
+			document.getElementById(thisForm + ':provWebregIPC').value = "";
+			document.getElementById(thisForm + ':' + provWebreg).click();
+		}
+		//Code changes for Defect ESPRD01334936 Alert message to dsipaly other than nhmmis.nh.gov starts
+		setTimeout("setHomePageAlert()", 500);
+		//Code changes for Defect ESPRD01334936 Alert message to dsipaly ends
+
+	}
+	function setHomePageAlert() {
+		const hostname = window.location.hostname;
+		var isHomePage = document.getElementById('viewns_Z7_EMCVDGL10023E023O5G5711G52_:ENTCOMF4:ENTCOMOT10');
+		if(isHomePage!=null && ('uat.nhmmis.services.conduent.com'==hostname || 
+				'qa.nhmmis.services.conduent.com'==hostname)){ 
+			alert('STOP! This is a test environment. To enroll as a Medicaid provider, go to nhmmis.nh.gov');
+		}
+	}
+</script>
+
+
+<form id="viewns_Z7_QKCVDGL10GDEF02TDOG7IG3491_:ENTCOMF3" name="viewns_Z7_QKCVDGL10GDEF02TDOG7IG3491_:ENTCOMF3" method="post" action="/portals/wps/portal/!ut/p/z1/04_Sj9CPykssy0xPLMnMz0vMAfIjo8ziXX2dw1zcfQwNLAz8LA2MjC0cvYNcDQzMTM30w_EpCHQ3148iRr8BDuBoQJx-PAqi8Bsfrh-F1wpPU_wKwF4kZElBbmhohEGmJwAqW30t/dz/d5/L2dBISEvZ0FBIS9nQSEh/p0/IZ7_QKCVDGL10GDEF02TDOG7IG3491=CZ6_EMCVDGL1080N90238AKRE00656=LA0=Ecom.ibm.faces.portlet.VIEWID!QCPHomePageRegisterView.jsp==/#Z7_QKCVDGL10GDEF02TDOG7IG3491" enctype="application/x-www-form-urlencoded"><input type="hidden" name="javax.faces.encodedURL" value="/wps/portal/!ut/p/z1/04_Sj9CPykssy0xPLMnMz0vMAfIjo8ziXX2dw1zcfQwNLAz8LA2MjC0cvYNcDQzMTM30w_EpCHQ3148iRr8BDuBoQJx-PAqi8Bsfrh-F1wpPU_wKwF4kZElBbmhohEGmJwAqW30t/dz/d5/L2dBISEvZ0FBIS9nQSEh/p0/IZ7_QKCVDGL10GDEF02TDOG7IG3491=CZ6_EMCVDGL1080N90238AKRE00656=NEcom.ibm.faces.portlet.PARTIAL!QCPHomePageRegisterView.jsp==/" /><input type="hidden" id="viewns_Z7_QKCVDGL10GDEF02TDOG7IG3491_:ENTCOMF3:provWebregIPC" name="viewns_Z7_QKCVDGL10GDEF02TDOG7IG3491_:ENTCOMF3:provWebregIPC" value="" /><div id="viewns_Z7_QKCVDGL10GDEF02TDOG7IG3491_:ENTCOMF3:j_id_jsp_852418058_3" class="portletArea otherbg height105Border"><span id="viewns_Z7_QKCVDGL10GDEF02TDOG7IG3491_:ENTCOMF3:ENTCOMOT7">For providers to obtain a user name and password to use the Health Enterprise portal, they must be a current provider for Medicaid. For trading partners to obtain a username and password, they must be a current Trading Partner with a  trading partner ID. To begin the registration process, they must have their enrollment form ready.</span>
+			<br>
+			<br>
+			<div id="viewns_Z7_QKCVDGL10GDEF02TDOG7IG3491_:ENTCOMF3:j_id_jsp_852418058_5"><ul id="viewns_Z7_QKCVDGL10GDEF02TDOG7IG3491_:ENTCOMF3:ENTCOMNPHT15" class="podList"><li id="viewns_Z7_QKCVDGL10GDEF02TDOG7IG3491_:ENTCOMF3:ENTCOMNPHT16"><script type="text/javascript" src="/portals/wps/portal/!ut/p/z1/04_Sj9CPykssy0xPLMnMz0vMAfIjo8ziXX2dw1zcfQwNLAz8LA2MjC0cvYNcDQzMTM30w_EpCHQ3148iRr8BDuBoQJx-PAqi8Bsfrh-F1wpPU_wKwF4kZElBbmhohEGmJwAqW30t/dz/d5/L2dBISEvZ0FBIS9nQSEh/p0/IZ7_QKCVDGL10GDEF02TDOG7IG3491=CZ6_EMCVDGL1080N90238AKRE00656=NEjavax.faces.resource!QCPoamSubmit.js=ln!org.apache.myfaces=com.ibm.faces.portlet.PATH!QCPjavax.faces.resourceQCPoamSubmit.js==/"></script><a href="#" onclick="return myfaces.oam.submitForm('viewns_Z7_QKCVDGL10GDEF02TDOG7IG3491_:ENTCOMF3','viewns_Z7_QKCVDGL10GDEF02TDOG7IG3491_:ENTCOMF3:invokewebreg');" id="viewns_Z7_QKCVDGL10GDEF02TDOG7IG3491_:ENTCOMF3:invokewebreg"><span id="viewns_Z7_QKCVDGL10GDEF02TDOG7IG3491_:ENTCOMF3:invokeweb">Register</span></a><a href="#" onclick="return myfaces.oam.submitForm('viewns_Z7_QKCVDGL10GDEF02TDOG7IG3491_:ENTCOMF3','viewns_Z7_QKCVDGL10GDEF02TDOG7IG3491_:ENTCOMF3:regLink',null,[['ACTION_NAME_PARAM','SourceAction']]);" id="viewns_Z7_QKCVDGL10GDEF02TDOG7IG3491_:ENTCOMF3:regLink" class="hide">Register</a></li></ul></div></div><input type="hidden" name="viewns_Z7_QKCVDGL10GDEF02TDOG7IG3491_:ENTCOMF3_SUBMIT" value="1" /><input type="hidden" name="javax.faces.ViewState" id="viewns_Z7_QKCVDGL10GDEF02TDOG7IG3491_:javax.faces.ViewState:1" value="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" autocomplete="off" /></form>
+                  </div>
+             
+			</div>
+
+		</td>
+	</tr>
+</table>
+
+<a name="skipportletZ7_QKCVDGL10GDEF02TDOG7IG3491"></a>
+<script>var printID; </script>
+<script type="text/javascript">
+var dynamicTitle =
+    "null";
+	
+var titleElement = 
+    document.getElementById("title.Z7_QKCVDGL10GDEF02TDOG7IG3491");
+if (titleElement != null) {
+    if (dynamicTitle != "" && dynamicTitle != "null")
+        titleElement.innerHTML = dynamicTitle;
+    }
+</script>
+</td></tr></table></td> 
+<td valign="top" width="1%"> 
+<table class="layoutColumn" cellpadding="0" cellspacing="0"><tr><td style="width:100%;" valign="top"><a name="Z7_QKCVDGL10GDEF02TDOG7IG3493"></a><table width="100%" height="100%" border="0" cellpadding="0" cellspacing="0" align="center" class="wpsPortletBody"><tr height="100%"><td width="100%" valign="top">
+
+
+
+
+
+
+
+<br id="viewns_Z7_QKCVDGL10GDEF02TDOG7IG3493_:j_id_jsp_960610157_1" /></td></tr></table></td></tr></table></td> 
+<td valign="top" > 
+<table class="layoutColumn" cellpadding="0" cellspacing="0"><tr><td style="width:100%;" valign="top"><a name="Z7_QKCVDGL10GDEF02TDOG7IG34P0"></a><table width="100%" height="100%" border="0" cellpadding="0" cellspacing="0" align="center" class="wpsPortletBody"><tr height="100%"><td width="100%" valign="top">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+
+    
+    
+
+    
+    
+    
+
+
+
+
+
+    
+    
+        
+            
+                 <div class="podTitle">Documents and Forms</div>
+     <div class="podLine"><img src="../images/x.gif" width="1" height="1" /></div>
+     <div><img src="../images/x.gif" border="0" width="1" height="10" /></div>
+     <blockquote dir="ltr" style="padding: 0px; margin: 0px 0px 0px 40px;">
+<blockquote style="padding: 0px; margin: 0px 0px 0px 40px;">
+<blockquote style="padding: 0px; margin: 0px 0px 0px 40px;">
+<blockquote style="padding: 0px; margin: 0px 0px 0px 40px;">
+<blockquote dir="ltr" style="margin-right: 0px;">&nbsp;&nbsp;</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+
+<blockquote dir="ltr" style="margin-right: 0px;">
+<p style="margin: 0px;">The following documents are available. PDF format files can be read using the free Adobe Acrobat Reader from&nbsp;<a href="http://www.adobe.com/products/acrobat/readstep2.html" target="_blank" >Adobe.</a></p>
+</blockquote>
+
+<p dir="ltr" style="margin: 0px;"><b>Note</b>: Please be aware that documents may be updated periodically and archived documents can be found on the <a href="https://nhmmis.nh.gov/portals/wps/portal/ArchivedDocumentsAndForms" >Archived Documents And Forms</a> page.</p>
+
+<p dir="ltr">&nbsp;</p>
+
+<p dir="ltr">If you save a document to your computer please check back periodically for updates.</p>
+
+<p dir="ltr" style="margin: 0px;">&nbsp;</p>
+
+<p dir="ltr"><a href="https://nhmmis.nh.gov/portals/wps/portal/DocumentsandForms#a" >Documents and Forms |</a><a href="https://nhmmis.nh.gov/portals/wps/portal/DocumentsandForms#d" >Service Authorizations for Fee-for-Service |</a>&nbsp;<a href="https://nhmmis.nh.gov/portals/wps/portal/DocumentsandForms#b" >Fee Schedules&nbsp;</a></p>
+
+<p dir="ltr">&nbsp;</p>
+
+<p dir="ltr">&nbsp;</p>
+
+<p dir="ltr">&nbsp;</p>
+
+<p dir="ltr"><a id="a" name="a"></a><span class="tableTitle">Documents and Forms</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;</p>
+
+<p dir="ltr">&nbsp;</p>
+
+<p dir="ltr">&nbsp;</p>
+
+<table cellspacing="0" class="datatable" dir="ltr" id="documents_forms" width="98%">
+	<tbody>
+		<tr>
+			<th>Publication Date</th>
+			<th>File</th>
+			<th>File Size</th>
+			<th>File Type</th>
+		</tr>
+		<tr>
+			<td>08/14/2025</td>
+			<td><a href="/portals/wps/wcm/connect/04de8918-7d95-43ec-9e9a-4200581a98e0/Change+of+Provider+Information+Form.pdf?MOD=AJPERES&CVID=pyF-sSu" target="_blank" >Change of Provider Information Form</a>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</td>
+			<td>302k</td>
+			<td>PDF</td>
+		</tr>
+		<tr>
+			<td>07/10/2025</td>
+			<td><a href="/portals/wps/wcm/connect/96026f05-9f76-452c-9fa3-e78b350c3324/Health+Risk+Assessment+Form.pdf?MOD=AJPERES&CVID=pvRrxDR" target="_blank" >Health Risk Assessment Form</a>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</td>
+			<td>352k</td>
+			<td>PDF</td>
+		</tr>
+		<tr>
+			<td>07/10/2025</td>
+			<td><a href="/portals/wps/wcm/connect/32bb0264-d969-4b7c-b35a-4bc0759aa471/Evaluacion+de+riesgo+a+la+salud.pdf?MOD=AJPERES&CVID=pvRssQJ" target="_blank" >Evaluacion de riesgo a la salud</a>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</td>
+			<td>193k</td>
+			<td>PDF</td>
+		</tr>
+		<tr>
+			<td>07/10/2025</td>
+			<td><a href="/portals/wps/wcm/connect/e9bb4b87-2e80-4bd5-99be-96fc4eafe68e/NH+Medicaid+Dental+Enrollment+Acknowledgement+Form.pdf?MOD=AJPERES&CVID=pvRtn0f" target="_blank" >NH Medicaid Dental Enrollment Acknowledgement Form</a>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</td>
+			<td>84k</td>
+			<td>PDF</td>
+		</tr>
+		<tr>
+			<td>07/10/2025</td>
+			<td><a href="/portals/wps/wcm/connect/cadbbf45-86d4-4c51-8f4d-afe0e3f932bc/Billing+Agent+Agreement+%28Individual%29.pdf?MOD=AJPERES&CVID=pvRuhH9" target="Billing Agent Agreement (Individual)" >Billing Agent Agreement (Individual)</a>&nbsp; &nbsp; &nbsp;</td>
+			<td>72k</td>
+			<td>PDF</td>
+		</tr>
+		<tr>
+			<td>07/10/2025</td>
+			<td><a href="/portals/wps/wcm/connect/31644368-3f86-4aec-9f07-6ae1da761881/Electronic+Remittance+Advice+Enrollment+Application.pdf?MOD=AJPERES&CVID=pvRviad" target="Electronic Remittance Advice Enrollment Application" >Electronic Remittance Advice Enrollment Application</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</td>
+			<td>330k</td>
+			<td>PDF</td>
+		</tr>
+		<tr>
+			<td>07/10/2025</td>
+			<td><a href="/portals/wps/wcm/connect/b688b6cc-d7ef-4b83-897a-21b715b84252/Electronic+Funds+Transfer+Enrollment+Application.pdf?MOD=AJPERES&CVID=pvRwvlH" target="Electronic Funds Transfer Enrollment Application" >Electronic Funds Transfer Enrollment Application</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</td>
+			<td>405k</td>
+			<td>PDF</td>
+		</tr>
+		<tr>
+			<td>07/10/2025</td>
+			<td><a href="/portals/wps/wcm/connect/3ed40d68-f45b-4dae-8dc2-a70b0231b87f/Electronic+Funds+Transfer+Enrollment+Agreement.pdf?MOD=AJPERES&CVID=pvRz1jL" target="Electronic Funds Transfer Enrollment Agreement" >Electronic Funds Transfer Enrollment Agreement</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</td>
+			<td>110k</td>
+			<td>PDF</td>
+		</tr>
+		<tr>
+			<td>07/10/2025</td>
+			<td><a href="/portals/wps/wcm/connect/17f0be86-9b8e-42fe-bd53-411aeae692e3/Trading+Partner+Agreement+Signature+Page.pdf?MOD=AJPERES&CVID=pvRBw7G" target="Trading Partner Enrollment Signature Agreement" >Trading Partner Agreement  Signature Page</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</td>
+			<td>166k</td>
+			<td>PDF</td>
+		</tr>
+		<tr>
+			<td>07/10/2025</td>
+			<td><a href="/portals/wps/wcm/connect/e8589911-e0f5-4af0-89f0-0bfaeb432512/Paperwork+Attachment+Cover+Sheet.pdf?MOD=AJPERES&CVID=pvREgAX" target="_blank" >Paperwork Attachment Cover Sheet</a>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp;</td>
+			<td>127k</td>
+			<td>PDF</td>
+		</tr>
+		<tr>
+			<td>07/10/2025</td>
+			<td><a href="/portals/wps/wcm/connect/5582e6f3-d3ee-4a6a-b805-9c405343ca16/Adjustment+Form+Conduent.pdf?MOD=AJPERES&CVID=pvRGmye" target="_blank" >Adjustment Form Conduent</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</td>
+			<td>103k</td>
+			<td>PDF</td>
+		</tr>
+		<tr>
+			<td>07/10/2025</td>
+			<td><a href="/portals/wps/wcm/connect/f435451e-5ebe-4226-b647-05b63a6f44a5/Medicare+Crossover+Form.pdf?MOD=AJPERES&CVID=pvRH.Xd" target="_blank" >Medicare Crossover Form </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</td>
+			<td>18k</td>
+			<td>PDF</td>
+		</tr>
+		<tr>
+			<td>07/10/2025</td>
+			<td><a href="/portals/wps/wcm/connect/bc378242-2c0f-46d4-8b11-1c8280c12860/Form+282A+-+Medicaid+Hospice+Care+Notification+Form+Election+change+Designated+Hospice+Revocation+Death+2024.pdf?MOD=AJPERES&CVID=pvRJo0e" target="_blank" >Form 282A - Medicaid Hospice Care Notification Form Election, change in Designated Hospice, Revocation, Death</a>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</td>
+			<td>109k</td>
+			<td>PDF</td>
+		</tr>
+		<tr>
+			<td>07/10/2025</td>
+			<td><a href="/portals/wps/wcm/connect/14c21033-8800-4525-bbd3-53e5c89198cf/FORMULARIO+DE+910+-+NOTIFICACI%C3%93N+DE+ESTERILIZACI%C3%93N+COMO+RESULTADO+DE+UNA+HISTERECTOM%C3%8DA.pdf?MOD=AJPERES&CVID=pvRMUDx" target="_blank" >FORMULARIO DE 910 - NOTIFICACIÓN DE ESTERILIZACIÓN COMO RESULTADO DE UNA HISTERECTOMÍA</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</td>
+			<td>279k</td>
+			<td>PDF</td>
+		</tr>
+		<tr>
+			<td>06/25/2025</td>
+			<td><a href="/portals/wps/wcm/connect/67430ffb-99b2-4e66-98e4-f9d5f56e930e/FORM+910+-+ACKNOWLEDGMENT+OF+STERILIZATION+AS+A+RESULT+OF+HYSTERECTOMY.pdf?MOD=AJPERES&CVID=puEw9cJ" target="_blank" >FORM 910 - ACKNOWLEDGMENT OF STERILIZATION AS A RESULT OF HYSTERECTOMY</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</td>
+			<td>266k</td>
+			<td>PDF</td>
+		</tr>
+		<tr>
+			<td>01/01/2022</td>
+			<td><a href="/portals/wps/wcm/connect/fd49a199-cc10-44e5-a377-2e810128624e/NHCSR-OMBP-1-Other-Updated+Carrier+Code+List-Att1-Add1-20211230.pdf?MOD=AJPERES&CVID=nUM3IIF" target="_blank" >Carrier ID</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</td>
+			<td>563k</td>
+			<td>PDF</td>
+		</tr>
+		<tr>
+			<td>10/27/2021</td>
+			<td><a href="https://www.irs.gov/forms-pubs/about-form-w-9" target="W-9" >W-9</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+		</tr>
+		<tr>
+			<td>04/01/2020</td>
+			<td><a href="/portals/wps/wcm/connect/9194ac7c-9a3d-45a1-a71d-10132208ba5e/NHCSR-OMBP-1-Posting-%28PPA%29-Attachment1-20200403.pdf?MOD=AJPERES&CVID=n5m5ylv" target="Title XIX Provider Participation Agreement" >NH Medicaid Provider Participation Agreement (PPA)</a>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</td>
+			<td>538k</td>
+			<td>PDF</td>
+		</tr>
+		<tr>
+			<td>06/01/2020</td>
+			<td><a href="/portals/wps/wcm/connect/13e97ada-4b43-4191-be59-b24309609c5a/NHCSR-OMBP-1-Provider-Enrollment+Documents-Attachment1-20200528.pdf?MOD=AJPERES&CVID=n9XH4tY" target="Document Requirements Checklist" >Required Enrollment Documents to Upload with New Applications</a>&nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</td>
+			<td>506k</td>
+			<td>PDF</td>
+		</tr>
+		<tr>
+			<td>02/15/2019</td>
+			<td><a href="/portals/wps/wcm/connect/f2b4f746-a678-4fa8-8d59-08656618465c/NHCSR-OMBP-2-Post+%28SignaturePage%29-20190206.pdf?MOD=AJPERES&CVID=mzOpBCG" target="NH Application Signature Page (Individual)" >Enrollment/Revalidation Signature Page</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</td>
+			<td>112k</td>
+			<td>PDF</td>
+		</tr>
+		<tr>
+			<td>01/22/2013</td>
+			<td><a href="/portals/wps/wcm/connect/c15b8f81-f4cf-4e51-8372-8cdbf5dd30fc/INSTRUCTIONS+FOR+FORM+904.pdf?MOD=AJPERES&CVID=jR0Ggdi" target="_blank" >INSTRUCTIONS FOR FORM 904</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</td>
+			<td>17k</td>
+			<td>PDF</td>
+		</tr>
+		<tr>
+			<td>07/10/2025</td>
+			<td><a href="/portals/wps/wcm/connect/2b2ceaa9-521c-4cb0-b8a9-db3092d37ab5/Form+904+-+CERTIFICATION+OF+THE+DECISION+TO+TERMINATE+PREGNANCY.pdf?MOD=AJPERES&CVID=pvRKA-H" target="_blank" >FORM 904 - CERTIFICATION OF THE DECISION TO TERMINATE PREGNANCY</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</td>
+			<td>96k</td>
+			<td>PDF</td>
+		</tr>
+		<tr>
+			<td>06/09/2023</td>
+			<td><a href="/portals/wps/wcm/connect/7adfa27e-ca77-4953-9d54-8f0af2ea1050/Instruction+Form+HHS+687i-+Consent+For+Sterilization.pdf?MOD=AJPERES&CVID=oywFggt" target="_blank" >INSTRUCTIONS FORM HHS 687i - CONSENT FOR STERILIZATION</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</td>
+			<td>299k</td>
+			<td>PDF</td>
+		</tr>
+		<tr>
+		</tr>
+		<tr>
+			<td>09/11/2025</td>
+			<td><a href="https://opa.hhs.gov/sites/default/files/2025-07/consent-for-sterilization-english-2025.pdf" target="_blank" >FORM HHS 687 - CONSENT FOR STERILIZATION</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</td>
+			<td>137k</td>
+			<td>PDF</td>
+		</tr>
+		<tr>
+			<td>09/11/2025</td>
+			<td><a href="https://opa.hhs.gov/sites/default/files/2025-07/consent-for-sterilization-spanish-2025.pdf" target="_blank" >FORMULARIO DE HHS 687-1 - CONSENTIMIENTO PARA LA ESTERILIZACIÓN</a>&nbsp; &nbsp; &nbsp;&nbsp;</td>
+			<td>504k</td>
+			<td>PDF</td>
+		</tr>
+		<tr>
+			<td>02/27/2024</td>
+			<td><a href="/portals/wps/wcm/connect/49347072-442e-4222-8d56-57907faafd42/NHCSR-OMBP-1-Provider-Form+957+2023-Att1-20240223.pdf?MOD=AJPERES&CVID=oTI47JR" target="_blank" >Form 957-Override Request</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</td>
+			<td>31k</td>
+			<td>PDF</td>
+		</tr>
+		<tr>
+		</tr>
+		<tr>
+			<td>06/09/2023</td>
+			<td><a href="/portals/wps/wcm/connect/9d07a0a4-82af-46c4-b758-d1a911bd9753/NH+Medicaid+Non-Primary+Claim+Billing+Requirements.pdf?MOD=AJPERES&CVID=oywGTyK" target="_blank" >NH Medicaid Non-Primary Claim Billing Requirements</a>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</td>
+			<td>110k</td>
+			<td>PDF</td>
+		</tr>
+		<tr>
+			<td>03/08/2015</td>
+			<td><a href="/portals/wps/wcm/connect/8829be6f-275e-4778-9708-6fc6b69d96a7/provider+notice+2+interpreter+codes+dec+2014final.pdf?MOD=AJPERES&CVID=kLn1eHD" target="_blank" >Interpreter Provider Billing Guidelines</a>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</td>
+			<td>100k</td>
+			<td>PDF</td>
+		</tr>
+		<tr>
+			<td>03/08/2015</td>
+			<td><a href="/portals/wps/wcm/connect/a61561c4-5869-4080-893b-f2d515aad303/NHCSR-OMBP-5-Rate-Attachment1-20150217.docx?MOD=AJPERES&CVID=kLLzc59" title="Revised Vaccine and Immunization Administration Billing Guidelines" target="_blank" >Revised Vaccine and Immunization Administration Billing Guidelines</a>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</td>
+			<td>82k</td>
+			<td>DOC</td>
+		</tr>
+		<tr>
+			<td>12/04/2019</td>
+			<td><a href="/portals/wps/wcm/connect/915d7096-881f-42bc-9e4a-78795a845223/Medicaid+to+Schools+Enrollment+Questions.pdf?MOD=AJPERES&CVID=okW0zPo" target="_blank" >Medicaid to Schools Enrollment Questions</a>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</td>
+			<td>2550k</td>
+			<td>PDF</td>
+		</tr>
+		<tr>
+			<td>12/04/2019</td>
+			<td><a href="/portals/wps/wcm/connect/cabed88b-5af4-461b-88cc-8a2b8ed8ba5f/Medicaid+to+Schools+Enrollment+Presentation.pdf?MOD=AJPERES&CVID=okW0POy" target="_blank" >Medicaid to Schools Enrollment Presentation</a>&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</td>
+			<td>3198k</td>
+			<td>PDF</td>
+		</tr>
+		<tr>
+			<td>4/23/2020</td>
+			<td><a href="/portals/wps/wcm/connect/4530d3b8-a794-449c-85d1-5988e1da2f67/Medicaid+to+Schools+OPLC+Guidance+2020.pdf?MOD=AJPERES&CVID=okW184W" target="_blank" >Medicaid to Schools OPLC Guidance 2020</a>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</td>
+			<td>5531k</td>
+			<td>PDF</td>
+		</tr>
+	</tbody>
+</table>
+
+<p dir="ltr"><br />
+<a id="d" name="d"></a><span class="tableTitle">Service Authorizations for Fee-for-Service</span>&nbsp; &nbsp; &nbsp;</p>
+
+<p dir="ltr">&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</p>
+
+<table cellspacing="0" class="datatable" dir="ltr" id="sa_forms" width="98%">
+	<tbody>
+		<tr>
+			<th>Publication Date</th>
+			<th style="width: 517px;">File</th>
+			<th style="width: 34px;">File Size</th>
+			<th>File Type</th>
+		</tr>
+		<tr>
+			<td>01/01/2025</td>
+			<td style="width: 517px;"><a href="/portals/wps/wcm/connect/158b0bdd-0300-4877-8826-a7bec8882a08/NH_Casgevy_Criteria.pdf?MOD=AJPERES&CVID=pg8Xlgg" target="_blank" >Casgevy Criteria</a></td>
+			<td style="width: 34px;">252k</td>
+			<td>PDF</td>
+		</tr>
+		<tr>
+			<td>01/01/2025</td>
+			<td style="width: 517px;"><a href="/portals/wps/wcm/connect/d793ca39-d0dd-49e4-b18a-f525f7960f03/NH_Casgevy_Fax_Form+%28003%29.pdf?MOD=AJPERES&CVID=pg8Xv4Y" target="_blank" >Casgevy Fax Form</a></td>
+			<td style="width: 34px;">1872k</td>
+			<td>PDF</td>
+		</tr>
+		<tr>
+			<td>01/01/2026</td>
+			<td style="width: 517px;"><a href="/portals/wps/wcm/connect/0cd643c2-5855-4a93-9323-3e664ad1f634/NH_Duchenne_Muscular_Dystrophy_Agents_Criteria.pdf?MOD=AJPERES&CVID=pLHWJii" target="_blank" >Duchenne Muscular Dystrophy Agents Criteria</a></td>
+			<td style="width: 34px;">207k</td>
+			<td>PDF</td>
+		</tr>
+		<tr>
+			<td>01/01/2026</td>
+			<td style="width: 517px;"><a href="/portals/wps/wcm/connect/490db9d5-d4e1-4623-9992-0a4f77d491b7/NH_Medicaid_Duchenne_Muscular_Dystrophy_Fax_Form.pdf?MOD=AJPERES&CVID=pLHWTtA" target="_blank" >Duchenne Muscular Dystrophy Agents Fax Form</a>&nbsp;</td>
+			<td style="width: 34px;">1833k</td>
+			<td>PDF</td>
+		</tr>
+		<tr>
+			<td>01/01/2025</td>
+			<td style="width: 517px;"><a href="/portals/wps/wcm/connect/92c4a87a-c8f1-42d3-b747-cc38759a0b18/NH_Elevidys_Criteria+%28002%29.pdf?MOD=AJPERES&CVID=pg8XPuU" target="_blank" >Elevidys Criteria</a>&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</td>
+			<td

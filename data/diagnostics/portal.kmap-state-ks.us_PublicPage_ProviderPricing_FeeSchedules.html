@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    
+    <meta name="viewport" content="width=device-width"/>
+   
+    <title>FeeSchedules</title>
+    <link href="/PublicPage/bundles/styles?v=Qd4L5xndccoF7fB1gQ5jibbqrhQMXRaZaYedM9ruxMI1" rel="stylesheet"/>
+
+    <script src="/PublicPage/bundles/scripts?v=Ouz_4aB_VAVoa0sCAM74KwCDoyhoPmUOE0Ne9LX6ENQ1"></script>
+
+
+</head>
+
+<body id="extPrvPrtlPage">
+    <div id="pageLoadOverlay" class="pageLoadOverlay display-none"></div>
+    <div class="container-fluid">
+        <div class="bodyWell">
+            <div id="pageHeader" class="row header">
+                <header id="pageTitle" class="row">
+                    <div style="padding-left:2.0rem;">
+                        <div class="cellleft">
+                            <img src="/PublicPage/Content/Images/kdhe.cssp.logo.svg" class="img-responsive" alt="KDHE Logo" />
+                        </div>
+                        <div class="cellleft">
+                            <div class="row" style="text-wrap:normal;">
+                                <div class="cellleft">                        <div class="row app-title-container">                            <span class="app-title1">Kansas Medical Assistance Program (KMAP)</span>                        </div>                                            </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cellright">
+                        <div class="row header-welcome">
+                            <span>Welcome <span class="text-info"></span> , Thu Mar 19, 8:43 am</span>
+
+                        </div>
+                        <div class="row cellright header-language">
+
+                            <label aria-label="Select Language">
+                                <select id="languageSelector" name="languageSelector"><option selected="selected" value="en-us">English</option>
+<option value="es-mx">Spanish</option>
+</select>
+                            </label>
+                            <script type="text/javascript">
+                            $(function () {
+                            $("#languageSelector").change(function () {
+                                var selectedLanguage = $("#languageSelector").val();
+                                            $.ajax({
+                                                url: '/PublicPage/Public/LanguageSelected',
+                                                type: 'POST',
+                                                dataType: 'json',
+                                                data: { language: selectedLanguage },
+                                                success: function (message) {
+                                                    window.location.reload();
+                                                },
+                                                error: function (message) {
+
+                                                }
+                                            });
+                                });
+                            });
+                            </script>
+
+                        </div>
+                    </div>
+                </header>
+                
+                
+
+                
+
+<div id="pageMenu" class="menu">
+    <div class="aag-menu-bar">
+        <div>
+            <ul id="aagMenu" data-role="menu" class="k-widget k-reset k-header k-menu k-menu-horizontal" role="menubar" tabindex="0">
+                <li id="AAGExtPrvMenu.Login" class="k-item k-state-default k-first" role="menuitem">
+                    <div class="aag-menu-item-divider-left"></div>
+                    <div>
+                        <a class="k-link display-block" href=/PublicPage/Public/Login><i class="fa fa-sign-in"></i>  Login/Register</a>
+                    </div>
+
+                    <div class="aag-menu-item-divider-right"></div>
+                    
+
+                </li>
+                <li id="AAGExtPrvMenu.ContactUs" class="k-item k-state-default k-first" role="menuitem">
+                    <div class="aag-menu-item-divider-left"></div>
+                    <div>
+                        <a class="k-link display-block" href='/PublicPage/Public/ContactList'>Contact Us</a>
+                    </div>
+
+                    <div class="aag-menu-item-divider-right"></div>
+                </li>
+                <li id="AAGExtPrvMenu.GoogleSearch" class="k-item k-state-default k-last" role="menuitem">
+                    <div class="aag-menu-item-divider-left"></div>
+                    <div id="d2">
+<form action="/PublicPage/Public/CustomGoogleSearch" method="get">                            <input type="search" aria-label="SearchString" name="SearchString" style="margin-top: -5px;opacity:0.7" value=Search class="formInput" />
+                            <button type="submit" class="btn btn-info" style="margin-top: -5px; height:10px; background-color:black; text-align:start;">
+                                <span class="glyphicon glyphicon-search"></span> Search
+                            </button>
+</form>                    </div>
+                    <div class="aag-menu-item-divider-right"></div>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+
+    <div id="divCoreContactUs" class="extprtlprv-aag-help-panel mcbPanelExternal mcbPanelExternallinkcolor">
+        <div class="help-panel-primary externallink-panel-primary-color">
+            <div class="aag-panel-hdr">
+                Contact Us
+            </div>
+            <div class="extprtl-aag-help-panel-container">
+                <div class="extprtl-aag-help-panel-detach">
+                    <a class="darkblue" onclick="popupCenteredWindowContactUs(contactUsurlNewWindow); return false">
+                        Open in Separate Window
+                        <i class="fa fa-external-link"></i>
+                    </a>
+                </div>
+                <div id="divCoreContactUsBody" class="mcbBody scroll-vert-only contactus-height">
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        var contactUsurlNewWindow = '/Notification/ContactUs';
+    </script>
+
+    <div class="align-center">
+        <div class="extprtl-banner-bar-container">
+            <div class="row">
+                <div class="extprtlprv-upper-banner-bar"></div>
+            </div>
+            <div class="row">
+                <div class="extprtl-lower-banner-bar"></div>
+            </div>
+        </div>
+        <div id="extprtlHomeNavbarContainer">
+            <div id="extprtlHomeNavbar" class="extprtl-navbar">
+                <div>
+                    <ul id="extprtlHomeMenu" class="extprtl-menu-width">
+                        <li class="extprtl-title-pane-container" style="width: 14%;">
+                            <a href='/PublicPage/Public/Index/' class="no-decoration" id="extPortalHome">
+                                <input type="hidden" id="homeHref" value="/Public/Index/" aria-hidden="true" aria-label="label"><label id="homeHrefLabel" for="homeHref" class="display-none">homeHref</label>
+                                <div class="extprtl-title-pane">
+                                    <div class="align-left">
+                                        <span class="extprtl-title-pane-lbl-std">KMAP</span>
+                                        <div class="extprtl-title-pane-lbl-indent">
+                                            <span class="cellleft"><i id="home-icon" class="fa fa-home fa-lg extprtl-home-icon"></i></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+
+                        </li>
+                        <li id="navButton0" class="extprtl-navbar-btn-size" style="width: 14%;">
+                            <a href='/PublicPage/Public/Beneficiary/'>
+                                <div class="extprtl-navbar-btn-container">
+                                    <div class="extprtl-navbar-btn">
+                                        <span><i class="fa fa-user fa-lg extprtl-navbar-btn-icon"></i></span>
+                                        <span class="extprtl-navbar-btn-lbl">&nbsp;</span>
+
+                                        <span class="extprtl-navbar-btn-lbl clickable">Member</span>
+                                        <i class="fa fa-caret-up fa-lg extprtl-navbar-caret" style="display: none;"></i>
+                                    </div>
+                                </div>
+                            </a>
+
+                            <div class="submenu" id="menu0" style="width: 568px;">
+                            </div>
+
+                        </li>
+                        <li id="navButton1" class="extprtl-navbar-btn-size" style="width: 14%;">
+                            <a href='/PublicPage/Public/ProviderHome/'>
+                                <div class="extprtl-navbar-btn-container">
+                                    <div class="extprtl-navbar-btn">
+                                        <span><i class="fa fa-user-md fa-lg extprtl-navbar-btn-icon"></i></span>
+                                        <span class="extprtl-navbar-btn-lbl">&nbsp;</span>
+
+                                        <span class="extprtl-navbar-btn-lbl">Provider</span>
+                                        <i class="fa fa-caret-up fa-lg extprtl-navbar-caret" style="display: none;"></i>
+                                    </div>
+                                </div>
+                            </a>
+
+                            <div class="submenu" id="menu1" style="width: 568px;">
+                            </div>
+
+
+                        </li>
+
+                        <li id="navButton2" class="extprtl-navbar-btn-size" style="width: 14%;">
+                            <a href='/PublicPage/Public/PublicationsHome'>
+                                <div class="extprtl-navbar-btn-container">
+                                    <div class="extprtl-navbar-btn">
+                                        <span><i class="fa fa-clipboard fa-lg extprtl-navbar-btn-icon"></i></span>
+                                        <span class="extprtl-navbar-btn-lbl">&nbsp;</span>
+                                        <span class="extprtl-navbar-btn-lbl">Publications</span>
+                                        <i class="fa fa-caret-up fa-lg extprtl-navbar-caret" style="display: none;"></i>
+                                    </div>
+                                </div>
+                            </a>
+                            <div class="submenu" id="menu2" style="width: 568px;">
+                            </div>
+                        </li>
+                        <li id="navButton3" class="extprtl-navbar-btn-size" style="width: 14%;">
+                            <a href='/PublicPage/Public/EDIhome'>
+                                <div class="extprtl-navbar-btn-container">
+                                    <div class="extprtl-navbar-btn">
+                                        <span><i class="fa fa-file-text fa-lg extprtl-navbar-btn-icon"></i></span>
+                                        <span class="extprtl-navbar-btn-lbl">&nbsp;</span>
+
+                                        <span class="extprtl-navbar-btn-lbl">EDI</span>
+                                        <i class="fa fa-caret-up fa-lg extprtl-navbar-caret" style="display: none;"></i>
+                                    </div>
+                                </div>
+                            </a>
+
+
+                            <div class="submenu" id="menu3" style="width: 568px;">
+                            </div>
+
+                        </li>
+
+                        <li id="navButton4" class="extprtl-navbar-btn-size" style="width: 14%;">
+                            <a href='/PublicPage/ProviderPricing/ProviderDirectorySearch'>
+                                <div class="extprtl-navbar-btn-container">
+                                    <div class="extprtl-navbar-btn">
+                                        <span><i class="fa fa-address-book fa-lg extprtl-navbar-btn-icon"></i></span>
+                                        <span class="extprtl-navbar-btn-lbl">&nbsp;</span>
+
+                                        <span class="extprtl-navbar-btn-lbl">Provider Directory</span>
+                                        <i class="fa fa-caret-up fa-lg extprtl-navbar-caret" style="display: none;"></i>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+
+                        <li id="navButton5" class="extprtl-navbar-btn-size" style="width: 14%;">
+                            <a href='/PublicPage/Public/LinkstoOtherSites'>
+                                <div class="extprtl-navbar-btn-container">
+                                    <div class="extprtl-navbar-btn">
+                                        <span><i class="fa fa-link fa-lg extprtl-navbar-btn-icon"></i></span>
+                                        <span class="extprtl-navbar-btn-lbl">&nbsp;</span>
+
+                                        <span class="extprtl-navbar-btn-lbl">Links</span>
+                                        <i class="fa fa-caret-up fa-lg extprtl-navbar-caret" style="display: none;"></i>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li id="navButton6" class="extprtl-navbar-btn-size" style="width: 14%;">
+                            <a href='/PublicPage/Public/MemberFAQ'>
+                                <div class="extprtl-navbar-btn-container">
+                                    <div class="extprtl-navbar-btn">
+                                        <span><i class="fa fa-question fa-lg extprtl-navbar-btn-icon"></i></span>
+                                        <span class="extprtl-navbar-btn-lbl">&nbsp;</span>
+
+                                        <span class="extprtl-navbar-btn-lbl">FAQ</span>
+                                        <i class="fa fa-caret-up fa-lg extprtl-navbar-caret" style="display: none;"></i>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+    var activePortal = "kmmsPortal";
+    var currentPathName = '/PublicPage/ProviderPricing/FeeSchedules';
+    var encodedNavButtons = ["navButton0", "/PublicPage/Public/Beneficiary", "false", "navButton0", "/PublicPage/Public/MedicaidEnrollmentHelp", "false",
+"navButton0", "/PublicPage/Public/AdditionalBenefits", "false", "navButton0", "/PublicPage/Public/Wellness", "false", "navButton0", "/PublicPage/Public/McAndOtherInsurance", "false",
+        "navButton0", "/PublicPage/Public/OtherResources", "false", "navButton0", "/PublicPage/Public/MemberDocuments", "false", "navButton0", "/PublicPage/Public/MemberFAQ", "false",
+        "navButton1", "/PublicPage/Public/ProviderHome", "false", "navButton1", "/PublicPage/ProviderPricing/ProviderInteractiveTools", "false", "navButton1", "/PublicPage/Public/MemberFAQ", "false",
+                        "navButton1", "/PublicPage/ProviderPricing/ProviderHelpfulInfo", "false", "navButton1", "/PublicPage/ProviderPricing/ProviderHelpDocuments", "false", "navButton1", "/PublicPage/Public/KanCare", "false",
+                        "navButton2", "/PublicPage/ProviderPricing/ProviderPublications", "false", "navButton2", "/PublicPage/Public/PublicationsHome", "false", "navButton2", "/PublicPage/Public/ProviderManuals", "false",
+                        "navButton2", "/PublicPage/Public/Bulletins", "false", "navButton2", "/PublicPage/ProviderPricing/ProviderPublications#prvForms/", "false", "navButton2", "/PublicPage/Public/MemberPublications", "false", "navButton2", "/PublicPage/ProviderPricing/HIPAACompanionGuides", "false",
+                        "navButton3", "/PublicPage/Public/EDIhome", "false",
+                        "navButton3", "/PublicPage/Public/EDIoverView", "false",
+                        "navButton3", "/PublicPage/Public/PES", "false", "navButton3", "/PublicPage/Public/ThirdPartySoftware", "false", "navButton3", "/PublicPage/Public/PaymentAdviceRoutingInstructions", "false",
+                        "navButton3", "/PublicPage/Public/ElectronicClaimsClearingHouse", "false",
+                        "navButton5", "/PublicPage/Public/LinkstoOtherSites", "false",
+                        "navButton6", "/PublicPage/Public/MemberFAQ", "false",
+                        "navButton4", "/PublicPage/ProviderPricing/ProviderDirectorySearch", "false"];
+
+    
+
+        $(".formInput").each(function () {
+            var inputVal = $(this).val();
+            $(this)
+                .focus(function (event) {
+                    if (this.value == inputVal) {
+                        this.value = "";
+                    }
+                })
+                .blur(function (event) {
+                    if (this.value == "") {
+                        this.value = inputVal;
+                    }
+                });
+        });
+
+        //$(document).ready(function () {
+        //    $(".nav").accessibleDropDown();
+        //});
+
+        //$.fn.accessibleDropDown = function () {
+        //    var el = $(this);
+
+        //    /* Make dropdown menus keyboard accessible */
+
+        //    $("a", el).focus(function () {
+        //        $(this).parents("li").addClass("hover");
+        //    }).blur(function () {
+        //        $(this).parents("li").removeClass("hover");
+        //    });
+        //}
+
+        //var touch = $('#resp-menu');
+        //var menu = $(".extprtl-navbar-btn-lbl");
+
+        //$(window).resize(function () {
+        //    var w = $(window).width();
+        //    alert(w);
+        //    if (w > 1583)
+        //        //menu.removeAttr('white-space');
+        //        alert("if : " + w);
+        //    else {
+        //        $("span.extprtl-navbar-btn-lbl").css('white-space', 'normal !important');
+        //        $("span.extprtl-navbar-btn-lbl")
+        //        alert("else : " + w);
+        //    }
+        //});
+
+     </script>
+    <script src=/PublicPage/Scripts/kmmsPortalMenu.js async></script>
+    <script src=/PublicPage/Scripts/kmmsPortalNavBar.js async></script>
+
+</div>
+
+
+            </div>
+
+            <div id="pageBody" class="row content-extlprtl">
+                <div class="gm-container"></div>
+
+                
+
+<link href=/PublicPage/Content/Kendo/kendo.default.min.css rel="stylesheet" />
+<link href=/PublicPage/Content/Kendo/kendo.common.min.css rel="stylesheet" />
+<link href=/PublicPage/Content/Kendo/kendo.default.mobile.min.css rel="stylesheet" />
+<style>
+        .k-grid-header .k-grid-filter, .k-grid-header .k-header-column-menu {
+            margin-left: -5px !important;
+            margin-right: 0 !important;
+            color: #ffffff !important;
+            float: right !important;
+        }
+
+        a span.k-icon.k-i-filter {
+            background: transparent !important;
+            background-color: transparent !important;
+            color: #ffffff;
+        }
+    </style>
+<form action="/PublicPage/ProviderPricing/FeeSchedules" method="post">    <div id="extprtlContentWellHmPage" class="row">
+        <div class="row extprtl-int-page-section-container">
+            <fieldset id="step18">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="content-panel-container-display">
+                            <div class="content-panel-container-display">
+                                <div class="content-panel-title-container">
+                                    <div>
+                                        <div class="content-panel-title" id="OutPatientPageTitle">
+                                            KMAP Fee Schedules
+                                        </div>
+                                    </div>
+                                    <div class="content-panel-title-decoration"></div>
+                                </div>
+                            </div>
+                            <div class="content-panel-bdy" style="width:70%">
+                                <div class="panel-body">
+                                    <div class="editor-section">
+                                        <div>
+                                            <p>                                    To access a fee schedule, select the program from the drop-down list. Next, choose the type of rates for which you want to view or print the fee schedule. After choosing the rate type, you will see a list of the current and historical versions of the corresponding schedule. Click the schedule you want to view.                                </p>                                <p>                                    Information provided on fee schedules does not guarantee coverage or payment. Providers must reference provider manuals for specific coverage information or program limitations and verify if services are covered for their provider type and specialty and the beneficiary. For additional information, please refer to the FAQ page and select the Fee Schedule category.                                </p>                                <p class="text-danger" style="text-align: justify; text-justify: inter-word;">                                   Disclaimer: Effective with the processing date of July 28, 2017, retroactive to dates of service on and after July 1, 2017, the previously implemented provider payment reduction was restored. Claims with a date of service prior to July 1, 2017, continue to receive the reduction. Effective for claims with DOS on and after 07/01/2018 the DRG adjustment percentage was increased to 78% for outliers (both cost outlier and day outlier).                                </p>
+                                            <br />
+                                             <div class="row">
+                                                 <div class="col-md-3 text-right">
+                                                    <b>Select Program</b>
+                                                    <span class="clickable editor-req-field fa fa-asterisk" title="Program is required field." data-role="tooltip"></span>
+                                                 </div>
+                                                 <div class="col-md-3">
+                                                     <input id="program" name="program" style="width:100%" type="text" /><script>
+	jQuery(function(){jQuery("#program").kendoDropDownList({"change":OnProgramChange,"dataSource":{"transport":{"read":{"url":"/PublicPage/ProviderPricing/GetFeeScheduleProgram"},"prefix":""},"schema":{"errors":"Errors"}},"dataTextField":"Description","dataValueField":"LongDescription","optionLabel":"Select Program"});});
+</script>
+                                                 </div>
+                                                 <div class="col-md-3 text-right">
+                                                     <b>Select Rate Type</b>
+                                                     <span class="clickable editor-req-field fa fa-asterisk" title="Rate Type is required field." data-role="tooltip"></span>
+                                                 </div>
+                                                    <div class="col-md-3">
+                                                        <input id="rateType" name="rateType" style="width:100%" type="text" /><script>
+	jQuery(function(){jQuery("#rateType").kendoDropDownList({"change":OnRateTypeChange,"dataTextField":"Description","dataValueField":"DataListItemCode","optionLabel":"Select Rate Type"});});
+</script>
+                                                    </div>
+                                                </div>
+                                            <br />
+                                            <div style="font-size: 1.8rem">
+                                                <div class="k-widget k-grid" id="CurrentGrid" style="height:70px"><div class="k-grid-header"><div class="k-grid-header-wrap"><table><colgroup><col /><col /></colgroup><thead class="k-grid-header"><tr><th class="k-header" data-field="Description" data-index="0" data-title="Versions" scope="col">Current Version</th><th class="k-header" data-field="EffectiveDate" data-index="1" data-title="Updated On" scope="col">Last Updated</th></tr></thead></table></div></div><div class="k-grid-content" style="height:200px"><table><colgroup><col /><col /></colgroup><tbody><tr class="k-no-data"><td colspan="2"></td></tr></tbody></table></div></div><script>
+	jQuery(function(){jQuery("#CurrentGrid").kendoGrid({"columns":[{"title":"Versions","headerAttributes":{"data-field":"Description","data-title":"Versions"},"template":"\u003ca href=\"/PublicPage/ProviderPricing/DownloadFSFile?arg1=#=Description#\"\u003e#=Description#\u003c/a\u003e","field":"Description","encoded":true},{"title":"Updated On","headerAttributes":{"data-field":"EffectiveDate","data-title":"Updated On"},"field":"EffectiveDate","format":"{0:dd-MMM-yy}","encoded":true}],"scrollable":{"height":"200px"},"messages":{"noRecords":"No records available."},"dataSource":{"type":(function(){if(kendo.data.transports['aspnetmvc-ajax']){return 'aspnetmvc-ajax';} else{throw new Error('The kendo.aspnetmvc.min.js script is not included.');}})(),"transport":{"read":{"url":"/PublicPage/ProviderPricing/FeeSheduleSearchCurrentResultList","data":filterFSSearch},"prefix":""},"pageSize":30,"page":1,"total":0,"serverPaging":true,"serverSorting":true,"serverFiltering":true,"serverGrouping":true,"serverAggregates":true,"filter":[],"schema":{"data":"Data","total":"Total","errors":"Errors","model":{"fields":{"Description":{"type":"string"},"Url":{"type":"string"},"LongDescription":{"type":"string"},"EffectiveDate":{"type":"date"},"StrEffectiveDate":{"editable":false,"type":"string"},"ContentID":{"type":"string"},"DataListItemCode":{"type":"string"},"DataListItemCodeNumber":{"type":"number"}}}}}});});
+</script>
+                                            </div>
+                                            <div style="font-size: 1.8rem">
+                                                <br />
+                                                <div class="k-widget k-grid" id="HistoricalGrid"><div class="k-grid-header"><div class="k-grid-header-wrap"><table><colgroup><col /><col /></colgroup><thead class="k-grid-header"><tr><th class="k-header k-filterable" data-field="Description" data-index="0" data-title="Versions" scope="col"><a class="k-grid-filter" href="javascript:void(0)"><span class="k-icon k-filter"></span></a>Historical Versions</th><th class="k-header k-filterable" data-field="EffectiveDate" data-index="1" data-title="Updated On" scope="col"><a class="k-grid-filter" href="javascript:void(0)"><span class="k-icon k-filter"></span></a>Last Updated</th></tr></thead></table></div></div><div class="k-grid-content" style="height:200px"><table><colgroup><col /><col /></colgroup><tbody><tr class="k-no-data"><td colspan="2"></td></tr></tbody></table></div></div><script>
+	jQuery(function(){jQuery("#HistoricalGrid").kendoGrid({"columns":[{"title":"Versions","headerAttributes":{"data-field":"Description","data-title":"Versions"},"template":"\u003ca href=\"/PublicPage/ProviderPricing/DownloadFSFile?arg1=#=Description#\"\u003e#=Description#\u003c/a\u003e","field":"Description","filterable":{"extra":false,"operators":{"string":{"contains":"Contains","doesnotcontain":"Does not contain","eq":"Is Equal to","neq":"Is Not Equal to","startswith":"Starts With","endswith":"Ends with"}}},"encoded":true},{"title":"Updated On","headerAttributes":{"data-field":"EffectiveDate","data-title":"Updated On"},"field":"EffectiveDate","format":"{0:dd-MMM-yy}","filterable":{"extra":true,"messages":{"info":"Show items for Selected Dates"},"operators":{"string":{"contains":"Contains","startswith":"Starts with","eq":"Is equal to"},"date":{"eq":"Is Equal To","gt":"Is Greater Than","gte":" Is Greater Than or Equal To","lt":"Is Less Than","lte":"Is Less Than Or Equal To"}}},"encoded":true}],"sortable":true,"filterable":true,"scrollable":{"height":"200px"},"messages":{"noRecords":"No records available."},"dataSource":{"type":(function(){if(kendo.data.transports['aspnetmvc-ajax']){return 'aspnetmvc-ajax';} else{throw new Error('The kendo.aspnetmvc.min.js script is not included.');}})(),"transport":{"read":{"url":"/PublicPage/ProviderPricing/FeeSheduleSearchPreviousResultList","data":filterFSSearch},"prefix":""},"pageSize":30,"page":1,"total":0,"serverPaging":true,"serverSorting":true,"serverFiltering":true,"serverGrouping":true,"serverAggregates":true,"filter":[],"schema":{"data":"Data","total":"Total","errors":"Errors","model":{"fields":{"Description":{"type":"string"},"Url":{"type":"string"},"LongDescription":{"type":"string"},"EffectiveDate":{"type":"date"},"StrEffectiveDate":{"editable":false,"type":"string"},"ContentID":{"type":"string"},"DataListItemCode":{"type":"string"},"DataListItemCodeNumber":{"type":"number"}}}}}});});
+</script>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+    </div>
+    <script>
+
+            function filterFSSearch() {
+            return {
+                program: $("#program").val().trim(),
+                ratetype: $("#rateType").val().trim()
+            };
+            }
+
+            function OnProgramChange(e) {
+                    if ($("#program").val().length == 0) {
+                    $("#rateType").data('kendoDropDownList').dataSource.data([]);
+                    $("#CurrentGrid").data('kendoGrid').dataSource.data([]);
+                    $("#HistoricalGrid").data('kendoGrid').dataSource.data([]);
+                }
+                else {
+                    $("#rateType").data('kendoDropDownList').dataSource.data([]);
+                    $("#CurrentGrid").data('kendoGrid').dataSource.data([]);
+                    $("#HistoricalGrid").data('kendoGrid').dataSource.data([]);
+                    $.ajax({
+                        url: "/PublicPage/ProviderPricing/GetFeeScheduleRateType",
+                        type: "GET",
+                        success: function (data) {
+                            $("#rateType").data('kendoDropDownList').dataSource.data(data);
+                        }
+                    });
+                }
+            }
+
+            function OnRateTypeChange(e) {
+            if ($("#rateType").val().length > 0) {
+                var gridId = "#CurrentGrid";
+                $(gridId).data("kendoGrid").dataSource.read();
+                var gridId1 = "#HistoricalGrid";
+                $(gridId1).data("kendoGrid").dataSource.read();
+            }
+            }
+
+    </script>
+</form>
+
+
+
+            </div>
+            <div id="pageFooter" class="row footer">
+                <div class="cellleft">
+    <p> &copy; 2026 Gainwell Technologies. All rights reserved.<br /></p>
+</div>
+<div class="cellright">
+</div>
+            </div>
+        </div>
+    </div>
+    
+    
+</body>
+</html>
+<script src=/PublicPage/Scripts/PubilcPages.common.js async></script>
+
+
+
+<script defer>
+    $(document).ready(function () {
+        //if ((window.location.href.indexOf("customSearch") > -1) || (window.location.href.indexOf("KmapAllResultsSearch") > -1) || (window.location.href.indexOf("KmapSiteSearch") > -1) || (window.location.href.indexOf("KmapDocumentsSearch") > -1) || (window.location.href.indexOf("KmapExternalResultsSearch") > -1)) {
+        if ((window.location.href.indexOf("CustomGoogleSearch") > -1) || (window.location.href.indexOf("GoogleTabSearch") > -1) || (window.location.href.indexOf("DynamicCustomGoogleSearchResults") > -1)) {
+            $('#d2').hide();
+        }
+        else {
+            $('#d2').show();
+        }
+    });
+
+    $(document).ready(function () {
+        $(window).on("load",function () {
+            $('.submenu').each(function () {
+                var menu = this.id;
+                $.ajax({
+                    url: '/PublicPage/Public/SubMenuData',
+                    type: 'GET',
+                    dataType: 'html',
+                    cache: true,
+                    data: { subMenu: menu },
+                    success: function (data) {
+                        $("#" + menu).html(data);
+
+                        if (menu = "menu0") {
+                            var medicalEnroll = '/PublicPage/Public/MedicaidEnrollmentHelp';
+                            var additionalBenefits = '/PublicPage/Public/AdditionalBenefits';
+                            var wellness = '/PublicPage/Public/Wellness';
+                            var mcAndOtherInsurance = '/PublicPage/Public/McAndOtherInsurance';
+                            var providerDirectorySearch = '/PublicPage/ProviderPricing/ProviderDirectorySearch';
+                            var memberPublications = '/PublicPage/Public/MemberPublications';
+                            var providerSecurityLogon = '/PublicPage/Public/Login';
+                            var memberFAQ = '/PublicPage/Public/MemberFAQ?page=MemberFAQ';
+
+                            $("#medicalEnroll").attr("href", medicalEnroll);
+                            $("#additionalBenefits").attr("href", additionalBenefits);
+                            $("#wellness").attr("href", wellness);
+                            $("#mcAndOtherInsurance").attr("href", mcAndOtherInsurance);
+                            $("#providerDirectorySearch").attr("href", providerDirectorySearch);
+                            $("#memberPublications").attr("href", memberPublications);
+                            $("#providerSecurityLogon").attr("href", providerSecurityLogon);
+                            $("#memberFAQ").attr("href", memberFAQ);
+                        }
+
+                        if (menu = "menu1") {
+                            var providerPublications = '/PublicPage/ProviderPricing/ProviderPublications';
+                            var providerInteractiveTools = '/PublicPage/ProviderPricing/ProviderInteractiveTools';
+                            var providerHelpfulInfo = '/PublicPage/ProviderPricing/ProviderHelpfulInfo';
+                            var providerHelpDocuments = '/PublicPage/ProviderPricing/ProviderHelpDocuments';
+                            var kanCareIssuesLogs = '/PublicPage/Public/KanCare';
+                            var providerSecurityLogon1 = '/PublicPage/Public/Login';
+                            var providerFAQ = '/PublicPage/Public/MemberFAQ?page=ProviderFAQ';
+
+                            $("#providerPublications").attr("href", providerPublications);
+                            $("#providerInteractiveTools").attr("href", providerInteractiveTools);
+                            $("#providerHelpfulInfo").attr("href", providerHelpfulInfo);
+                            $("#providerHelpDocuments").attr("href", providerHelpDocuments);
+                            $("#kanCareIssuesLogs").attr("href", kanCareIssuesLogs);
+                            $("#providerSecurityLogon1").attr("href", providerSecurityLogon1);
+                            $("#providerFAQ").attr("href", providerFAQ);
+                        }
+
+                        if (menu = "menu2") {
+                            var providerPublications1 = '/PublicPage/ProviderPricing/ProviderPublications';
+                            var bulletins = '/PublicPage/Public/Bulletins/';
+                            var forms = '/PublicPage/ProviderPricing/ProviderPublications#prvForms';
+                            var providerManuals = '/PublicPage/Public/ProviderManuals';
+                            var hIPAACompanionGuides = '/PublicPage/ProviderPricing/HIPAACompanionGuides';
+                            var memberPublications1 = '/PublicPage/Public/MemberPublications';
+
+                            $("#providerPublications1").attr("href", providerPublications1);
+                            $("#bulletins").attr("href", bulletins);
+                            $("#forms").attr("href", forms);
+                            $("#providerManuals").attr("href", providerManuals);
+                            $("#hIPAACompanionGuides").attr("href", hIPAACompanionGuides);
+                            $("#memberPublications1").attr("href", memberPublications1);
+                        }
+
+                        if (menu = "menu3") {
+                            var eDIoverView = '/PublicPage/Public/EDIoverView';
+                            var pes = '/PublicPage/Public/PES';
+                            var thirdPartySoftware = '/PublicPage/Public/ThirdPartySoftware';
+                            var paymentAdviceRoutingInstructions = '/PublicPage/Public/PaymentAdviceRoutingInstructions';
+                            var hIPAACompanionGuides1 = '/PublicPage/ProviderPricing/HIPAACompanionGuides';
+                            var electronicClaimsClearingHouse = '/PublicPage/Public/ElectronicClaimsClearingHouse';
+
+
+                            $("#eDIoverView").attr("href", eDIoverView);
+                            $("#pes").attr("href", pes);
+                            $("#thirdPartySoftware").attr("href", thirdPartySoftware);
+                            $("#paymentAdviceRoutingInstructions").attr("href", paymentAdviceRoutingInstructions);
+                            $("#hIPAACompanionGuides1").attr("href", hIPAACompanionGuides1);
+                            $("#electronicClaimsClearingHouse").attr("href", electronicClaimsClearingHouse);
+
+                        }
+                    },
+                    error: function (data) {
+                    }
+                });
+            });
+        });
+    });
+</script>
