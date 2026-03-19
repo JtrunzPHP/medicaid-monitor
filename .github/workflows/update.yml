@@ -2,7 +2,7 @@ name: Update Medicaid Fee Schedules
 
 on:
   schedule:
-    - cron: '0 8 * * 1'  # Every Monday 8am UTC
+    - cron: '0 8 * * 1'
   push:
     paths:
       - '.github/workflows/update.yml'
@@ -17,16 +17,16 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
-      - name: Checkout
+      - name: Checkout (shallow)
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0
+          fetch-depth: 1
 
-      - name: Pull latest
+      - name: Configure git
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git pull --rebase
+          git config http.postBuffer 524288000
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -34,8 +34,7 @@ jobs:
           python-version: '3.11'
 
       - name: Install dependencies
-        run: |
-          pip install requests beautifulsoup4 pandas lxml openpyxl
+        run: pip install requests beautifulsoup4 pandas lxml openpyxl
 
       - name: Run scraper pipeline
         run: python main.py
@@ -47,11 +46,13 @@ jobs:
       - name: Copy web data to docs
         run: |
           mkdir -p docs/data
-          cp data/web/*.json docs/data/
+          cp data/web/*.json docs/data/ 2>/dev/null || echo "No web data files to copy"
+          ls -la docs/data/ || echo "docs/data is empty"
 
       - name: Commit and push
         run: |
-          git add data/ docs/
+          git add docs/data/ data/checksums.json data/prev_rates/ data/web/
+          git reset -- data/downloads/
           if git diff --cached --quiet; then
             echo "No changes"
           else
