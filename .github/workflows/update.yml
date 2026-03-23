@@ -1,66 +1,52 @@
-name: Update Medicaid Fee Schedules
+name: Deploy Medicaid Intelligence Platform
 
 on:
-  schedule:
-    - cron: '0 8 * * 1'
   push:
-    paths:
-      - '.github/workflows/update.yml'
-      - 'scripts/export_web.py'
+    branches: [main]
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
 
 jobs:
-  scrape-and-export:
+  build:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
     steps:
-      - name: Checkout (shallow)
+      - name: Checkout
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 1
 
-      - name: Configure git
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git config http.postBuffer 524288000
-
-      - name: Set up Python
-        uses: actions/setup-python@v5
+      - name: Setup Node
+        uses: actions/setup-node@v4
         with:
-          python-version: '3.11'
+          node-version: 20
 
       - name: Install dependencies
-        run: pip install requests beautifulsoup4 pandas lxml openpyxl
+        run: npm install
 
-      - name: Run scraper pipeline
-        run: python main.py
-        continue-on-error: true
+      - name: Build
+        run: npm run build
 
-      - name: Export web data
-        run: python scripts/export_web.py
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
 
-      - name: Copy web data to docs
-        run: |
-          mkdir -p docs/data
-          cp data/web/*.json docs/data/ 2>/dev/null || echo "No web data files to copy"
-          echo "docs/data contents:"
-          ls -la docs/data/ || echo "empty"
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./dist
 
-      - name: Commit and push
-        run: |
-          git add -A docs/data/
-          git add -A data/web/
-          git add data/checksums.json 2>/dev/null || true
-          git add data/prev_rates/ 2>/dev/null || true
-          git add data/base_rates.json 2>/dev/null || true
-          git add data/rate_comparison.json 2>/dev/null || true
-          if git diff --cached --quiet; then
-            echo "No changes"
-          else
-            git commit -m "data: update fee schedules $(date +%Y-%m-%d)"
-            git push
-          fi
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
