@@ -1,0 +1,518 @@
+<!DOCTYPE html><html><head><meta charset='utf-8'>
+
+<style>
+body{font-family:system-ui,-apple-system,sans-serif;background:#0f0f1a;color:#e2e8f0;margin:0;padding:0;font-size:13px}
+.wrap{max-width:900px;margin:0 auto;padding:16px}
+.hdr{background:linear-gradient(135deg,#1e1b4b,#312e81);padding:20px 24px;border-radius:8px 8px 0 0}
+.hdr h1{color:#fff;font-size:20px;margin:0}.hdr p{color:#a5b4fc;font-size:11px;margin-top:4px}
+.card{background:#1e1e2e;border-radius:8px;padding:14px;margin:12px 0;border:1px solid #2d2d44}
+.card h2{font-size:14px;color:#a5b4fc;margin:0 0 10px;border-bottom:1px solid #3730a3;padding-bottom:6px}
+.card h3{font-size:12px;color:#e2e8f0;margin:10px 0 6px}
+table{width:100%;border-collapse:collapse;font-size:11px}
+th{background:#1a1a2e;color:#94a3b8;font-size:9px;text-transform:uppercase;letter-spacing:0.5px;padding:6px 5px;text-align:left;border-bottom:1px solid #3730a3}
+td{padding:5px;border-bottom:1px solid #1a1a2e;color:#e2e8f0}
+tr:hover td{background:#1a1a2e}
+.pos{color:#10b981}.neg{color:#ef4444}.warn{color:#f59e0b}.dim{color:#64748b}
+.tag{display:inline-block;padding:2px 6px;border-radius:4px;font-size:9px;font-weight:600}
+.tag-up{background:#064e3b;color:#10b981}.tag-down{background:#450a0a;color:#ef4444}
+.tag-new{background:#1e1b4b;color:#a5b4fc}.tag-flag{background:#451a03;color:#f59e0b}
+.kpi{display:inline-block;background:#1a1a2e;border-radius:6px;padding:8px 14px;margin:4px;text-align:center;min-width:100px;border-left:3px solid #6366f1}
+.kpi-label{font-size:9px;color:#94a3b8;text-transform:uppercase}.kpi-val{font-size:18px;font-weight:700;margin-top:2px}
+.footer{font-size:9px;color:#64748b;padding:12px 0;border-top:1px solid #2d2d44;margin-top:16px}
+.bar{height:4px;border-radius:2px;display:inline-block;vertical-align:middle}
+</style>
+
+</head><body><div class='wrap'>
+
+    <div class="hdr">
+        <h1>🏥 Medicaid Fee Schedule Monitor</h1>
+        <p>4 states updated | 5 files processed | 2923 rate changes | 9 companies impacted</p>
+    </div>
+    
+<div class="card"><h2>Executive Summary</h2><div style="margin-bottom:12px"><div class="kpi" style="border-left-color:#10b981"><div class="kpi-label">Rate Increases</div><div class="kpi-val" style="color:#10b981">0</div></div><div class="kpi" style="border-left-color:#ef4444"><div class="kpi-label">Rate Decreases</div><div class="kpi-val" style="color:#ef4444">0</div></div><div class="kpi" style="border-left-color:#6366f1"><div class="kpi-label">States</div><div class="kpi-val" style="color:#6366f1">4</div></div></div><h3>Most Impacted Companies</h3><table><tr><th>Ticker</th><th>Company</th><th>Segment</th><th>States Hit</th><th>CPT Matches</th><th>Matched Rev</th><th>Flags</th></tr><tr>
+                <td><b>ADUS</b></td>
+                <td>Addus HomeCare</td>
+                <td class="dim"></td>
+                <td>AZ, WA</td>
+                <td>0</td>
+                <td><b>$0.0M</b></td>
+                <td class="warn">0</td>
+            </tr><tr>
+                <td><b>ENSG</b></td>
+                <td>Ensign Group</td>
+                <td class="dim"></td>
+                <td>AZ, WA, MT</td>
+                <td>0</td>
+                <td><b>$0.0M</b></td>
+                <td class="warn">0</td>
+            </tr><tr>
+                <td><b>PNTG</b></td>
+                <td>Pennant Group</td>
+                <td class="dim"></td>
+                <td>AZ, WA, MT</td>
+                <td>0</td>
+                <td><b>$0.0M</b></td>
+                <td class="warn">0</td>
+            </tr><tr>
+                <td><b>LFST</b></td>
+                <td>LifeStance Health</td>
+                <td class="dim"></td>
+                <td>WA</td>
+                <td>0</td>
+                <td><b>$0.0M</b></td>
+                <td class="warn">0</td>
+            </tr><tr>
+                <td><b>THC</b></td>
+                <td>Tenet Healthcare</td>
+                <td class="dim"></td>
+                <td>AZ</td>
+                <td>0</td>
+                <td><b>$0.0M</b></td>
+                <td class="warn">0</td>
+            </tr></table></div>
+<div class="card"><h2>Company Impact — CPT-Level Detail</h2><p class="dim" style="font-size:10px;margin-bottom:10px">Base rate = current Medicaid reimbursement. vs Median = compared to national median across all scraped states. Revenue est = base_rate × state_volume_estimate.</p></div>
+
+
+
+<div class="card"><h2>All Rate Changes — Code-Level Detail</h2><h3>WA — 2923 changes (↑0 ↓0)</h3><table><tr><th>Code</th><th>Description</th><th>Old Rate</th><th>New Rate</th><th>Change</th><th>%</th><th>Direction</th></tr><tr>
+                <td><b>0238T</b></td>
+                <td class="dim"></td>
+                <td>—</td>
+                <td><b>$nan</b></td>
+                <td class="neg">—</td>
+                <td>—</td>
+                <td><span class="tag tag-new">+ NEW</span></td>
+            </tr><tr>
+                <td><b>10030</b></td>
+                <td class="dim"></td>
+                <td>—</td>
+                <td><b>$nan</b></td>
+                <td class="neg">—</td>
+                <td>—</td>
+                <td><span class="tag tag-new">+ NEW</span></td>
+            </tr><tr>
+                <td><b>10121</b></td>
+                <td class="dim"></td>
+                <td>—</td>
+                <td><b>$nan</b></td>
+                <td class="neg">—</td>
+                <td>—</td>
+                <td><span class="tag tag-new">+ NEW</span></td>
+            </tr><tr>
+                <td><b>10180</b></td>
+                <td class="dim"></td>
+                <td>—</td>
+                <td><b>$nan</b></td>
+                <td class="neg">—</td>
+                <td>—</td>
+                <td><span class="tag tag-new">+ NEW</span></td>
+            </tr><tr>
+                <td><b>11010</b></td>
+                <td class="dim"></td>
+                <td>—</td>
+                <td><b>$nan</b></td>
+                <td class="neg">—</td>
+                <td>—</td>
+                <td><span class="tag tag-new">+ NEW</span></td>
+            </tr><tr>
+                <td><b>11011</b></td>
+                <td class="dim"></td>
+                <td>—</td>
+                <td><b>$nan</b></td>
+                <td class="neg">—</td>
+                <td>—</td>
+                <td><span class="tag tag-new">+ NEW</span></td>
+            </tr><tr>
+                <td><b>11012</b></td>
+                <td class="dim"></td>
+                <td>—</td>
+                <td><b>$nan</b></td>
+                <td class="neg">—</td>
+                <td>—</td>
+                <td><span class="tag tag-new">+ NEW</span></td>
+            </tr><tr>
+                <td><b>11042</b></td>
+                <td class="dim"></td>
+                <td>—</td>
+                <td><b>$nan</b></td>
+                <td class="neg">—</td>
+                <td>—</td>
+                <td><span class="tag tag-new">+ NEW</span></td>
+            </tr><tr>
+                <td><b>11043</b></td>
+                <td class="dim"></td>
+                <td>—</td>
+                <td><b>$nan</b></td>
+                <td class="neg">—</td>
+                <td>—</td>
+                <td><span class="tag tag-new">+ NEW</span></td>
+            </tr><tr>
+                <td><b>11044</b></td>
+                <td class="dim"></td>
+                <td>—</td>
+                <td><b>$nan</b></td>
+                <td class="neg">—</td>
+                <td>—</td>
+                <td><span class="tag tag-new">+ NEW</span></td>
+            </tr><tr>
+                <td><b>11404</b></td>
+                <td class="dim"></td>
+                <td>—</td>
+                <td><b>$nan</b></td>
+                <td class="neg">—</td>
+                <td>—</td>
+                <td><span class="tag tag-new">+ NEW</span></td>
+            </tr><tr>
+                <td><b>11406</b></td>
+                <td class="dim"></td>
+                <td>—</td>
+                <td><b>$nan</b></td>
+                <td class="neg">—</td>
+                <td>—</td>
+                <td><span class="tag tag-new">+ NEW</span></td>
+            </tr><tr>
+                <td><b>11424</b></td>
+                <td class="dim"></td>
+                <td>—</td>
+                <td><b>$nan</b></td>
+                <td class="neg">—</td>
+                <td>—</td>
+                <td><span class="tag tag-new">+ NEW</span></td>
+            </tr><tr>
+                <td><b>11426</b></td>
+                <td class="dim"></td>
+                <td>—</td>
+                <td><b>$nan</b></td>
+                <td class="neg">—</td>
+                <td>—</td>
+                <td><span class="tag tag-new">+ NEW</span></td>
+            </tr><tr>
+                <td><b>11444</b></td>
+                <td class="dim"></td>
+                <td>—</td>
+                <td><b>$nan</b></td>
+                <td class="neg">—</td>
+                <td>—</td>
+                <td><span class="tag tag-new">+ NEW</span></td>
+            </tr><tr>
+                <td><b>11446</b></td>
+                <td class="dim"></td>
+                <td>—</td>
+                <td><b>$nan</b></td>
+                <td class="neg">—</td>
+                <td>—</td>
+                <td><span class="tag tag-new">+ NEW</span></td>
+            </tr><tr>
+                <td><b>11450</b></td>
+                <td class="dim"></td>
+                <td>—</td>
+                <td><b>$nan</b></td>
+                <td class="neg">—</td>
+                <td>—</td>
+                <td><span class="tag tag-new">+ NEW</span></td>
+            </tr><tr>
+                <td><b>11451</b></td>
+                <td class="dim"></td>
+                <td>—</td>
+                <td><b>$nan</b></td>
+                <td class="neg">—</td>
+                <td>—</td>
+                <td><span class="tag tag-new">+ NEW</span></td>
+            </tr><tr>
+                <td><b>11462</b></td>
+                <td class="dim"></td>
+                <td>—</td>
+                <td><b>$nan</b></td>
+                <td class="neg">—</td>
+                <td>—</td>
+                <td><span class="tag tag-new">+ NEW</span></td>
+            </tr><tr>
+                <td><b>11463</b></td>
+                <td class="dim"></td>
+                <td>—</td>
+                <td><b>$nan</b></td>
+                <td class="neg">—</td>
+                <td>—</td>
+                <td><span class="tag tag-new">+ NEW</span></td>
+            </tr><tr>
+                <td><b>11470</b></td>
+                <td class="dim"></td>
+                <td>—</td>
+                <td><b>$nan</b></td>
+                <td class="neg">—</td>
+                <td>—</td>
+                <td><span class="tag tag-new">+ NEW</span></td>
+            </tr><tr>
+                <td><b>11471</b></td>
+                <td class="dim"></td>
+                <td>—</td>
+                <td><b>$nan</b></td>
+                <td class="neg">—</td>
+                <td>—</td>
+                <td><span class="tag tag-new">+ NEW</span></td>
+            </tr><tr>
+                <td><b>11604</b></td>
+                <td class="dim"></td>
+                <td>—</td>
+                <td><b>$nan</b></td>
+                <td class="neg">—</td>
+                <td>—</td>
+                <td><span class="tag tag-new">+ NEW</span></td>
+            </tr><tr>
+                <td><b>11606</b></td>
+                <td class="dim"></td>
+                <td>—</td>
+                <td><b>$nan</b></td>
+                <td class="neg">—</td>
+                <td>—</td>
+                <td><span class="tag tag-new">+ NEW</span></td>
+            </tr><tr>
+                <td><b>11624</b></td>
+                <td class="dim"></td>
+                <td>—</td>
+                <td><b>$nan</b></td>
+                <td class="neg">—</td>
+                <td>—</td>
+                <td><span class="tag tag-new">+ NEW</span></td>
+            </tr><tr>
+                <td><b>11626</b></td>
+                <td class="dim"></td>
+                <td>—</td>
+                <td><b>$nan</b></td>
+                <td class="neg">—</td>
+                <td>—</td>
+                <td><span class="tag tag-new">+ NEW</span></td>
+            </tr><tr>
+                <td><b>11644</b></td>
+                <td class="dim"></td>
+                <td>—</td>
+                <td><b>$nan</b></td>
+                <td class="neg">—</td>
+                <td>—</td>
+                <td><span class="tag tag-new">+ NEW</span></td>
+            </tr><tr>
+                <td><b>11646</b></td>
+                <td class="dim"></td>
+                <td>—</td>
+                <td><b>$nan</b></td>
+                <td class="neg">—</td>
+                <td>—</td>
+                <td><span class="tag tag-new">+ NEW</span></td>
+            </tr><tr>
+                <td><b>11770</b></td>
+                <td class="dim"></td>
+                <td>—</td>
+                <td><b>$nan</b></td>
+                <td class="neg">—</td>
+                <td>—</td>
+                <td><span class="tag tag-new">+ NEW</span></td>
+            </tr><tr>
+                <td><b>11771</b></td>
+                <td class="dim"></td>
+                <td>—</td>
+                <td><b>$nan</b></td>
+                <td class="neg">—</td>
+                <td>—</td>
+                <td><span class="tag tag-new">+ NEW</span></td>
+            </tr><tr>
+                <td><b>11772</b></td>
+                <td class="dim"></td>
+                <td>—</td>
+                <td><b>$nan</b></td>
+                <td class="neg">—</td>
+                <td>—</td>
+                <td><span class="tag tag-new">+ NEW</span></td>
+            </tr><tr>
+                <td><b>11960</b></td>
+                <td class="dim"></td>
+                <td>—</td>
+                <td><b>$nan</b></td>
+                <td class="neg">—</td>
+                <td>—</td>
+                <td><span class="tag tag-new">+ NEW</span></td>
+            </tr><tr>
+                <td><b>11970</b></td>
+                <td class="dim"></td>
+                <td>—</td>
+                <td><b>$nan</b></td>
+                <td class="neg">—</td>
+                <td>—</td>
+                <td><span class="tag tag-new">+ NEW</span></td>
+            </tr><tr>
+                <td><b>11971</b></td>
+                <td class="dim"></td>
+                <td>—</td>
+                <td><b>$nan</b></td>
+                <td class="neg">—</td>
+                <td>—</td>
+                <td><span class="tag tag-new">+ NEW</span></td>
+            </tr><tr>
+                <td><b>12005</b></td>
+                <td class="dim"></td>
+                <td>—</td>
+                <td><b>$nan</b></td>
+                <td class="neg">—</td>
+                <td>—</td>
+                <td><span class="tag tag-new">+ NEW</span></td>
+            </tr><tr>
+                <td><b>12006</b></td>
+                <td class="dim"></td>
+                <td>—</td>
+                <td><b>$nan</b></td>
+                <td class="neg">—</td>
+                <td>—</td>
+                <td><span class="tag tag-new">+ NEW</span></td>
+            </tr><tr>
+                <td><b>12007</b></td>
+                <td class="dim"></td>
+                <td>—</td>
+                <td><b>$nan</b></td>
+                <td class="neg">—</td>
+                <td>—</td>
+                <td><span class="tag tag-new">+ NEW</span></td>
+            </tr><tr>
+                <td><b>12015</b></td>
+                <td class="dim"></td>
+                <td>—</td>
+                <td><b>$nan</b></td>
+                <td class="neg">—</td>
+                <td>—</td>
+                <td><span class="tag tag-new">+ NEW</span></td>
+            </tr><tr>
+                <td><b>12016</b></td>
+                <td class="dim"></td>
+                <td>—</td>
+                <td><b>$nan</b></td>
+                <td class="neg">—</td>
+                <td>—</td>
+                <td><span class="tag tag-new">+ NEW</span></td>
+            </tr><tr>
+                <td><b>12017</b></td>
+                <td class="dim"></td>
+                <td>—</td>
+                <td><b>$nan</b></td>
+                <td class="neg">—</td>
+                <td>—</td>
+                <td><span class="tag tag-new">+ NEW</span></td>
+            </tr><tr>
+                <td><b>12018</b></td>
+                <td class="dim"></td>
+                <td>—</td>
+                <td><b>$nan</b></td>
+                <td class="neg">—</td>
+                <td>—</td>
+                <td><span class="tag tag-new">+ NEW</span></td>
+            </tr><tr>
+                <td><b>12020</b></td>
+                <td class="dim"></td>
+                <td>—</td>
+                <td><b>$nan</b></td>
+                <td class="neg">—</td>
+                <td>—</td>
+                <td><span class="tag tag-new">+ NEW</span></td>
+            </tr><tr>
+                <td><b>12021</b></td>
+                <td class="dim"></td>
+                <td>—</td>
+                <td><b>$nan</b></td>
+                <td class="neg">—</td>
+                <td>—</td>
+                <td><span class="tag tag-new">+ NEW</span></td>
+            </tr><tr>
+                <td><b>12034</b></td>
+                <td class="dim"></td>
+                <td>—</td>
+                <td><b>$nan</b></td>
+                <td class="neg">—</td>
+                <td>—</td>
+                <td><span class="tag tag-new">+ NEW</span></td>
+            </tr><tr>
+                <td><b>12035</b></td>
+                <td class="dim"></td>
+                <td>—</td>
+                <td><b>$nan</b></td>
+                <td class="neg">—</td>
+                <td>—</td>
+                <td><span class="tag tag-new">+ NEW</span></td>
+            </tr><tr>
+                <td><b>12036</b></td>
+                <td class="dim"></td>
+                <td>—</td>
+                <td><b>$nan</b></td>
+                <td class="neg">—</td>
+                <td>—</td>
+                <td><span class="tag tag-new">+ NEW</span></td>
+            </tr><tr>
+                <td><b>12037</b></td>
+                <td class="dim"></td>
+                <td>—</td>
+                <td><b>$nan</b></td>
+                <td class="neg">—</td>
+                <td>—</td>
+                <td><span class="tag tag-new">+ NEW</span></td>
+            </tr><tr>
+                <td><b>12044</b></td>
+                <td class="dim"></td>
+                <td>—</td>
+                <td><b>$nan</b></td>
+                <td class="neg">—</td>
+                <td>—</td>
+                <td><span class="tag tag-new">+ NEW</span></td>
+            </tr><tr>
+                <td><b>12045</b></td>
+                <td class="dim"></td>
+                <td>—</td>
+                <td><b>$nan</b></td>
+                <td class="neg">—</td>
+                <td>—</td>
+                <td><span class="tag tag-new">+ NEW</span></td>
+            </tr><tr>
+                <td><b>12046</b></td>
+                <td class="dim"></td>
+                <td>—</td>
+                <td><b>$nan</b></td>
+                <td class="neg">—</td>
+                <td>—</td>
+                <td><span class="tag tag-new">+ NEW</span></td>
+            </tr><tr><td colspan="7" class="dim">... and 2873 more</td></tr></table></div>
+<div class="card"><h2>State-by-State File Summary</h2><table><tr><th>State</th><th>File</th><th>Status</th><th>Size</th><th>Parse Summary</th></tr><tr>
+            <td><b>AZ</b></td>
+            <td class="dim">FY_6_Final_ABA_FeeSchedule.xlsx</td>
+            <td>🔄 UPDATED</td>
+            <td>22,431 bytes</td>
+            <td class="dim" style="font-size:10px">AZ | 65 rows | code col: ⚠ NOT FOUND | rate col: FFS Program Capped Fee Schedule</td>
+        </tr><tr>
+            <td><b>DE</b></td>
+            <td class="dim">Download</td>
+            <td>🆕 NEW</td>
+            <td>1,622,283 bytes</td>
+            <td class="dim" style="font-size:10px">Unable to parse</td>
+        </tr><tr>
+            <td><b>MT</b></td>
+            <td class="dim">March_6RebateableDrugManufacturers.pdf</td>
+            <td>🆕 NEW</td>
+            <td>375,537 bytes</td>
+            <td class="dim" style="font-size:10px">Unable to parse</td>
+        </tr><tr>
+            <td><b>MT</b></td>
+            <td class="dim">ProviderNoticeTransitionofPassporttoHeal</td>
+            <td>🆕 NEW</td>
+            <td>89,246 bytes</td>
+            <td class="dim" style="font-size:10px">Unable to parse</td>
+        </tr><tr>
+            <td><b>WA</b></td>
+            <td class="dim">asc-_6_1_1.xlsx</td>
+            <td>🔄 UPDATED</td>
+            <td>151,167 bytes</td>
+            <td class="dim" style="font-size:10px">WA | 3,267 rows | 2,923 codes | 0 with rates | avg $0.00 | cols: CPT → ASC FEE S</td>
+        </tr></table></div>
+
+    <div class="footer">
+        <b>Medicaid Fee Schedule Monitor</b> — Auto-generated report<br>
+        Data sources: State Medicaid agency fee schedule publications<br>
+        Rate flags: codes where state reimbursement deviates >15% from national median across scraped states<br>
+        Revenue estimates use approximate PMPM and volume assumptions — verify against company filings<br>
+        CPT® is a registered trademark of the American Medical Association
+    </div>
+    
+</div></body></html>

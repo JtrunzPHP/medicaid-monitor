@@ -1,0 +1,101 @@
+{
+  "generated_at": "2026-03-26T15:51:04.006124",
+  "mlr_records_processed": 2282,
+  "states_covered": 0,
+  "parent_rollup": [],
+  "rate_adjustment_alerts": [],
+  "quarterly_tracker": [
+    {
+      "ticker": "CNC",
+      "name": "Centene Corporation",
+      "medicaid_members_mm": 12.5,
+      "medicaid_rev_2025_bn": 92,
+      "states_count": 29,
+      "notes": "Largest Medicaid MCO. Medicaid members down 23.3% from pre-unwinding. 2026 guide: adj EPS >$3.00, prem/service rev $170-174B.",
+      "key_states": [
+        "TX",
+        "FL",
+        "GA",
+        "IL",
+        "OH",
+        "NY",
+        "CA",
+        "PA",
+        "WA",
+        "IN"
+      ]
+    },
+    {
+      "ticker": "MOH",
+      "name": "Molina Healthcare",
+      "medicaid_members_mm": 4.6,
+      "medicaid_rev_2025_bn": 32,
+      "states_count": 19,
+      "notes": "Medicaid-focused MCO. 90%+ members are Medicaid. CEO: market underfunded by 300-400bp. Every 100bp MCR = ~$5/share. Membership down only 5.5% from pre-unwinding (best of Big Five).",
+      "key_states": [
+        "CA",
+        "TX",
+        "OH",
+        "WA",
+        "MI",
+        "FL",
+        "IL",
+        "NY"
+      ]
+    },
+    {
+      "ticker": "ELV",
+      "name": "Elevance Health (Anthem/BCBS)",
+      "medicaid_members_mm": 7.2,
+      "medicaid_rev_2025_bn": 45,
+      "states_count": 22,
+      "notes": "Operates Medicaid as Anthem/BCBS plans + Amerigroup. Medicaid enrollment down 28.5% from pre-unwinding (worst of Big Five). Exited many CA counties in 2024. First reported Medicaid rev separately in Q3 2025.",
+      "key_states": [
+        "NY",
+        "TX",
+        "GA",
+        "VA",
+        "IN",
+        "OH",
+        "FL",
+        "CA"
+      ]
+    },
+    {
+      "ticker": "UNH",
+      "name": "UnitedHealth Group",
+      "medicaid_members_mm": 7.8,
+      "medicaid_rev_2025_bn": 60,
+      "states_count": 33,
+      "notes": "UnitedHealthcare Community & State division. Medicaid rev grew 26.8% despite 11.9% enrollment decline. Optum integration deep. Acquired Amedisys 2024.",
+      "key_states": [
+        "NY",
+        "TX",
+        "PA",
+        "OH",
+        "MI",
+        "VA",
+        "WI",
+        "NJ"
+      ]
+    },
+    {
+      "ticker": "CVS",
+      "name": "CVS Health (Aetna)",
+      "medicaid_members_mm": 2.8,
+      "medicaid_rev_2025_bn": 18,
+      "states_count": 16,
+      "notes": "Aetna Better Health Medicaid plans. Enrollment down 16.8% from pre-unwinding. CVS reported 17.3% increase in medical expenses PMPM in 2024.",
+      "key_states": [
+        "PA",
+        "NY",
+        "NJ",
+        "IL",
+        "OH",
+        "TX",
+        "FL"
+      ]
+    }
+  ],
+  "state_detail": {}
+}
