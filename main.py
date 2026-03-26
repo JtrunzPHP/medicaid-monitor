@@ -6,7 +6,7 @@ from src.parser   import parse
 from src.differ   import diff_files
 from src.exposure import compute, summarize_base_rates, build_rate_comparison_table
 from src.emailer  import build_html, send
-from src.mco_profitability import run as mco_run  # ← ADDED
+from src.mco_profitability import run as mco_run
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
 log = logging.getLogger(__name__)
@@ -42,8 +42,14 @@ def main():
                 all_diffs.extend(diffs)
             changes.append(c)
 
+    # ── MCO Profitability (runs ALWAYS, independent of fee schedule changes) ──
+    mco_results = mco_run()
+    log.info("MCO profitability: %d states, %d rate adjustment alerts",
+             mco_results.get("states_covered", 0),
+             len(mco_results.get("rate_adjustment_alerts", [])))
+
     if not changes:
-        log.info("No changes detected — no email sent.")
+        log.info("No fee schedule changes detected — no email sent.")
         save_cs(cs)
         return
 
@@ -134,23 +140,17 @@ def main():
                 f"| est {ci['state_volume_est']:>8,} units → ${ci['state_revenue_est']:>12,}/yr"
             )
 
-    # ── MCO Profitability ──                                                # ← ADDED
-    mco_results = mco_run()                                                  # ← ADDED
-    log.info("MCO profitability: %d states, %d rate adjustment alerts",      # ← ADDED
-             mco_results.get("states_covered", 0),                           # ← ADDED
-             len(mco_results.get("rate_adjustment_alerts", [])))             # ← ADDED
-
     # ── Build & Send Email ──
     n_states = len({c["abbr"] for c in changes})
     n_codes  = len([d for d in all_diffs if d.get("delta_pct") is not None])
     n_base   = len(base_rate_records) if base_rate_records else 0
-    n_mco_alerts = len(mco_results.get("rate_adjustment_alerts", []))        # ← ADDED
+    n_mco_alerts = len(mco_results.get("rate_adjustment_alerts", []))
 
     subject = (
         f"🏥 Medicaid Monitor: {n_states} state(s) updated"
         + (f", {n_codes} rate moves" if n_codes else "")
         + (f", {n_base} base rates captured" if n_base else "")
-        + (f", {n_mco_alerts} MCO rate alerts" if n_mco_alerts else "")      # ← ADDED
+        + (f", {n_mco_alerts} MCO rate alerts" if n_mco_alerts else "")
     )
 
     html = build_html(changes, cos, all_diffs)
