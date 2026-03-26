@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MCO Profitability Intelligence</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0f0f1a;color:#e2e8f0;font-family:system-ui,sans-serif;font-size:13px}
+.hd{background:linear-gradient(135deg,#1e1b4b,#312e81);padding:16px 24px;border-bottom:1px solid #3730a3;display:flex;justify-content:space-between;align-items:center}
+.hd h1{font-size:18px;font-weight:700}.hd p{font-size:10px;color:#a5b4fc;margin-top:3px}
+.hd a{color:#a5b4fc;font-size:11px;text-decoration:none;border:1px solid #3730a3;padding:4px 10px;border-radius:4px}
+.hd a:hover{background:#312e81}
+.tabs{display:flex;background:#1e1e2e;border-bottom:1px solid #2d2d44;overflow-x:auto}
+.tb{padding:10px 14px;font-size:11px;background:none;border:none;cursor:pointer;color:#94a3b8;border-bottom:2px solid transparent;white-space:nowrap;font-family:inherit}
+.tb.a{color:#a5b4fc;font-weight:600;border-bottom-color:#6366f1}
+.W{padding:14px 18px;max-width:1500px;display:none}.W.a{display:block}
+.R{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.K{background:#1e1e2e;border-radius:7px;padding:9px 12px;min-width:90px;flex:1}.Kl{font-size:8px;color:#94a3b8;text-transform:uppercase;letter-spacing:.5px}.Kv{font-size:16px;font-weight:700;margin-top:2px}
+.C{background:#1e1e2e;border-radius:7px;padding:10px;margin-bottom:10px}
+.S{font-size:11px;font-weight:600;margin:12px 0 5px}
+.N{background:#1e1e2e;border-radius:7px;padding:10px;margin-bottom:10px;font-size:10px;color:#94a3b8;border-left:3px solid #6366f1;line-height:1.4}.N b{color:#e2e8f0}
+select{background:#1e1e2e;color:#e2e8f0;border:1px solid #3730a3;border-radius:4px;padding:5px 10px;font-size:11px;font-family:inherit}
+table{width:100%;border-collapse:collapse;font-size:10px}
+th{text-align:left;padding:5px 4px;border-bottom:1px solid #3730a3;color:#94a3b8;font-weight:600;font-size:8px;text-transform:uppercase;cursor:pointer}
+th:hover{color:#e2e8f0}
+td{padding:4px;border-bottom:1px solid #1a1a2e}tr:hover td{background:#1a1a2e}
+.pos{color:#10b981}.neg{color:#ef4444}.warn{color:#f59e0b}.dim{color:#64748b}
+.tag{display:inline-block;padding:2px 6px;border-radius:3px;font-size:8px;font-weight:600}
+.tag-crit{background:#7f1d1d;color:#fca5a5}.tag-high{background:#450a0a;color:#ef4444}
+.tag-med{background:#451a03;color:#f59e0b}.tag-ok{background:#064e3b;color:#10b981}
+.bar{height:6px;border-radius:3px;display:inline-block;vertical-align:middle}
+canvas{max-height:300px}
+.ld{min-height:60vh;display:flex;align-items:center;justify-content:center;flex-direction:column}
+.sp{width:30px;height:30px;border:3px solid #6366f1;border-top-color:transparent;border-radius:50%;animation:sp 1s linear infinite;margin:10px 0}
+@keyframes sp{to{transform:rotate(360deg)}}
+.rs{display:flex;align-items:center;gap:8px;margin-bottom:10px;flex-wrap:wrap}.rs label{font-size:11px;color:#94a3b8}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media(max-width:800px){.grid2{grid-template-columns:1fr}}
+.F{margin:20px 18px;padding:10px 0;border-top:1px solid #2d2d44;font-size:8px;color:#64748b;line-height:1.4;max-width:1500px}
+</style>
+</head>
+<body>
+<div class="hd">
+<div><h1>MCO Profitability Intelligence</h1><p id="hsub">Loading CMS MLR data...</p></div>
+<a href="index.html">← Fee Schedule Dashboard</a>
+</div>
+<div class="tabs" id="tbar"></div>
+<div id="loader" class="ld"><div style="font-size:15px;font-weight:600">Loading MCO Data...</div><div class="sp"></div></div>
+
+<!-- T0: Summary -->
+<div class="W" id="t0">
+<div class="N"><b>What this does:</b> Tracks Medical Loss Ratios (MLR) for Medicaid MCOs across all states using CMS public data. Identifies states where MCO losses signal upcoming mid-year rate adjustments — a leading indicator for Medicaid rate increases that affect provider companies (ENSG, ACHC, ADUS, etc). MLR >90% = rate adjustment likely. MLR >95% = distress.</div>
+<div class="R" id="kpis"></div>
+<div class="S">Big Five MCO Scorecard</div>
+<div class="C" id="mco_tbl"></div>
+<div class="S">MLR by Parent MCO</div>
+<div class="C"><canvas id="mcoChart"></canvas></div>
+</div>
+
+<!-- T1: Rate Adjustment Alerts -->
+<div class="W" id="t1">
+<div class="N" style="border-left-color:#ef4444"><b>Rate Adjustment Signals:</b> States where weighted MCO MLR exceeds 90%. When MCOs lose money, states historically adjust capitation rates mid-year. <b>CRITICAL</b> = MLR >95% + historic adjuster. <b>HIGH</b> = MLR >90% + historic adjuster OR MLR >95%. <b>MEDIUM</b> = MLR >90%.</div>
+<div class="R" id="alert_kpis"></div>
+<div class="C" id="alerts_tbl"></div>
+<div class="S">Alert Map — MLR by State</div>
+<div class="C"><canvas id="alertChart"></canvas></div>
+</div>
+
+<!-- T2: State Deep Dive -->
+<div class="W" id="t2">
+<div class="rs"><label>State:</label><select id="stSel" onchange="rState()"></select></div>
+<div class="R" id="st_kpis"></div>
+<div class="S" id="st_title">Plans in State</div>
+<div class="C" id="st_tbl"></div>
+<div class="S">MLR by Plan</div>
+<div class="C"><canvas id="stChart"></canvas></div>
+</div>
+
+<!-- T3: MCO Deep Dive -->
+<div class="W" id="t3">
+<div class="rs"><label>MCO:</label><select id="mcoSel" onchange="rMCO()"></select></div>
+<div class="R" id="mco_kpis"></div>
+<div class="S" id="mco_title">State-by-State Performance</div>
+<div class="C" id="mco_st_tbl"></div>
+<div class="S">MLR by State</div>
+<div class="C"><canvas id="mcoStChart"></canvas></div>
+</div>
+
+<div class="F">
+<b>Data:</b> CMS MLR Summary Reports (data.medicaid.gov) — plan-level MLR filings for 2018-2020.<br>
+<b>Parent matching:</b> Plans matched to CNC/MOH/ELV/UNH/CVS via subsidiary name patterns. "UNMATCHED" = smaller/regional MCOs.<br>
+<b>Rate adjustment logic:</b> States with weighted MLR >90% flagged. Historic adjusters (OH, TX, GA, KY, IN, FL, VA, PA) scored higher.<br>
+<b>Limitations:</b> CMS public data currently covers 2018-2020. Newer data flows through MDCT-MCR (not yet public). Revenue figures in millions.<br>
+<b>Investment use:</b> When MCOs lose money in a state → state raises capitation rates → higher revenue for provider companies billing Medicaid in that state.
+</div>
+
+<script>
+var D=null,CH={};
+var CL=["#6366f1","#f59e0b","#10b981","#ef4444","#8b5cf6","#ec4899","#14b8a6","#f97316","#06b6d4"];
+Chart.defaults.color="#94a3b8";Chart.defaults.borderColor="#2d2d44";Chart.defaults.font.size=9;
+
+function fM(n){if(!n)return"$0";if(Math.abs(n)>=1e3)return"$"+(n/1e3).toFixed(1)+"B";return"$"+Math.round(n)+"M"}
+function fP(n){return n!=null?n.toFixed(1)+"%":"N/A"}
+function dC(id){if(CH[id]){CH[id].destroy();delete CH[id]}}
+function kp(l,v,c){return'<div class="K" style="border-left:2px solid '+(c||"#6366f1")+'"><div class="Kl">'+l+'</div><div class="Kv">'+v+'</div></div>'}
+
+var TABS=["Summary","Rate Adjustment Alerts","State Deep Dive","MCO Deep Dive"];
+function initT(){var h="";for(var i=0;i<TABS.length;i++)h+='<button class="tb'+(i===0?" a":"")+'" onclick="sT('+i+')">'+TABS[i]+'</button>';document.getElementById("tbar").innerHTML=h}
+function sT(n){var b=document.querySelectorAll(".tb");for(var i=0;i<b.length;i++)b[i].className=i===n?"tb a":"tb";for(var i=0;i<TABS.length;i++){var e=document.getElementById("t"+i);if(e)e.className=i===n?"W a":"W"}}
+
+function load(){
+  initT();
+  fetch("https://raw.githubusercontent.com/JtrunzPHP/medicaid-monitor/main/data/mco/mco_profitability.json").then(function(r){return r.ok?r.json():null}).catch(function(){return null}).then(function(data){
+    document.getElementById("loader").style.display="none";
+    if(!data||!data.states_covered){
+      document.getElementById("loader").style.display="flex";
+      document.getElementById("loader").innerHTML='<div style="color:#ef4444;font-weight:600">No MCO data yet</div><div style="color:#94a3b8;margin-top:8px;font-size:12px">Run the Medicaid Fee Schedule Monitor workflow first.</div>';
+      return;
+    }
+    D=data;
+    document.getElementById("hsub").textContent=D.states_covered+" states | "+D.mlr_records_processed+" MLR records | "+(D.rate_adjustment_alerts||[]).length+" alerts | Generated "+D.generated_at.split("T")[0];
+    buildSelectors();
+    rSummary();
+    sT(0);
+  });
+}
+
+function buildSelectors(){
+  // State selector
+  var s=document.getElementById("stSel");
+  Object.keys(D.state_detail||{}).sort().forEach(function(st){
+    var o=document.createElement("option");o.value=st;o.text=st;s.add(o);
+  });
+  // MCO selector
+  var s2=document.getElementById("mcoSel");
+  var big5=["CNC","MOH","ELV","UNH","CVS"];
+  big5.forEach(function(t){
+    var p=(D.parent_rollup||[]).find(function(x){return x.ticker===t});
+    if(p){var o=document.createElement("option");o.value=t;o.text=t+" — "+p.states_count+" states";s2.add(o)}
+  });
+  // Add UNMATCHED
+  var o2=document.createElement("option");o2.value="UNMATCHED";o2.text="UNMATCHED — Regional/Other";s2.add(o2);
+}
+
+/* === T0: SUMMARY === */
+function rSummary(){
+  var pr=D.parent_rollup||[];
+  var big5=pr.filter(function(p){return p.ticker!=="UNMATCHED"});
+  var nAlerts=(D.rate_adjustment_alerts||[]).length;
+  var nCrit=(D.rate_adjustment_alerts||[]).filter(function(a){return a.severity==="CRITICAL"}).length;
+  var nHigh=(D.rate_adjustment_alerts||[]).filter(function(a){return a.severity==="HIGH"}).length;
+  var bestMCO=big5.reduce(function(a,b){return(a.underwriting_margin_pct||0)>(b.underwriting_margin_pct||0)?a:b},{});
+  var worstMCO=big5.reduce(function(a,b){return(a.underwriting_margin_pct||999)<(b.underwriting_margin_pct||999)?a:b},{});
+
+  document.getElementById("kpis").innerHTML=
+    kp("States Covered",D.states_covered,"#6366f1")+
+    kp("MLR Records",D.mlr_records_processed.toLocaleString(),"#10b981")+
+    kp("Rate Alerts",nAlerts,"#ef4444")+
+    kp("Critical/High",nCrit+"/"+nHigh,"#f59e0b")+
+    kp("Best Margin",bestMCO.ticker+" "+fP(bestMCO.underwriting_margin_pct),"#10b981")+
+    kp("Worst Margin",worstMCO.ticker+" "+fP(worstMCO.underwriting_margin_pct),"#ef4444");
+
+  // MCO table
+  var h='<table><tr><th>Ticker</th><th>Name</th><th>States</th><th>Plans</th><th>Wtd MLR</th><th>Margin</th><th>Premium Rev</th><th>Est P/L</th><th>Distress States</th><th>Rate Adj Likely</th></tr>';
+  pr.forEach(function(p){
+    var qt=D.quarterly_tracker?D.quarterly_tracker.find(function(q){return q.ticker===p.ticker}):null;
+    var name=qt?qt.name:p.ticker;
+    var mlrCls=p.weighted_mlr_pct>=95?"neg":p.weighted_mlr_pct>=90?"warn":"pos";
+    var mrgCls=p.underwriting_margin_pct<5?"neg":p.underwriting_margin_pct<10?"warn":"pos";
+    h+='<tr><td><b>'+p.ticker+'</b></td><td>'+name+'</td><td>'+p.states_count+'</td><td>'+p.plan_count+'</td>';
+    h+='<td class="'+mlrCls+'"><b>'+fP(p.weighted_mlr_pct)+'</b></td>';
+    h+='<td class="'+mrgCls+'"><b>'+fP(p.underwriting_margin_pct)+'</b></td>';
+    h+='<td>'+fM(p.total_premium_rev_mm)+'</td>';
+    h+='<td class="'+(p.total_est_pl_mm<0?"neg":"pos")+'">'+fM(p.total_est_pl_mm)+'</td>';
+    h+='<td class="neg">'+(p.distress_states||[]).join(", ")+'</td>';
+    h+='<td class="warn">'+(p.rate_adj_likely_states||[]).join(", ")+'</td></tr>';
+  });
+  h+='</table>';document.getElementById("mco_tbl").innerHTML=h;
+
+  // Chart
+  dC("mcoChart");
+  var labels=big5.map(function(p){return p.ticker});
+  var mlrs=big5.map(function(p){return p.weighted_mlr_pct});
+  var colors=mlrs.map(function(m){return m>=95?"#ef4444":m>=90?"#f59e0b":"#10b981"});
+  CH["mcoChart"]=new Chart(document.getElementById("mcoChart"),{
+    type:"bar",data:{labels:labels,datasets:[{label:"Weighted MLR %",data:mlrs,backgroundColor:colors,borderRadius:4}]},
+    options:{indexAxis:"y",scales:{x:{min:80,max:100,title:{display:true,text:"MLR %"}},y:{}},plugins:{legend:{display:false},annotation:{}}}
+  });
+}
+
+/* === T1: ALERTS === */
+function rAlerts(){
+  var alerts=D.rate_adjustment_alerts||[];
+  var nC=alerts.filter(function(a){return a.severity==="CRITICAL"}).length;
+  var nH=alerts.filter(function(a){return a.severity==="HIGH"}).length;
+  var nM=alerts.filter(function(a){return a.severity==="MEDIUM"}).length;
+  var totalLoss=alerts.reduce(function(s,a){return s+(a.est_loss_mm||0)},0);
+
+  document.getElementById("alert_kpis").innerHTML=
+    kp("Total Alerts",alerts.length,"#ef4444")+
+    kp("Critical",nC,"#7f1d1d")+
+    kp("High",nH,"#ef4444")+
+    kp("Medium",nM,"#f59e0b")+
+    kp("Est Total Losses",fM(totalLoss),"#ef4444");
+
+  var h='<table><tr><th>State</th><th>Severity</th><th>Wtd MLR</th><th>Plans >90%</th><th>Total Plans</th><th>Est Loss</th><th>Historic Adjuster</th><th>Affected MCOs</th><th>Signal</th></tr>';
+  alerts.forEach(function(a){
+    var sevTag='<span class="tag tag-'+a.severity.toLowerCase()+'">'+a.severity+'</span>';
+    h+='<tr><td><b>'+a.state+'</b></td><td>'+sevTag+'</td>';
+    h+='<td class="neg"><b>'+fP(a.weighted_mlr)+'</b></td>';
+    h+='<td>'+a.plans_above_90+'/'+a.total_plans+'</td>';
+    h+='<td>'+a.total_plans+'</td>';
+    h+='<td class="neg">'+fM(a.est_loss_mm)+'</td>';
+    h+='<td>'+(a.frequent_adjuster?'<span class="tag tag-high">YES</span>':'<span class="dim">no</span>')+'</td>';
+    h+='<td><b>'+(a.affected_tickers||[]).join(", ")+'</b></td>';
+    h+='<td class="dim" style="max-width:200px">'+a.signal+'</td></tr>';
+  });
+  h+='</table>';document.getElementById("alerts_tbl").innerHTML=h;
+
+  // Chart: bar chart of state MLRs for alerted states
+  dC("alertChart");
+  var labels=alerts.map(function(a){return a.state});
+  var mlrs=alerts.map(function(a){return a.weighted_mlr});
+  var colors=alerts.map(function(a){return a.severity==="CRITICAL"?"#7f1d1d":a.severity==="HIGH"?"#ef4444":"#f59e0b"});
+  CH["alertChart"]=new Chart(document.getElementById("alertChart"),{
+    type:"bar",data:{labels:labels,datasets:[{label:"Weighted MLR %",data:mlrs,backgroundColor:colors,borderRadius:3}]},
+    options:{scales:{y:{min:85,title:{display:true,text:"MLR %"}}},plugins:{legend:{display:false}}}
+  });
+}
+
+/* === T2: STATE DEEP DIVE === */
+function rState(){
+  var st=document.getElementById("stSel").value;
+  if(!st||!D.state_detail||!D.state_detail[st])return;
+  var plans=D.state_detail[st];
+  var keys=Object.keys(plans);
+  var arr=keys.map(function(k){return plans[k]});
+
+  var mlrs=arr.filter(function(p){return p.mlr_pct}).map(function(p){return p.mlr_pct});
+  var avgMLR=mlrs.length?mlrs.reduce(function(s,v){return s+v},0)/mlrs.length:0;
+  var totalRev=arr.reduce(function(s,p){return s+(p.denominator_mm||0)},0);
+  var totalPL=arr.reduce(function(s,p){return s+(p.est_profit_loss_mm||0)},0);
+  var nMatched=arr.filter(function(p){return p.parent_ticker}).length;
+
+  document.getElementById("st_kpis").innerHTML=
+    kp("Plans",keys.length,"#6366f1")+
+    kp("Avg MLR",fP(avgMLR),"#f59e0b")+
+    kp("Total Premium",fM(totalRev),"#10b981")+
+    kp("Est P/L",fM(totalPL),totalPL<0?"#ef4444":"#10b981")+
+    kp("Matched to MCO",nMatched+"/"+keys.length,"#8b5cf6");
+
+  document.getElementById("st_title").textContent="Plans in "+st;
+
+  // Sort by MLR descending
+  arr.sort(function(a,b){return(b.mlr_pct||0)-(a.mlr_pct||0)});
+
+  var h='<table><tr><th>Plan</th><th>Parent</th><th>MLR</th><th>Margin</th><th>Premium Rev</th><th>Claims</th><th>Est P/L</th><th>Members (mo)</th><th>Period</th><th>Flag</th></tr>';
+  arr.forEach(function(p){
+    var mlrCls=p.mlr_pct>=95?"neg":p.mlr_pct>=90?"warn":"pos";
+    var flagTag=p.rate_risk_flag==="DISTRESS"?'<span class="tag tag-crit">DISTRESS</span>':p.rate_risk_flag==="RATE_ADJ_LIKELY"?'<span class="tag tag-high">RATE ADJ</span>':p.rate_risk_flag==="HIGH_MARGIN"?'<span class="tag tag-ok">HIGH MARGIN</span>':'';
+    h+='<tr><td style="max-width:200px">'+p.plan_name+'</td>';
+    h+='<td><b>'+(p.parent_ticker||'<span class="dim">—</span>')+'</b></td>';
+    h+='<td class="'+mlrCls+'"><b>'+fP(p.mlr_pct)+'</b></td>';
+    h+='<td>'+fP(p.underwriting_margin_pct)+'</td>';
+    h+='<td>'+fM(p.denominator_mm)+'</td>';
+    h+='<td>'+fM(p.numerator_mm)+'</td>';
+    h+='<td class="'+(p.est_profit_loss_mm<0?"neg":"pos")+'">'+fM(p.est_profit_loss_mm)+'</td>';
+    h+='<td>'+(p.member_months?p.member_months.toLocaleString():"—")+'</td>';
+    h+='<td class="dim">'+p.reporting_period+'</td>';
+    h+='<td>'+flagTag+'</td></tr>';
+  });
+  h+='</table>';document.getElementById("st_tbl").innerHTML=h;
+
+  // Chart
+  dC("stChart");
+  var chartData=arr.filter(function(p){return p.mlr_pct&&p.denominator_mm>1}).slice(0,20);
+  CH["stChart"]=new Chart(document.getElementById("stChart"),{
+    type:"bar",
+    data:{labels:chartData.map(function(p){return(p.parent_ticker||"?")+": "+p.plan_name.substring(0,25)}),
+      datasets:[{label:"MLR %",data:chartData.map(function(p){return p.mlr_pct}),
+        backgroundColor:chartData.map(function(p){return p.mlr_pct>=95?"#ef4444":p.mlr_pct>=90?"#f59e0b":"#10b981"}),borderRadius:3}]},
+    options:{indexAxis:"y",scales:{x:{min:70,max:110,title:{display:true,text:"MLR %"}}},plugins:{legend:{display:false}}}
+  });
+}
+
+/* === T3: MCO DEEP DIVE === */
+function rMCO(){
+  var ticker=document.getElementById("mcoSel").value;
+  if(!ticker||!D.state_detail)return;
+
+  // Find all plans for this ticker across states
+  var statePerf=[];
+  Object.keys(D.state_detail).sort().forEach(function(st){
+    var plans=D.state_detail[st];
+    Object.keys(plans).forEach(function(k){
+      var p=plans[k];
+      if((p.parent_ticker||"UNMATCHED")===ticker){
+        statePerf.push(Object.assign({},p,{state_abbr:st}));
+      }
+    });
+  });
+
+  var rollup=(D.parent_rollup||[]).find(function(p){return p.ticker===ticker});
+  var qt=(D.quarterly_tracker||[]).find(function(q){return q.ticker===ticker});
+
+  document.getElementById("mco_kpis").innerHTML=
+    kp("Plans",statePerf.length,"#6366f1")+
+    kp("States",rollup?rollup.states_count:0,"#8b5cf6")+
+    kp("Wtd MLR",rollup?fP(rollup.weighted_mlr_pct):"N/A","#f59e0b")+
+    kp("Margin",rollup?fP(rollup.underwriting_margin_pct):"N/A","#10b981")+
+    kp("Premium Rev",rollup?fM(rollup.total_premium_rev_mm):"N/A","#6366f1")+
+    kp("Est P/L",rollup?fM(rollup.total_est_pl_mm):"N/A",rollup&&rollup.total_est_pl_mm<0?"#ef4444":"#10b981");
+
+  document.getElementById("mco_title").textContent=ticker+(qt?" — "+qt.name:"")+" State-by-State";
+
+  // Aggregate by state
+  var byState={};
+  statePerf.forEach(function(p){
+    if(!byState[p.state_abbr])byState[p.state_abbr]={plans:[],total_num:0,total_den:0,total_mm:0};
+    byState[p.state_abbr].plans.push(p);
+    byState[p.state_abbr].total_num+=(p.numerator_mm||0);
+    byState[p.state_abbr].total_den+=(p.denominator_mm||0);
+    byState[p.state_abbr].total_mm+=(p.member_months||0);
+  });
+
+  var stateRows=Object.keys(byState).sort().map(function(st){
+    var s=byState[st];
+    var mlr=s.total_den>0?s.total_num/s.total_den*100:0;
+    var pl=s.total_den-s.total_num;
+    return{state:st,n_plans:s.plans.length,mlr:Math.round(mlr*10)/10,rev:Math.round(s.total_den),pl:Math.round(pl),mm:s.total_mm};
+  });
+  stateRows.sort(function(a,b){return b.mlr-a.mlr});
+
+  var h='<table><tr><th>State</th><th>Plans</th><th>MLR</th><th>Margin</th><th>Premium Rev</th><th>Est P/L</th><th>Member Months</th><th>Flag</th></tr>';
+  stateRows.forEach(function(r){
+    var mlrCls=r.mlr>=95?"neg":r.mlr>=90?"warn":"pos";
+    var flag=r.mlr>=95?'<span class="tag tag-crit">DISTRESS</span>':r.mlr>=90?'<span class="tag tag-high">RATE ADJ</span>':'';
+    h+='<tr><td><b>'+r.state+'</b></td><td>'+r.n_plans+'</td>';
+    h+='<td class="'+mlrCls+'"><b>'+fP(r.mlr)+'</b></td>';
+    h+='<td>'+fP(100-r.mlr)+'</td>';
+    h+='<td>'+fM(r.rev)+'</td>';
+    h+='<td class="'+(r.pl<0?"neg":"pos")+'">'+fM(r.pl)+'</td>';
+    h+='<td>'+(r.mm?r.mm.toLocaleString():"—")+'</td>';
+    h+='<td>'+flag+'</td></tr>';
+  });
+  h+='</table>';document.getElementById("mco_st_tbl").innerHTML=h;
+
+  // Chart
+  dC("mcoStChart");
+  var top20=stateRows.slice(0,25);
+  CH["mcoStChart"]=new Chart(document.getElementById("mcoStChart"),{
+    type:"bar",
+    data:{labels:top20.map(function(r){return r.state}),
+      datasets:[{label:"MLR %",data:top20.map(function(r){return r.mlr}),
+        backgroundColor:top20.map(function(r){return r.mlr>=95?"#ef4444":r.mlr>=90?"#f59e0b":"#10b981"}),borderRadius:3}]},
+    options:{scales:{y:{min:70,max:110,title:{display:true,text:"MLR %"}}},plugins:{legend:{display:false}}}
+  });
+}
+
+// Tab switching triggers
+var origST=sT;
+sT=function(n){origST(n);if(n===1)rAlerts();if(n===2)rState();if(n===3)rMCO()};
+
+window.onload=load;
+</script>
+</body>
+</html>
