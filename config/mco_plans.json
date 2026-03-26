@@ -1,0 +1,186 @@
+{
+  "_notes": "Maps Medicaid MCO plan names (as they appear in CMS MLR filings) to public parent companies. Used for MCO profitability roll-up. Plan names must match CMS/NAIC filings exactly or via fuzzy match.",
+  "_data_sources": [
+    "CMS MLR Public Use File: https://www.medicaid.gov/medicaid/managed-care/guidance/medicaid-and-chip-managed-care-reporting/mlr-summary-reports",
+    "CMS Managed Care Enrollment Report: https://www.medicaid.gov/medicaid/managed-care/enrollment-report",
+    "Data.Medicaid.gov MLR dataset: https://data.medicaid.gov/dataset/743f9f04-4473-41e2-9da2-9a89db65ee55",
+    "NAIC statutory filings via state DOI websites",
+    "KFF MCO analysis: https://www.kff.org/medicaid/",
+    "Georgetown CCF Big Five tracker: https://ccf.georgetown.edu/"
+  ],
+  "_mlr_thresholds": {
+    "federal_minimum": 85,
+    "rate_adjustment_trigger": 90,
+    "distress_signal": 95,
+    "notes": "States historically initiate mid-year rate adjustments when MCO MLR exceeds 90%. MLR > 95% signals acute underfunding."
+  },
+
+  "parents": {
+    "CNC": {
+      "ticker": "CNC",
+      "name": "Centene Corporation",
+      "medicaid_members_mm": 12.5,
+      "medicaid_rev_2025_bn": 92,
+      "states_count": 29,
+      "notes": "Largest Medicaid MCO. Medicaid members down 23.3% from pre-unwinding. 2026 guide: adj EPS >$3.00, prem/service rev $170-174B.",
+      "subsidiaries": [
+        "WellCare Health Plans", "Ambetter", "Peach State Health Plan",
+        "Sunshine Health", "Managed Health Services", "Cenpatico",
+        "Home State Health", "Buckeye Health Plan", "Coordinated Care",
+        "Fidelis Care", "Health Net", "IlliniCare Health",
+        "Louisiana Healthcare Connections", "Magnolia Health",
+        "Meridian Health Plan", "Nebraska Total Care",
+        "Oklahoma Complete Health", "PA Health & Wellness",
+        "Superior HealthPlan", "Trillium Community Health Plan",
+        "Western Sky Community Care", "Allwell", "Absolute Total Care",
+        "Celtic Insurance", "Envolve", "Centurion"
+      ],
+      "plan_name_patterns": [
+        "wellcare", "ambetter", "peach state", "sunshine health",
+        "managed health services", "cenpatico", "home state",
+        "buckeye", "coordinated care", "fidelis", "health net",
+        "illinicare", "louisiana healthcare", "magnolia health",
+        "meridian", "nebraska total", "oklahoma complete",
+        "pa health", "superior health", "trillium",
+        "western sky", "allwell", "absolute total", "centene"
+      ],
+      "key_state_exposure": {
+        "TX": {"plan": "Superior HealthPlan", "est_members_k": 1800},
+        "FL": {"plan": "Sunshine Health / WellCare of FL", "est_members_k": 1500},
+        "GA": {"plan": "Peach State / WellCare of GA", "est_members_k": 1200},
+        "IL": {"plan": "Meridian / IlliniCare", "est_members_k": 900},
+        "OH": {"plan": "Buckeye / Meridian OH", "est_members_k": 850},
+        "NY": {"plan": "Fidelis Care", "est_members_k": 2200},
+        "CA": {"plan": "Health Net Community Solutions", "est_members_k": 600},
+        "PA": {"plan": "PA Health & Wellness", "est_members_k": 500},
+        "WA": {"plan": "Coordinated Care", "est_members_k": 400},
+        "IN": {"plan": "Managed Health Services", "est_members_k": 450}
+      }
+    },
+    "MOH": {
+      "ticker": "MOH",
+      "name": "Molina Healthcare",
+      "medicaid_members_mm": 4.6,
+      "medicaid_rev_2025_bn": 32,
+      "states_count": 19,
+      "notes": "Medicaid-focused MCO. 90%+ members are Medicaid. CEO: market underfunded by 300-400bp. Every 100bp MCR = ~$5/share. Membership down only 5.5% from pre-unwinding (best of Big Five).",
+      "subsidiaries": [
+        "Molina Healthcare of California", "Molina Healthcare of Florida",
+        "Molina Healthcare of Illinois", "Molina Healthcare of Michigan",
+        "Molina Healthcare of New York", "Molina Healthcare of Ohio",
+        "Molina Healthcare of South Carolina", "Molina Healthcare of Texas",
+        "Molina Healthcare of Utah", "Molina Healthcare of Washington",
+        "Molina Healthcare of Wisconsin", "Molina Healthcare of Virginia",
+        "Molina Healthcare of Idaho", "Molina Healthcare of Massachusetts",
+        "Molina Healthcare of Mississippi", "Molina Healthcare of Nebraska",
+        "Molina Healthcare of Nevada", "Molina Healthcare of New Mexico"
+      ],
+      "plan_name_patterns": ["molina"],
+      "key_state_exposure": {
+        "CA": {"plan": "Molina Healthcare of CA", "est_members_k": 1200},
+        "TX": {"plan": "Molina Healthcare of TX", "est_members_k": 600},
+        "OH": {"plan": "Molina Healthcare of OH", "est_members_k": 500},
+        "WA": {"plan": "Molina Healthcare of WA", "est_members_k": 350},
+        "MI": {"plan": "Molina Healthcare of MI", "est_members_k": 400},
+        "FL": {"plan": "Molina Healthcare of FL", "est_members_k": 300},
+        "IL": {"plan": "Molina Healthcare of IL", "est_members_k": 250},
+        "NY": {"plan": "Molina Healthcare of NY", "est_members_k": 200}
+      }
+    },
+    "ELV": {
+      "ticker": "ELV",
+      "name": "Elevance Health (Anthem/BCBS)",
+      "medicaid_members_mm": 7.2,
+      "medicaid_rev_2025_bn": 45,
+      "states_count": 22,
+      "notes": "Operates Medicaid as Anthem/BCBS plans + Amerigroup. Medicaid enrollment down 28.5% from pre-unwinding (worst of Big Five). Exited many CA counties in 2024. First reported Medicaid rev separately in Q3 2025.",
+      "subsidiaries": [
+        "Amerigroup", "Anthem Blue Cross", "Anthem Blue Cross Blue Shield",
+        "CareMore Health Plan", "Empire BlueCross BlueShield",
+        "Simply Healthcare", "HealthPlus", "Unicare"
+      ],
+      "plan_name_patterns": [
+        "amerigroup", "anthem", "empire", "simply healthcare",
+        "caremore", "healthplus", "unicare", "elevance",
+        "blue cross", "bcbs"
+      ],
+      "key_state_exposure": {
+        "NY": {"plan": "Empire / Amerigroup NY", "est_members_k": 1200},
+        "TX": {"plan": "Amerigroup TX", "est_members_k": 800},
+        "GA": {"plan": "Amerigroup GA", "est_members_k": 700},
+        "VA": {"plan": "Anthem BCBS VA / Amerigroup VA", "est_members_k": 600},
+        "IN": {"plan": "Anthem BCBS IN", "est_members_k": 500},
+        "OH": {"plan": "Anthem BCBS OH", "est_members_k": 400},
+        "FL": {"plan": "Simply Healthcare", "est_members_k": 350},
+        "CA": {"plan": "Anthem Blue Cross Partnership", "est_members_k": 200}
+      }
+    },
+    "UNH": {
+      "ticker": "UNH",
+      "name": "UnitedHealth Group",
+      "medicaid_members_mm": 7.8,
+      "medicaid_rev_2025_bn": 60,
+      "states_count": 33,
+      "notes": "UnitedHealthcare Community & State division. Medicaid rev grew 26.8% despite 11.9% enrollment decline. Optum integration deep. Acquired Amedisys 2024.",
+      "subsidiaries": [
+        "UnitedHealthcare Community Plan",
+        "UnitedHealthcare Community & State",
+        "AmeriChoice", "Evercare", "Optum", "Genoa Healthcare"
+      ],
+      "plan_name_patterns": [
+        "unitedhealthcare", "uhc", "americhoice", "evercare",
+        "united community", "united health"
+      ],
+      "key_state_exposure": {
+        "NY": {"plan": "UHC Community Plan NY", "est_members_k": 1100},
+        "TX": {"plan": "UHC Community Plan TX", "est_members_k": 800},
+        "PA": {"plan": "UHC Community Plan PA", "est_members_k": 600},
+        "OH": {"plan": "UHC Community Plan OH", "est_members_k": 500},
+        "MI": {"plan": "UHC Community Plan MI", "est_members_k": 450},
+        "VA": {"plan": "UHC Community Plan VA", "est_members_k": 400},
+        "WI": {"plan": "UHC Community Plan WI", "est_members_k": 350},
+        "NJ": {"plan": "UHC Community Plan NJ", "est_members_k": 300}
+      }
+    },
+    "CVS": {
+      "ticker": "CVS",
+      "name": "CVS Health (Aetna)",
+      "medicaid_members_mm": 2.8,
+      "medicaid_rev_2025_bn": 18,
+      "states_count": 16,
+      "notes": "Aetna Better Health Medicaid plans. Enrollment down 16.8% from pre-unwinding. CVS reported 17.3% increase in medical expenses PMPM in 2024.",
+      "subsidiaries": [
+        "Aetna Better Health", "Aetna Better Health of California",
+        "Aetna Better Health of Florida", "Aetna Better Health of Illinois",
+        "Aetna Better Health of Kentucky", "Aetna Better Health of Louisiana",
+        "Aetna Better Health of Michigan", "Aetna Better Health of New Jersey",
+        "Aetna Better Health of New York", "Aetna Better Health of Ohio",
+        "Aetna Better Health of Pennsylvania", "Aetna Better Health of Texas",
+        "Aetna Better Health of Virginia", "Aetna Better Health of West Virginia"
+      ],
+      "plan_name_patterns": ["aetna better health", "aetna", "cvs"],
+      "key_state_exposure": {
+        "PA": {"plan": "Aetna Better Health of PA", "est_members_k": 400},
+        "NY": {"plan": "Aetna Better Health of NY", "est_members_k": 350},
+        "NJ": {"plan": "Aetna Better Health of NJ", "est_members_k": 300},
+        "IL": {"plan": "Aetna Better Health of IL", "est_members_k": 250},
+        "OH": {"plan": "Aetna Better Health of OH", "est_members_k": 200},
+        "TX": {"plan": "Aetna Better Health of TX", "est_members_k": 200},
+        "FL": {"plan": "Aetna Better Health of FL", "est_members_k": 180}
+      }
+    }
+  },
+
+  "state_rate_adjustment_history": {
+    "_notes": "States that have historically done mid-year rate adjustments when MCOs lose money. Key signal for the threshold alert.",
+    "frequent_adjusters": ["OH", "TX", "GA", "KY", "IN", "FL", "VA", "PA"],
+    "known_recent_adjustments": [
+      {"state": "GA", "year": 2025, "reason": "MCO MLR spiked 11.4pp to 92.1% after best 2024 margin (7.3%)", "direction": "increase"},
+      {"state": "VA", "year": 2024, "reason": "Worst state margin at -6.4% on $13.6B revenue", "direction": "increase"},
+      {"state": "IL", "year": 2024, "reason": "-3.1% underwriting margin on $23.5B", "direction": "increase"},
+      {"state": "PA", "year": 2024, "reason": "-1.4% underwriting margin on $35B", "direction": "increase"},
+      {"state": "AR", "year": 2025, "reason": "MLR improved 6.9pp to 81.8%", "direction": "decrease"},
+      {"state": "KY", "year": 2025, "reason": "MLR improved 6.3pp to 89.9%", "direction": "decrease"}
+    ]
+  }
+}
