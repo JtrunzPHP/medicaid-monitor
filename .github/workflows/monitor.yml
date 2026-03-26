@@ -22,10 +22,13 @@ jobs:
           SMTP_PASS: ${{ secrets.SMTP_PASS }}
           EMAIL_TO:  ${{ secrets.EMAIL_TO }}
         run: python main.py
-      - name: Commit updated checksums and downloaded files
+      - name: Commit updated data
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add data/checksums.json data/base_rates.json data/rate_comparison.json data/mco/ -f || true
-          git add data/downloads/ -f || true
-          git diff --cached --quiet || git commit -m "chore: update data $(date -u +'%Y-%m-%d')" && git push
+          git add -f data/checksums.json 2>/dev/null || true
+          git add -f data/base_rates.json 2>/dev/null || true
+          git add -f data/rate_comparison.json 2>/dev/null || true
+          git add -f data/report.html 2>/dev/null || true
+          git add -f data/mco/ 2>/dev/null || true
+          git diff --cached --quiet && echo "No changes to commit" || (git commit -m "chore: update data $(date -u +'%Y-%m-%d')" && git push)
