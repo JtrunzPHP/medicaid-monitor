@@ -1,0 +1,237 @@
+{
+  "_notes": "Hybrid MCO profitability dataset. Quarterly earnings from Big Five + state-level NAIC data from Milliman/HMA published analyses. Updated manually from earnings calls and published reports.",
+  "_sources": {
+    "earnings": "SEC filings, earnings call transcripts, Georgetown CCF Big Five tracker",
+    "state_level": "HMA/HMAIS NAIC analysis (Becker's March 2026), Milliman CY2024 report (June 2025)",
+    "last_updated": "2026-03-26"
+  },
+
+  "industry_summary": {
+    "2024": {
+      "composite_mlr_pct": 90.8,
+      "composite_underwriting_margin_pct": -0.9,
+      "pct_plans_with_gains": 42,
+      "total_plans_analyzed": 221,
+      "states_covered": 39,
+      "avg_underwriting_margin_2019_2024": 1.8,
+      "avg_underwriting_margin_incl_2025": 1.4,
+      "notes": "First negative composite margin in over a decade. 97 of 184 MCOs reported underwriting losses. Down from 84% reporting gains in 2022."
+    }
+  },
+
+  "quarterly_earnings": {
+    "CNC": {
+      "name": "Centene Corporation",
+      "quarters": [
+        {"period": "Q1 2023", "medicaid_members_mm": 16.3, "medicaid_rev_bn": null, "medicaid_hbr_pct": null, "notes": "Pre-unwinding peak enrollment"},
+        {"period": "Q4 2023", "medicaid_members_mm": 14.8, "medicaid_rev_bn": null, "medicaid_hbr_pct": null, "notes": "Unwinding accelerating"},
+        {"period": "Q1 2024", "medicaid_members_mm": 14.0, "medicaid_rev_bn": null, "medicaid_hbr_pct": null, "notes": ""},
+        {"period": "Q2 2024", "medicaid_members_mm": 13.5, "medicaid_rev_bn": null, "medicaid_hbr_pct": null, "notes": ""},
+        {"period": "Q3 2024", "medicaid_members_mm": 13.1, "medicaid_rev_bn": null, "medicaid_hbr_pct": null, "notes": "Rev 4.1% below Q1 2023"},
+        {"period": "Q4 2024", "medicaid_members_mm": 12.8, "medicaid_rev_bn": null, "medicaid_hbr_pct": 93.0, "notes": "Medicaid HBR 93.0%, 40bp sequential improvement"},
+        {"period": "Q1 2025", "medicaid_members_mm": 12.6, "medicaid_rev_bn": null, "medicaid_hbr_pct": null, "notes": ""},
+        {"period": "Q2 2025", "medicaid_members_mm": 12.5, "medicaid_rev_bn": null, "medicaid_hbr_pct": null, "notes": ""},
+        {"period": "Q3 2025", "medicaid_members_mm": 12.5, "medicaid_rev_bn": 23.0, "medicaid_hbr_pct": null, "notes": "Q3 Medicaid rev $23B"},
+        {"period": "Q4 2025", "medicaid_members_mm": 12.5, "medicaid_rev_bn": null, "medicaid_hbr_pct": null, "notes": "Membership down 23.3% from pre-unwinding"}
+      ],
+      "guidance_2026": "Adj EPS >$3.00, prem/service rev $170-174B",
+      "key_signals": [
+        "Largest Medicaid MCO — most exposed to redetermination losses",
+        "CEO Sarah London: redeterminations are primary driver of membership decline",
+        "Medicaid HBR 93% in Q4 2024 — elevated but improving sequentially",
+        "Revenue declining despite rate increases — volume headwind from disenrollment"
+      ]
+    },
+    "MOH": {
+      "name": "Molina Healthcare",
+      "quarters": [
+        {"period": "Q1 2023", "medicaid_members_mm": 4.89, "medicaid_rev_bn": null, "medicaid_hbr_pct": null, "notes": "Pre-unwinding"},
+        {"period": "Q4 2023", "medicaid_members_mm": 4.75, "medicaid_rev_bn": null, "medicaid_hbr_pct": null, "notes": ""},
+        {"period": "Q1 2024", "medicaid_members_mm": 4.70, "medicaid_rev_bn": null, "medicaid_hbr_pct": null, "notes": ""},
+        {"period": "Q2 2024", "medicaid_members_mm": 4.65, "medicaid_rev_bn": null, "medicaid_hbr_pct": null, "notes": ""},
+        {"period": "Q3 2024", "medicaid_members_mm": 4.62, "medicaid_rev_bn": null, "medicaid_hbr_pct": null, "notes": "Enrollment +2% vs Q1 2023, rev +21%"},
+        {"period": "Q4 2024", "medicaid_members_mm": 4.60, "medicaid_rev_bn": null, "medicaid_hbr_pct": null, "notes": ""},
+        {"period": "Q1 2025", "medicaid_members_mm": 4.58, "medicaid_rev_bn": null, "medicaid_hbr_pct": null, "notes": ""},
+        {"period": "Q2 2025", "medicaid_members_mm": 4.57, "medicaid_rev_bn": null, "medicaid_hbr_pct": null, "notes": ""},
+        {"period": "Q3 2025", "medicaid_members_mm": 4.56, "medicaid_rev_bn": null, "medicaid_hbr_pct": null, "notes": ""},
+        {"period": "Q4 2025", "medicaid_members_mm": 4.56, "medicaid_rev_bn": null, "medicaid_hbr_pct": null, "notes": "Membership down only 5.5% — best of Big Five"}
+      ],
+      "guidance_2026": "Premium rev ~$42B, adj EPS ≥$5.00",
+      "key_signals": [
+        "90%+ members are Medicaid — most Medicaid-pure of Big Five",
+        "CEO: market underfunded by 300-400 basis points",
+        "Every 100bp on Medicaid MCR worth ~$5/share",
+        "Expects 'low single digit margin, not losses' in trough",
+        "Medicaid rev grew 27% despite enrollment decline — rate increases flowing through",
+        "Best membership retention of any Big Five MCO during unwinding"
+      ]
+    },
+    "ELV": {
+      "name": "Elevance Health",
+      "quarters": [
+        {"period": "Q1 2023", "medicaid_members_mm": 10.1, "medicaid_rev_bn": null, "medicaid_hbr_pct": null, "notes": "Pre-unwinding"},
+        {"period": "Q4 2023", "medicaid_members_mm": 9.2, "medicaid_rev_bn": null, "medicaid_hbr_pct": null, "notes": ""},
+        {"period": "Q1 2024", "medicaid_members_mm": 8.5, "medicaid_rev_bn": null, "medicaid_hbr_pct": null, "notes": ""},
+        {"period": "Q2 2024", "medicaid_members_mm": 8.0, "medicaid_rev_bn": null, "medicaid_hbr_pct": null, "notes": ""},
+        {"period": "Q3 2024", "medicaid_members_mm": 7.6, "medicaid_rev_bn": null, "medicaid_hbr_pct": null, "notes": "Enrollment -25% from Q1 2023"},
+        {"period": "Q4 2024", "medicaid_members_mm": 7.4, "medicaid_rev_bn": null, "medicaid_hbr_pct": null, "notes": ""},
+        {"period": "Q1 2025", "medicaid_members_mm": 7.3, "medicaid_rev_bn": null, "medicaid_hbr_pct": null, "notes": ""},
+        {"period": "Q2 2025", "medicaid_members_mm": 7.3, "medicaid_rev_bn": null, "medicaid_hbr_pct": null, "notes": ""},
+        {"period": "Q3 2025", "medicaid_members_mm": 7.2, "medicaid_rev_bn": 11.25, "medicaid_hbr_pct": null, "notes": "First time reporting Medicaid rev separately"},
+        {"period": "Q4 2025", "medicaid_members_mm": 7.2, "medicaid_rev_bn": null, "medicaid_hbr_pct": null, "notes": "Down 28.5% from pre-unwinding — worst of Big Five"}
+      ],
+      "guidance_2026": null,
+      "key_signals": [
+        "Worst enrollment decline of Big Five at -28.5%",
+        "Exited many CA counties in 2024",
+        "Only started reporting Medicaid rev separately in Q3 2025",
+        "Does NOT report Medicaid-specific MLR (only consolidated)",
+        "Operates as Amerigroup + Anthem BCBS plans"
+      ]
+    },
+    "UNH": {
+      "name": "UnitedHealth Group",
+      "quarters": [
+        {"period": "Q1 2023", "medicaid_members_mm": 8.8, "medicaid_rev_bn": null, "medicaid_hbr_pct": null, "notes": "Pre-unwinding"},
+        {"period": "Q4 2023", "medicaid_members_mm": 8.4, "medicaid_rev_bn": null, "medicaid_hbr_pct": null, "notes": ""},
+        {"period": "Q1 2024", "medicaid_members_mm": 8.2, "medicaid_rev_bn": null, "medicaid_hbr_pct": null, "notes": ""},
+        {"period": "Q2 2024", "medicaid_members_mm": 8.0, "medicaid_rev_bn": null, "medicaid_hbr_pct": null, "notes": ""},
+        {"period": "Q3 2024", "medicaid_members_mm": 7.9, "medicaid_rev_bn": null, "medicaid_hbr_pct": null, "notes": "Enrollment -11%, rev +8% vs Q1 2023"},
+        {"period": "Q4 2024", "medicaid_members_mm": 7.8, "medicaid_rev_bn": null, "medicaid_hbr_pct": null, "notes": ""},
+        {"period": "Q1 2025", "medicaid_members_mm": 7.8, "medicaid_rev_bn": null, "medicaid_hbr_pct": null, "notes": ""},
+        {"period": "Q2 2025", "medicaid_members_mm": 7.8, "medicaid_rev_bn": null, "medicaid_hbr_pct": null, "notes": ""},
+        {"period": "Q3 2025", "medicaid_members_mm": 7.8, "medicaid_rev_bn": 23.0, "medicaid_hbr_pct": null, "notes": "Q3 Medicaid rev $23B — tied with CNC"},
+        {"period": "Q4 2025", "medicaid_members_mm": 7.8, "medicaid_rev_bn": null, "medicaid_hbr_pct": null, "notes": "Rev grew 26.8% despite -11.9% enrollment"}
+      ],
+      "guidance_2026": null,
+      "key_signals": [
+        "Revenue growing strongly despite enrollment decline — rate increases + acuity shift",
+        "Acquired Amedisys 2024 — deeper provider integration via Optum",
+        "Does NOT report Medicaid-specific MLR",
+        "33 states — broadest geographic footprint of Big Five"
+      ]
+    },
+    "CVS": {
+      "name": "CVS Health (Aetna)",
+      "quarters": [
+        {"period": "Q1 2023", "medicaid_members_mm": 3.4, "medicaid_rev_bn": null, "medicaid_hbr_pct": null, "notes": "Pre-unwinding"},
+        {"period": "Q4 2023", "medicaid_members_mm": 3.2, "medicaid_rev_bn": null, "medicaid_hbr_pct": null, "notes": ""},
+        {"period": "Q1 2024", "medicaid_members_mm": 3.1, "medicaid_rev_bn": null, "medicaid_hbr_pct": null, "notes": ""},
+        {"period": "Q2 2024", "medicaid_members_mm": 3.0, "medicaid_rev_bn": null, "medicaid_hbr_pct": null, "notes": ""},
+        {"period": "Q3 2024", "medicaid_members_mm": 2.9, "medicaid_rev_bn": null, "medicaid_hbr_pct": null, "notes": ""},
+        {"period": "Q4 2024", "medicaid_members_mm": 2.8, "medicaid_rev_bn": null, "medicaid_hbr_pct": null, "notes": "Medical expenses PMPM +17.3%"},
+        {"period": "Q1 2025", "medicaid_members_mm": 2.8, "medicaid_rev_bn": null, "medicaid_hbr_pct": null, "notes": ""},
+        {"period": "Q2 2025", "medicaid_members_mm": 2.8, "medicaid_rev_bn": null, "medicaid_hbr_pct": null, "notes": ""},
+        {"period": "Q3 2025", "medicaid_members_mm": 2.8, "medicaid_rev_bn": null, "medicaid_hbr_pct": null, "notes": ""},
+        {"period": "Q4 2025", "medicaid_members_mm": 2.8, "medicaid_rev_bn": null, "medicaid_hbr_pct": null, "notes": "Down 16.8% from pre-unwinding"}
+      ],
+      "guidance_2026": null,
+      "key_signals": [
+        "Smallest Medicaid footprint of Big Five (16 states)",
+        "Medical expenses PMPM surged 17.3% in 2024 — worst cost trend of Big Five",
+        "Does NOT report Medicaid-specific revenue or MLR",
+        "Operates as Aetna Better Health plans"
+      ]
+    }
+  },
+
+  "state_profitability_2024": {
+    "_source": "HMA/HMAIS NAIC statutory filings analysis, 170 plans with Medicaid revenue 2019-2024 (published March 2026 via Becker's). Milliman CY2024 report (184 MCOs, published June 2025).",
+    "_notes": "Underwriting margin = premium revenue minus claims minus admin, as % of premium. Negative = MCOs losing money = rate increase likely.",
+    "states": {
+      "PA": {"revenue_bn": 35.0, "underwriting_margin_pct": -1.4, "mlr_2024": null, "notes": "Largest state market by MCO revenue. Negative margin."},
+      "TX": {"revenue_bn": 29.5, "underwriting_margin_pct": 0.4, "mlr_2024": null, "notes": "Barely positive. Rate pressure."},
+      "IL": {"revenue_bn": 23.5, "underwriting_margin_pct": -3.1, "mlr_2024": null, "notes": "Deep losses. Rate adjustment expected."},
+      "FL": {"revenue_bn": 20.5, "underwriting_margin_pct": 3.2, "mlr_2024": null, "notes": "Best margin among top 5 markets."},
+      "OH": {"revenue_bn": 16.6, "underwriting_margin_pct": 0.4, "mlr_2024": null, "notes": "Barely positive. Historic adjuster."},
+      "VA": {"revenue_bn": 13.6, "underwriting_margin_pct": -6.4, "mlr_2024": null, "notes": "WORST margin of any state. Deep distress."},
+      "GA": {"revenue_bn": null, "underwriting_margin_pct": null, "mlr_2024": 80.7, "mlr_2025_emerging": 92.1, "notes": "Biggest MLR deterioration: +11.4pp from 2024 to 2025. Was best 2024 margin at 7.3%."},
+      "AR": {"revenue_bn": null, "underwriting_margin_pct": null, "mlr_2024": null, "mlr_2025_emerging": 81.8, "notes": "MLR improved 6.9pp. Best improvement."},
+      "KY": {"revenue_bn": null, "underwriting_margin_pct": null, "mlr_2024": null, "mlr_2025_emerging": 89.9, "notes": "MLR improved 6.3pp."},
+      "NY": {"revenue_bn": null, "underwriting_margin_pct": null, "mlr_2024": null, "notes": "NY Medicaid policy restricting out-of-state BH reimbursement — $25-30M EBITDA headwind for ACHC."},
+      "CA": {"revenue_bn": null, "underwriting_margin_pct": null, "mlr_2024": null, "notes": "Elevance exited many counties. Molina growing to ~1.2M members. Not in NAIC analysis (CA MCOs don't file standard NAIC statements)."}
+    }
+  },
+
+  "rate_adjustment_signals": {
+    "_notes": "Investment-actionable signals: states where MCO losses → likely rate increases → tailwind for provider companies billing Medicaid in those states.",
+    "alerts": [
+      {
+        "state": "VA",
+        "severity": "CRITICAL",
+        "margin_pct": -6.4,
+        "revenue_bn": 13.6,
+        "signal": "Worst state margin at -6.4%. MCOs bleeding money. Rate increase highly likely.",
+        "provider_tickers_affected": ["UHS", "EHC", "BTSG", "MODV"],
+        "mco_tickers_affected": ["ELV", "UNH", "CNC"]
+      },
+      {
+        "state": "IL",
+        "severity": "CRITICAL",
+        "margin_pct": -3.1,
+        "revenue_bn": 23.5,
+        "signal": "Large market, deep losses. ADUS largest personal care market is IL (28%). Rate increase = direct revenue uplift.",
+        "provider_tickers_affected": ["ADUS", "BTSG", "OPCH"],
+        "mco_tickers_affected": ["CNC", "MOH", "CVS"]
+      },
+      {
+        "state": "PA",
+        "severity": "HIGH",
+        "margin_pct": -1.4,
+        "revenue_bn": 35.0,
+        "signal": "Largest state market by MCO revenue. Negative margin on $35B. ACHC facing 350bp Medicaid headwind at PA specialty sites.",
+        "provider_tickers_affected": ["ACHC", "SEM", "EHC", "MODV"],
+        "mco_tickers_affected": ["UNH", "CVS", "ELV"]
+      },
+      {
+        "state": "GA",
+        "severity": "HIGH",
+        "margin_pct": null,
+        "mlr_2025": 92.1,
+        "mlr_change_pp": 11.4,
+        "signal": "Biggest MLR deterioration in country: +11.4pp to 92.1%. Was best margin state in 2024 (7.3%). Rapid reversal.",
+        "provider_tickers_affected": ["BTSG", "NHC", "EHC", "THC"],
+        "mco_tickers_affected": ["CNC", "ELV"]
+      },
+      {
+        "state": "TX",
+        "severity": "MEDIUM",
+        "margin_pct": 0.4,
+        "revenue_bn": 29.5,
+        "signal": "Barely positive on $29.5B. Any cost trend acceleration tips to losses. 2nd largest market.",
+        "provider_tickers_affected": ["ADUS", "ENSG", "THC", "UHS", "EHC", "SGRY"],
+        "mco_tickers_affected": ["CNC", "UNH", "ELV", "CVS"]
+      },
+      {
+        "state": "OH",
+        "severity": "MEDIUM",
+        "margin_pct": 0.4,
+        "revenue_bn": 16.6,
+        "signal": "Barely positive. Historic mid-year adjuster. Rate action likely if margins deteriorate further.",
+        "provider_tickers_affected": ["BTSG", "SEM", "DVA", "BKD"],
+        "mco_tickers_affected": ["CNC", "MOH", "UNH", "CVS", "ELV"]
+      },
+      {
+        "state": "FL",
+        "severity": "LOW",
+        "margin_pct": 3.2,
+        "revenue_bn": 20.5,
+        "signal": "Best margin among large markets. No rate pressure. Stable for providers.",
+        "provider_tickers_affected": ["THC", "SGRY", "EHC", "MD"],
+        "mco_tickers_affected": ["CNC", "MOH", "ELV", "CVS"]
+      }
+    ]
+  },
+
+  "investment_thesis": {
+    "bull_case_providers": "States with MCO losses (VA, IL, PA) will raise capitation rates. Rate increases flow through to higher FFS reimbursement and MCO network payments. Provider companies (ENSG, ADUS, ACHC, etc.) in those states get revenue tailwind. Molina says market underfunded 300-400bp → if corrected, ~$5/share impact per 100bp for MOH alone.",
+    "bear_case_providers": "One Big Beautiful Bill Act Medicaid cuts could offset state rate increases. Work requirements and eligibility tightening reduce covered lives. Supplemental payment provisions changing over multi-year timeline.",
+    "key_watchlist": [
+      "ADUS: IL is 28% of revenue. IL MCOs at -3.1% margin. IL rate increase = direct earnings uplift.",
+      "ACHC: 60% Medicaid. NY policy change = $25-30M EBITDA headwind. PA specialty sites facing 350bp headwind. But carve-outs from work requirements protect their population.",
+      "ENSG: CA is 32% exposure. CA not in NAIC analysis but Medi-Cal rates are a separate state process. Watch DHCS rate updates.",
+      "MOH: Most Medicaid-pure MCO. If rates restored per actuarial soundness, every 100bp MCR = ~$5/share. Best enrollment retention during unwinding.",
+      "MODV: Filed Chapter 11 August 2025. Restructuring $1.1B debt. Avoid."
+    ]
+  }
+}
