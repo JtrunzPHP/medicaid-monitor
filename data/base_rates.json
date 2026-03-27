@@ -1,0 +1,72 @@
+[
+  {
+    "ticker": "MODV",
+    "company": "ModivCare",
+    "segment": "",
+    "code": "A0080",
+    "desc": "NEMT non-emergency transport",
+    "state": "CO",
+    "state_exposure_pct": 0.07,
+    "base_rate": 0.48,
+    "national_median": 0.48,
+    "vs_median_pct": 0.0,
+    "rev_pct": 0.3,
+    "volume_est": 8000000
+  },
+  {
+    "ticker": "MODV",
+    "company": "ModivCare",
+    "segment": "",
+    "code": "A0090",
+    "desc": "NEMT per mile",
+    "state": "CO",
+    "state_exposure_pct": 0.07,
+    "base_rate": 0.48,
+    "national_median": 0.48,
+    "vs_median_pct": 0.0,
+    "rev_pct": 0.12,
+    "volume_est": 20000000
+  },
+  {
+    "ticker": "MODV",
+    "company": "ModivCare",
+    "segment": "",
+    "code": "A0100",
+    "desc": "NEMT taxi",
+    "state": "CO",
+    "state_exposure_pct": 0.07,
+    "base_rate": 36.4,
+    "national_median": 36.4,
+    "vs_median_pct": 0.0,
+    "rev_pct": 0.04,
+    "volume_est": 1500000
+  },
+  {
+    "ticker": "MODV",
+    "company": "ModivCare",
+    "segment": "",
+    "code": "T2005",
+    "desc": "NEMT stretcher van per trip",
+    "state": "CO",
+    "state_exposure_pct": 0.07,
+    "base_rate": 50.43,
+    "national_median": 50.43,
+    "vs_median_pct": 0.0,
+    "rev_pct": 0.02,
+    "volume_est": 300000
+  },
+  {
+    "ticker": "MODV",
+    "company": "ModivCare",
+    "segment": "",
+    "code": "A0120",
+    "desc": "NEMT mini-bus",
+    "state": "CO",
+    "state_exposure_pct": 0.07,
+    "base_rate": 36.4,
+    "national_median": 36.4,
+    "vs_median_pct": 0.0,
+    "rev_pct": 0.02,
+    "volume_est": 500000
+  }
+]

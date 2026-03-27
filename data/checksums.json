@@ -204,8 +204,8 @@
   "https://www.hca.wa.gov/assets/billers-and-providers/respiratory-20250701.xlsx": "1686102c3c44e74ae8da90204462234e7ea91949d67fbb63b80a92c93d2dcc38",
   "https://www.hca.wa.gov/assets/billers-and-providers/respiratory-20241001.xlsx": "ceb692f5277f5926f3cedcb7be8e79ff7a7ca09f5147c772643c44a984d76009",
   "https://www.hca.wa.gov/assets/billers-and-providers/respiratory-20240701.xlsx": "9c06e5344bbdfafbd8239ff2e7eb0e989ba98ee620db52f30fa45960825fa641",
-  "https://www.hca.wa.gov/assets/billers-and-providers/rhc-encounter-rates-20260101.xlsx": "9dd708bd34884a12a3c31f98cadc57bddd7339509c0f5f5b462ad6d88b4c663e",
-  "https://www.hca.wa.gov/assets/billers-and-providers/rhc-encounter-rates-20251001.xlsx": "7f3d58c4350e83775e4c491af3d0b0fb08438fee3c6dfefbd860c02f1b462710",
+  "https://www.hca.wa.gov/assets/billers-and-providers/rhc-encounter-rates-20260101.xlsx": "32b4c9eea3a9f2c813c4d8a58dd577da09cecda611c94d7657479573e825fd43",
+  "https://www.hca.wa.gov/assets/billers-and-providers/rhc-encounter-rates-20251001.xlsx": "c71cc5a40e4b64e8f2ff49e5106c08c3af1845333536dba4d2a2ef3259bdb48e",
   "https://www.hca.wa.gov/assets/billers-and-providers/rhc-encounter-rates-20250701.xlsx": "6940cd60bb3558205e4e01b51740dbde2f1cf3c741c6dee438c0bdb810dc946d",
   "https://www.hca.wa.gov/assets/billers-and-providers/school-based-20250701.xlsx": "a07f9bd1a5f867fbd2dd52d9c4c3bef8ca190787cfe81aabe9056aa17359f176",
   "https://www.hca.wa.gov/assets/billers-and-providers/school-based-20240701.xlsx": "27d18d3a3440e7b2029f5c66c60b19416cb1a8244446104ba9d9e9f41feddf85",
@@ -788,5 +788,7 @@
   "https://www.hhs.nd.gov/sites/default/files/documents/2025-7-1-prh-rates.pdf": "b2c7eaae4fc4d5559d2853c390d1b3f5e3d043ccf02f699c6067d6824b9424d4",
   "https://medicaidpublications.dhss.delaware.gov/docs/DesktopModules/Bring2mind/DMX/API/Entries/Download?Command=Core_Download&EntryId=1306&language=en-US&PortalId=0&TabId=94": "beb54a69d615d1b4c684f1e0cee48c5d5b0740ad892d9bfc6f85a219fcbc65ef",
   "https://medicaidprovider.mt.gov/docs/rebateablelabelers/March2026RebateableDrugManufacturers.pdf": "16f6eaa8350ad00cccdf5ec5c33b59986ee863e001711feaf9cbcca0d5bdd4e2",
-  "https://medicaidprovider.mt.gov/docs/providernotices/2026/ProviderNoticeTransitionofPassporttoHealthCPCandPCMHtoNewPrimaryCareMontanaPCMTProgram1.pdf": "6a5ab3ac3af207c92f8e0f551b9734854f69fc7894bc6fe2c6cb53a30e6739f0"
+  "https://medicaidprovider.mt.gov/docs/providernotices/2026/ProviderNoticeTransitionofPassporttoHealthCPCandPCMHtoNewPrimaryCareMontanaPCMTProgram1.pdf": "6a5ab3ac3af207c92f8e0f551b9734854f69fc7894bc6fe2c6cb53a30e6739f0",
+  "https://hcpf.colorado.gov/sites/hcpf/files/21B_CO_Fee%20Schedule_NEMT_07.2025_V1.3.xlsx": "6053b98d5566cb4c35cfcbfc68eda3cde097a07d5912d2b8631b90774f71f61d",
+  "https://www.hca.wa.gov/assets/billers-and-providers/rhc-encounter-rates-20260401.xlsx": "00679bb8c8518195164794ceaf3d113173134cee15454759bacbce61ee92971b"
 }
