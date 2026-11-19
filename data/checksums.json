@@ -165,7 +165,7 @@
   "https://www.hca.wa.gov/assets/billers-and-providers/neurodevelopmental-centers-20250701.xlsx": "c88dafa7c45a3a143b3905a76230f4b871bdcc595901195c6df4cce223d76399",
   "https://www.hca.wa.gov/assets/billers-and-providers/neurodevelopmental-centers-20250101.xlsx": "a71b4734ad7b5790586a9cf6751049e19319f5e4a66bfe33eab2fa5322d8033e",
   "https://www.hca.wa.gov/assets/billers-and-providers/neurodevelopmental-centers-20240701.xlsx": "298f19ad1839c6a4b4b6b151397f695734341aa98a9f3ab2172cb360193a0d40",
-  "https://www.hca.wa.gov/assets/billers-and-providers/opps-20260101.xlsx": "1d913d4e9205820218326b351b48278daa908b1e9a8c98b10b3a0376a5499fe8",
+  "https://www.hca.wa.gov/assets/billers-and-providers/opps-20260101.xlsx": "1d903f070179d3c5495698d267393b3a8e1c4997c47c034aba15d03b831e5b1d",
   "https://www.hca.wa.gov/assets/billers-and-providers/opps-20251001.xlsx": "4b59e1b3a1ae42cb6e26a5718f3b14094d3fa744267c3759e43e4e5788253f86",
   "https://www.hca.wa.gov/assets/billers-and-providers/opps-20250701.xlsx": "27fb914f889235ff6d0d04e7380ec609faaf111ac9cd0d47a6c10ba321c8afd9",
   "https://www.hca.wa.gov/assets/billers-and-providers/opps-20250401.xlsx": "43f2e9e44389a86efcf2de5e357db5f59aa16244c2d1956cb741ca79248e88d5",
@@ -1121,7 +1121,7 @@
   "https://www.hca.wa.gov/assets/billers-and-providers/enteral-nutrition-20260701.xlsx": "a159e954a3b10ac4c2b220b49b537f7d3e15ef956b802a3c41b193f312a70dc2",
   "https://www.hca.wa.gov/assets/billers-and-providers/family-planning-20260701.xlsx": "5a5a33fa89fedacf4ff2e757312e7aa1dfaca54aac7966a8abfbc7b5d41aaac7",
   "https://www.hca.wa.gov/assets/billers-and-providers/srhp-20260701.xlsx": "28bb5374c67ff3662c324ec5284555f393fd7bf09385aff3736cf0066b807c58",
-  "https://www.hca.wa.gov/assets/billers-and-providers/fqhc-rates-20260701.xlsx": "7beb545094e2fbdaa0ab1fbbd545bd5ff5fbdd30ded5ad8e0229720ff9c3f412",
+  "https://www.hca.wa.gov/assets/billers-and-providers/fqhc-rates-20260701.xlsx": "f48c3e431247962e9828322edc908d84fd4611701ad17caa858a861bb05efd26",
   "https://www.hca.wa.gov/assets/billers-and-providers/hearing-aids-20260701.xlsx": "3568ad19a676d27e86e8c25a4143756ef0e2a2a94b61d4897ef8dc6beaa2e03c",
   "https://www.hca.wa.gov/assets/billers-and-providers/home-infusion-parenteral-nutrition-20260701.xlsx": "4c56a3279faabd71743a189eb878bd658dd55dfa8af5a0ad8542aaf55f07c3e9",
   "https://www.hca.wa.gov/assets/billers-and-providers/medical-equipment-supplies-20260701.xlsx": "1df21d253c0e8a6a2f82fe16d2bb2bc5966107ecc6cc5e4bc14e8b3b09c0812e",
@@ -1280,7 +1280,7 @@
   "https://medicaidprovider.mt.gov/docs/rebateablelabelers/September2026RebateableDrugManufacturers.pdf": "818ab15a244960d999638660e6b3f2245bc8be3af5be257dd1a4019c45766623",
   "https://hcpf.colorado.gov/sites/hcpf/files/CHP%2BImmunization_Fee%20Schedule_07.2026_V1.1.xlsx": "f6c5477a1b06a7905f061f5cc7ba4a22e7d16a690115607814caf3ba82023687",
   "https://medicaidprovider.mt.gov/docs/providernotices/2026/ResumingPaymentstoPreviouslyProhibitedEntitiesUnderH.R.1Section71113.pdf": "9587fdc96363b0225d1b68c6a0dfe7b28f3f777f6b54f8559bcc82a858371835",
-  "https://www.hca.wa.gov/assets/billers-and-providers/fqhc-rates-20261001.xlsx": "c12f6fa0e4a190be71130b913a1a2f2412e15fe94ba498366a7a73f7299ce3f3",
+  "https://www.hca.wa.gov/assets/billers-and-providers/fqhc-rates-20261001.xlsx": "d71d56e821bba9bc25414e9f611fbeb25e69299e3ec7d35816306dc23ef49db3",
   "https://www.hca.wa.gov/assets/billers-and-providers/fqhc-rhc-enhancement-rates-20261001.xlsx": "b23a4a5f1bcbd6f0ccfa63275ecb786097dfad269cafafcbca9e2c7d8a06adfe",
   "https://www.hca.wa.gov/assets/billers-and-providers/kidneycenters-20261001.xlsx": "cd70121e1b6bd3b7df50f97505d09fc448018544b697af08b6626965b7e742d4",
   "https://www.hca.wa.gov/assets/billers-and-providers/physician-20261001.xlsx": "09873787cff7f7a2b3e85947caab3e8636abb23001a5298d4ccb1a87564aecae",
@@ -1377,5 +1377,6 @@
   "https://img1.scdhhs.gov/fees/FEE_NNAAP.xlsx": "656864494ce954eaed80809b6eeeddc9946baa8957701df023d3ca0b7b71b43f",
   "https://img1.scdhhs.gov/fees/FEE_OMPANP.xlsx": "4388204fd35204bbf5d56328ede7695e260d56d43032cf651fbf66de571460ab",
   "https://img1.scdhhs.gov/fees/FEE_PODIA.xlsx": "a23d4f26e3e42317ea87ed9e42a8d069539b5a42aa9b0cd273223e9eaf5699de",
-  "https://img1.scdhhs.gov/fees/fee_OPTIC.xlsx": "e829fca81fdefe5abeacb9b907e470e56148835646c66c49dd4cf92786e042de"
+  "https://img1.scdhhs.gov/fees/fee_OPTIC.xlsx": "e829fca81fdefe5abeacb9b907e470e56148835646c66c49dd4cf92786e042de",
+  "https://www.chfs.ky.gov/agencies/dms/DMSFeeRateSchedules/CAHOctober2026.xlsx": "3b74fac1808a64943574bf92636e15f1cb302c783ce5136557bece9065f16598"
 }
